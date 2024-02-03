@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication1.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Welcome</title>
+    <link href="Style.css" rel="stylesheet" />
+    <script language="C#" runat="server">
+
+        public void opt1_Click(Object sender, EventArgs e)
+        {
+            opt1.CssClass = "active";
+            Response.Redirect("MyAccount.aspx");
+        }
+
+        public void opt2_Click(Object sender, EventArgs e)
+        {
+            opt2.CssClass = "active";
+            Response.Redirect("Agreement.aspx");
+        }
+
+        public void opt3_Click(Object sender, EventArgs e)
+        {
+            opt3.CssClass = "active";
+            Response.Redirect("Evaluation.aspx");
+        }
+        public void opt4_Click(Object sender, EventArgs e)
+        {
+            opt4.CssClass = "active";
+        }
+
+
+   </script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="mySidenav" class="sidenav">
+            <center>
+                <img src="images/MMCL Logo1.png" width="200" height="220" />
+            </center>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <asp:Label ID="labelLogID" runat="server" Text="Welcome, UserName" CssClass="label"></asp:Label>
+            <asp:LinkButton ID="opt1" runat="server" Text="My Account" OnClick="opt1_Click"></asp:LinkButton>
+            <asp:LinkButton ID="opt2" runat="server" Text="Agreement" OnClick="opt2_Click"></asp:LinkButton>
+            <asp:LinkButton ID="opt3" runat="server" Text="Evaluation" OnClick="opt3_Click"></asp:LinkButton>
+            <asp:LinkButton ID="opt4" runat="server" Text="Settings" OnClick="opt4_Click"></asp:LinkButton>
+            <a href="LogIn.aspx" class="label">Sign Out</a>
+        </div>
+        <div id="main">
+            <span class="menu" onclick="openNav()">+</span>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            
+            </asp:ContentPlaceHolder>
+        </div>
+    
+</form>
+</body>
+</html>
