@@ -120,7 +120,7 @@
                         <td colspan="5"><strong>KRA 1</strong></td>
                     </tr>
                     <tr>
-                        <td class="auto-style20">Key Inititaive</td>
+                        <td class="auto-style20">Key Initiative</td>
                         <td class="auto-style3">&nbsp;</td>
                         <td class="auto-style9">W</td>
                         <td class="auto-style4">R</td>
@@ -131,7 +131,7 @@
                         <td class="auto-style6">&nbsp;</td>
                         <td class="auto-style18">70</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_A" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1A_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_A" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_A" runat="server" Text="0"></asp:Label>
@@ -141,7 +141,7 @@
                         <td colspan="5"><strong>KRA 2</strong></td>
                     </tr>
                     <tr>
-                        <td class="auto-style20">Key Inititaive</td>
+                        <td class="auto-style20">Key Initiative</td>
                         <td class="auto-style3">&nbsp;</td>
                         <td class="auto-style9">W</td>
                         <td class="auto-style4">R</td>
@@ -152,7 +152,7 @@
                         <td class="auto-style6">&nbsp;</td>
                         <td class="auto-style18">70</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_A0" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1A_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_A0" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_A0" runat="server" Text="0"></asp:Label>
@@ -162,7 +162,7 @@
                         <td colspan="5"><strong>KRA 3</strong></td>
                     </tr>
                     <tr>
-                        <td class="auto-style20">Key Inititaive</td>
+                        <td class="auto-style20">Key Initiative</td>
                         <td class="auto-style3">&nbsp;</td>
                         <td class="auto-style9">W</td>
                         <td class="auto-style4">R</td>
@@ -173,7 +173,7 @@
                         <td class="auto-style6">&nbsp;</td>
                         <td class="auto-style18">70</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_A1" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1A_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_A1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_A1" runat="server" Text="0"></asp:Label>
@@ -183,7 +183,7 @@
                         <td colspan="5"><strong>KRA 4</strong></td>
                     </tr>
                     <tr>
-                        <td class="auto-style20">Key Inititaive</td>
+                        <td class="auto-style20">Key Initiative</td>
                         <td class="auto-style3">&nbsp;</td>
                         <td class="auto-style9">W</td>
                         <td class="auto-style4">R</td>
@@ -194,7 +194,7 @@
                         <td class="auto-style6"></td>
                         <td class="auto-style18">70</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_A2" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1A_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_A2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_A2" runat="server" Text="0"></asp:Label>
@@ -204,7 +204,7 @@
                         <td colspan="5"><strong>KRA 5</strong></td>
                     </tr>
                     <tr>
-                        <td class="auto-style20">Key Inititaive</td>
+                        <td class="auto-style20">Key Initiative</td>
                         <td class="auto-style3">&nbsp;</td>
                         <td class="auto-style9">W</td>
                         <td class="auto-style4">R</td>
@@ -215,7 +215,7 @@
                         <td class="auto-style6">&nbsp;</td>
                         <td class="auto-style18">70</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_A3" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1A_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_A3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_A3" runat="server" Text="0"></asp:Label>
@@ -225,7 +225,7 @@
                         <td colspan="5"><strong>KRA 6</strong></td>
                     </tr>
                     <tr>
-                        <td class="auto-style20">Key Inititaive</td>
+                        <td class="auto-style20">Key Initiative</td>
                         <td class="auto-style3">&nbsp;</td>
                         <td class="auto-style9">W</td>
                         <td class="auto-style4">R</td>
@@ -236,7 +236,7 @@
                         <td class="auto-style6">&nbsp;</td>
                         <td class="auto-style18">70</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_A4" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1A_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_A4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_A4" runat="server" Text="0"></asp:Label>
@@ -271,7 +271,7 @@
                         <td class="auto-style6">Notes/Critical Incidents:</td>
                         <td class="auto-style5">25</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_1" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_1" runat="server" Text="0"></asp:Label>
@@ -287,7 +287,7 @@
                         <td class="auto-style6">Notes/Critical Incidents:</td>
                         <td class="auto-style5">25</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_6" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_6" runat="server" Text="0"></asp:Label>
@@ -303,7 +303,7 @@
                         <td class="auto-style6">Notes/Critical Incidents:</td>
                         <td class="auto-style5">25</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_7" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_7" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_7" runat="server" Text="0"></asp:Label>
@@ -319,7 +319,7 @@
                         <td class="auto-style6">Notes/Critical Incidents:</td>
                         <td class="auto-style5">25</td>
                         <td class="auto-style4">
-                            <asp:TextBox ID="rating1_8" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                            <asp:TextBox ID="rating1_8" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                         </td>
                         <td>
                             <asp:Label ID="label1_8" runat="server" Text="0"></asp:Label>
@@ -352,7 +352,7 @@
                     <td class="auto-style8" colspan="2">Stiving to be great and not just good. Continuously improving our results.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label7" runat="server" Text="0"></asp:Label>
@@ -388,7 +388,7 @@
                     <td class="auto-style8" colspan="2">Doing things fast. Taking initiative to respond to needs of various stakeholders.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox5" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label8" runat="server" Text="0"></asp:Label>
@@ -424,7 +424,7 @@
                     <td class="auto-style8" colspan="2">Strong work ethic. Deserving of trust and respect. Prudent use of company resources, including time. Acting with fairness and objectivity.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox6" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label9" runat="server" Text="0"></asp:Label>
@@ -460,7 +460,7 @@
                     <td class="auto-style8" colspan="2">Actively tapping areas of synergy. Communicating and collaborating towards common goals.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox7" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox7" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label10" runat="server" Text="0"></asp:Label>
@@ -496,7 +496,7 @@
                     <td class="auto-style8" colspan="2">Being good corporate citizens. Pursuing corporate interests as his own. Speaking well of the company and taking pride of its achievements.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox8" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox8" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label11" runat="server" Text="0"></asp:Label>
@@ -548,7 +548,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1" runat="server" Text="0"></asp:Label>
@@ -583,7 +583,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox9" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox9" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label14" runat="server" Text="0"></asp:Label>
@@ -618,7 +618,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox10" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox10" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label15" runat="server" Text="0"></asp:Label>
@@ -653,7 +653,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox11" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox11" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label16" runat="server" Text="0"></asp:Label>
@@ -688,7 +688,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox12" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox12" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label17" runat="server" Text="0"></asp:Label>
@@ -723,7 +723,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox13" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox13" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label18" runat="server" Text="0"></asp:Label>
@@ -758,7 +758,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox14" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox14" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label19" runat="server" Text="0"></asp:Label>
@@ -793,7 +793,7 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox15" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="TextBox15" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label20" runat="server" Text="0"></asp:Label>

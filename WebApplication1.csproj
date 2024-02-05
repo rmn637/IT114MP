@@ -68,10 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Agreement.aspx" />
+    <Content Include="AgreementFaculty.aspx" />
+    <Content Include="AgreementOfficers.aspx" />
+    <Content Include="AgreementStaff.aspx" />
     <Content Include="Evaluation.aspx" />
     <Content Include="images\MMCL Logo.png" />
     <Content Include="images\MMCL Logo1.png" />
     <Content Include="LogIn.aspx" />
+    <Content Include="Settings.aspx" />
     <Content Include="Style.css" />
     <Content Include="Web.config" />
     <Content Include="Start.aspx" />
@@ -88,6 +92,27 @@
     <Compile Include="Agreement.aspx.designer.cs">
       <DependentUpon>Agreement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgreementFaculty.aspx.cs">
+      <DependentUpon>AgreementFaculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementFaculty.aspx.designer.cs">
+      <DependentUpon>AgreementFaculty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgreementOfficers.aspx.cs">
+      <DependentUpon>AgreementOfficers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementOfficers.aspx.designer.cs">
+      <DependentUpon>AgreementOfficers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgreementStaff.aspx.cs">
+      <DependentUpon>AgreementStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementStaff.aspx.designer.cs">
+      <DependentUpon>AgreementStaff.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Evaluation.aspx.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -103,6 +128,13 @@
       <DependentUpon>LogIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

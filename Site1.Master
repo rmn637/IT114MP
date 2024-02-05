@@ -28,6 +28,7 @@
         public void opt4_Click(Object sender, EventArgs e)
         {
             opt4.CssClass = "active";
+            Response.Redirect("Settings.aspx");
         }
 
 

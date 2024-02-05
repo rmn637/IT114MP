@@ -7,7 +7,7 @@
         }
         .auto-style2 {
             width: 80%;
-                                      
+                                   
         }
         .auto-style3 {
             width: 914px;
@@ -266,10 +266,10 @@
             <td class="auto-style8" colspan="2">Stiving to be great and not just good. Continuously improving our results.</td>
             <td class="auto-style9">20</td>
             <td class="auto-style4">
-                <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                <asp:TextBox ID="rating2_1" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
             </td>
             <td>
-                <asp:Label ID="label7" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="label2_1" runat="server" Text="0"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -302,10 +302,10 @@
             <td class="auto-style8" colspan="2">Doing things fast. Taking initiative to respond to needs of various stakeholders.</td>
             <td class="auto-style9">20</td>
             <td class="auto-style4">
-                <asp:TextBox ID="TextBox5" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                <asp:TextBox ID="rating2_2" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
             </td>
             <td>
-                <asp:Label ID="label8" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="label2_2" runat="server" Text="0"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -338,10 +338,10 @@
             <td class="auto-style8" colspan="2">Strong work ethic. Deserving of trust and respect. Prudent use of company resources, including time. Acting with fairness and objectivity.</td>
             <td class="auto-style9">20</td>
             <td class="auto-style4">
-                <asp:TextBox ID="TextBox6" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                <asp:TextBox ID="rating2_3" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
             </td>
             <td>
-                <asp:Label ID="label9" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="label2_3" runat="server" Text="0"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -374,10 +374,10 @@
             <td class="auto-style8" colspan="2">Actively tapping areas of synergy. Communicating and collaborating towards common goals.</td>
             <td class="auto-style9">20</td>
             <td class="auto-style4">
-                <asp:TextBox ID="TextBox7" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                <asp:TextBox ID="rating2_4" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
             </td>
             <td>
-                <asp:Label ID="label10" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="label2_4" runat="server" Text="0"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -410,10 +410,10 @@
             <td class="auto-style8" colspan="2">Being good corporate citizens. Pursuing corporate interests as his own. Speaking well of the company and taking pride of its achievements.</td>
             <td class="auto-style9">20</td>
             <td class="auto-style4">
-                <asp:TextBox ID="TextBox8" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                <asp:TextBox ID="rating2_5" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="rating1B_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
             </td>
             <td>
-                <asp:Label ID="label11" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="label2_5" runat="server" Text="0"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -442,7 +442,7 @@
             <td class="auto-style9" style="border-style: none">&nbsp;</td>
             <td class="auto-style4" style="border-style: none"><strong>TOTAL</strong></td>
             <td style="border-style: none">
-                <asp:Label ID="label6" runat="server"></asp:Label>
+                <asp:Label ID="labelTotal2" runat="server"></asp:Label>
             </td>
         </tr>
     </table>
@@ -458,25 +458,33 @@
                 <td class="auto-style8">STRENGTH</td>
             </tr>
             <tr>
-                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style8">
+                    <asp:TextBox ID="TextBox2" runat="server" Width="1005px"></asp:TextBox>
+                </td>
             </tr>
             <tr>
                 <td class="auto-style8">AREAS OF IMPROVEMENT</td>
                 </tr>
             <tr>
-                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style8">
+                    <asp:TextBox ID="TextBox3" runat="server" Width="1005px"></asp:TextBox>
+                </td>
                 </tr>
             <tr>
                 <td class="auto-style8">DEVELOPMENT PLANS (PLEASE SPECIFY TARGET DATE)</td>
                 </tr>
             <tr>
-                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style8">
+                    <asp:TextBox ID="TextBox4" runat="server" Width="1005px"></asp:TextBox>
+                </td>
                 </tr>
             <tr>
                 <td class="auto-style8">EMPLOYEE&#39;S COMMENTS/ACKNOWLEDGEMENT</td>
                 </tr>
             <tr>
-                <td class="auto-style8">&nbsp;</td>
+                <td class="auto-style8">
+                    <asp:TextBox ID="TextBox5" runat="server" Width="1005px"></asp:TextBox>
+                </td>
                 </tr>
             </table>
         </center>
@@ -492,23 +500,29 @@
                 <td class="auto-style17"><strong>SECTION 1-A</strong></td>
                 <td class="auto-style9">50%</td>
                 <td class="auto-style9">
-                    <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="sectionTotal_1" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style17"><strong>SECTION 1-B</strong></td>
                 <td class="auto-style9">20%</td>
-                <td class="auto-style9">&nbsp;</td>
+                <td class="auto-style9">
+                    <asp:Label ID="sectionTotal_2" runat="server"></asp:Label>
+                </td>
             </tr>
             <tr>
                 <td class="auto-style17"><strong>SECTION 2</strong></td>
                 <td class="auto-style9">15%</td>
-                <td class="auto-style9">&nbsp;</td>
+                <td class="auto-style9">
+                    <asp:Label ID="sectionTotal_3" runat="server"></asp:Label>
+                </td>
                 </tr>
             <tr>
                 <td class="auto-style17"><strong>SECTION 3</strong></td>
                 <td class="auto-style9">15%</td>
-                <td class="auto-style9">&nbsp;</td>
+                <td class="auto-style9">
+                    <asp:Label ID="sectionTotal_4" runat="server"></asp:Label>
+                </td>
                 </tr>
             <tr>
                 <td class="auto-style17">&nbsp;</td>
@@ -517,7 +531,9 @@
                 </tr>
             <tr>
                 <td class="auto-style16" colspan="2"><strong>TOTAL OVERALL PERFORMANCE POINTS</strong></td>
-                    <td class="auto-style9">&nbsp;</td>
+                    <td class="auto-style9">
+                    <asp:Label ID="sectionTotal_5" runat="server"></asp:Label>
+                </td>
                 </tr>
             </table>
         </center>
