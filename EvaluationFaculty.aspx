@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationFaculty.aspx.cs" Inherits="WebApplication1.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationFaculty.aspx.cs" Inherits="WebApplication1.WebForm3" MaintainScrollPositionOnPostback="true"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title> Faculty Evaluation </title>
     <style type="text/css">

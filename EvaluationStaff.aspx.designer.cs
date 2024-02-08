@@ -15,265 +15,292 @@ namespace WebApplication1
     {
 
         /// <summary>
-        /// TextBox1 control.
+        /// rating1_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox rating1_1;
 
         /// <summary>
-        /// label1 control.
+        /// label1_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label1;
+        protected global::System.Web.UI.WebControls.Label label1_1;
 
         /// <summary>
-        /// TextBox9 control.
+        /// rating1_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.WebControls.TextBox rating1_2;
 
         /// <summary>
-        /// label14 control.
+        /// label1_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label14;
+        protected global::System.Web.UI.WebControls.Label label1_2;
 
         /// <summary>
-        /// TextBox10 control.
+        /// rating1_3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.WebControls.TextBox rating1_3;
 
         /// <summary>
-        /// label15 control.
+        /// label1_3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label15;
+        protected global::System.Web.UI.WebControls.Label label1_3;
 
         /// <summary>
-        /// TextBox11 control.
+        /// rating1_4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.WebControls.TextBox rating1_4;
 
         /// <summary>
-        /// label16 control.
+        /// label1_4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label16;
+        protected global::System.Web.UI.WebControls.Label label1_4;
 
         /// <summary>
-        /// TextBox12 control.
+        /// rating1_5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox rating1_5;
 
         /// <summary>
-        /// label17 control.
+        /// label1_5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label17;
+        protected global::System.Web.UI.WebControls.Label label1_5;
 
         /// <summary>
-        /// TextBox13 control.
+        /// rating1_6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.TextBox rating1_6;
 
         /// <summary>
-        /// label18 control.
+        /// label1_6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label18;
+        protected global::System.Web.UI.WebControls.Label label1_6;
 
         /// <summary>
-        /// TextBox14 control.
+        /// rating1_7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
+        protected global::System.Web.UI.WebControls.TextBox rating1_7;
 
         /// <summary>
-        /// label19 control.
+        /// label1_7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label19;
+        protected global::System.Web.UI.WebControls.Label label1_7;
 
         /// <summary>
-        /// TextBox15 control.
+        /// rating1_8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox15;
+        protected global::System.Web.UI.WebControls.TextBox rating1_8;
 
         /// <summary>
-        /// label20 control.
+        /// label1_8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label20;
+        protected global::System.Web.UI.WebControls.Label label1_8;
 
         /// <summary>
-        /// label13 control.
+        /// labelTotal1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label13;
+        protected global::System.Web.UI.WebControls.Label labelTotal1;
 
         /// <summary>
-        /// TextBox4 control.
+        /// rating2_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox rating2_1;
 
         /// <summary>
-        /// label7 control.
+        /// label2_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label7;
+        protected global::System.Web.UI.WebControls.Label label2_1;
 
         /// <summary>
-        /// TextBox5 control.
+        /// rating2_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox rating2_2;
 
         /// <summary>
-        /// label8 control.
+        /// label2_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label8;
+        protected global::System.Web.UI.WebControls.Label label2_2;
 
         /// <summary>
-        /// TextBox6 control.
+        /// rating2_3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox rating2_3;
 
         /// <summary>
-        /// label9 control.
+        /// label2_3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label9;
+        protected global::System.Web.UI.WebControls.Label label2_3;
 
         /// <summary>
-        /// TextBox7 control.
+        /// rating2_4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox rating2_4;
 
         /// <summary>
-        /// label10 control.
+        /// label2_4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label10;
+        protected global::System.Web.UI.WebControls.Label label2_4;
 
         /// <summary>
-        /// TextBox8 control.
+        /// rating2_5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        protected global::System.Web.UI.WebControls.TextBox rating2_5;
 
         /// <summary>
-        /// label11 control.
+        /// label2_5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label11;
+        protected global::System.Web.UI.WebControls.Label label2_5;
 
         /// <summary>
-        /// label6 control.
+        /// labelTotal2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label6;
+        protected global::System.Web.UI.WebControls.Label labelTotal2;
 
         /// <summary>
-        /// Label12 control.
+        /// sectionTotal_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.Label sectionTotal_1;
+
+        /// <summary>
+        /// sectionTotal_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sectionTotal_2;
+
+        /// <summary>
+        /// sectionTotal_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sectionTotal_3;
+
+        /// <summary>
+        /// sectionTotal_4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sectionTotal_4;
 
         /// <summary>
         /// Submit control.

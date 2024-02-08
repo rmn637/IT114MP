@@ -243,7 +243,7 @@ namespace WebApplication1
                         rating2_1.Text = "5";
                     }
                     weightedScore = double.Parse(ratingComp(rating2_1.Text)) * weight;
-                    label1_1.Text = weightedScore.ToString("0.00");
+                    label2_1.Text = weightedScore.ToString("0.00");
                 }
                 else if (rating.ID == "rating2_2")
                 {
@@ -252,7 +252,7 @@ namespace WebApplication1
                         rating2_2.Text = "5";
                     }
                     weightedScore = double.Parse(ratingComp(rating2_2.Text)) * weight;
-                    label1_2.Text = weightedScore.ToString("0.00");
+                    label2_2.Text = weightedScore.ToString("0.00");
                 }
                 else if (rating.ID == "rating2_3")
                 {
@@ -261,7 +261,7 @@ namespace WebApplication1
                         rating2_3.Text = "5";
                     }
                     weightedScore = double.Parse(ratingComp(rating2_3.Text)) * weight;
-                    label1_3.Text = weightedScore.ToString("0.00");
+                    label2_3.Text = weightedScore.ToString("0.00");
                 }
                 else if (rating.ID == "rating2_4")
                 {
@@ -270,7 +270,7 @@ namespace WebApplication1
                         rating2_4.Text = "5";
                     }
                     weightedScore = double.Parse(ratingComp(rating2_4.Text)) * weight;
-                    label1_4.Text = weightedScore.ToString("0.00");
+                    label2_4.Text = weightedScore.ToString("0.00");
                 }
                 else
                 {
@@ -279,7 +279,7 @@ namespace WebApplication1
                         rating2_5.Text = "5";
                     }
                     weightedScore = double.Parse(ratingComp(rating2_5.Text)) * weight;
-                    label1_5.Text = weightedScore.ToString("0.00");
+                    label2_5.Text = weightedScore.ToString("0.00");
                 }
                 computeTotal2();
             }

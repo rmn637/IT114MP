@@ -41,6 +41,25 @@ input[type=submit] {
     background-color: #656565;
     padding-top: 60px; 
     transition: 0.5s;
+}   
+
+.section {
+    margin-top:80px;
+    font-family: 'Montserrat';
+    height: 100%;
+    width: 0;
+    marginLeft:250px;
+    position:absolute;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-bottom:50px;
+}
+
+#page1 {
+    width: 100%;
+    height:1000px;
 }
 
 .label {
@@ -75,6 +94,14 @@ input[type=submit] {
     transition: 0.3s;
 }
 
+.activepage {
+    text-decoration: none;
+    font-size: 18px;
+    background-color: #a8a8a8;
+    color: #4cff00;
+    transition: 0.3s;
+}
+
 
 .sidenav .closebtn {
     position: absolute;
@@ -82,6 +109,26 @@ input[type=submit] {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+}
+
+.navbar {
+    overflow: hidden;
+    marginLeft: 250px;
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
 }
 
 div .center {
@@ -117,4 +164,10 @@ table, th, td{
 
 #trbc {
     background-color: #f1f1f1;
+}
+
+a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #a8a8a8;
 }

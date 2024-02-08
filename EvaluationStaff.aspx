@@ -1,13 +1,54 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationStaff.aspx.cs" Inherits="WebApplication1.WebForm5" %>
+﻿<%@ Page Title="Evaluation Form" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationStaff.aspx.cs" Inherits="WebApplication1.WebForm5" MaintainScrollPositionOnPostback="true"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title> Faculty Evaluation </title>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("page1").style.marginLeft = "250px";
+            document.getElementById("page2").style.marginLeft = "250px";
+            document.getElementById("page3").style.marginLeft = "250px";
+            document.getElementById("overall").style.marginLeft = "250px";
+        }
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("page1").style.marginLeft = "0";
+            document.getElementById("page2").style.marginLeft = "0";
+            document.getElementById("page3").style.marginLeft = "0";
+            document.getElementById("overall").style.marginLeft = "0";
+        }
+        function page1() {
+            document.getElementById("page1").style.width = "100%";
+            document.getElementById("page2").style.width = "0";
+            document.getElementById("page3").style.width = "0";
+            document.getElementById("overall").style.width = "0";
+            document.getElementById("page1").addClass(" ");
+        }
+        function page2() {
+            document.getElementById("page1").style.width = "0";
+            document.getElementById("page2").style.width = "100%";
+            document.getElementById("page3").style.width = "0";
+            document.getElementById("overall").style.width = "0";
+        }
+        function page3() {
+            document.getElementById("page1").style.width = "0";
+            document.getElementById("page2").style.width = "0";
+            document.getElementById("page3").style.width = "100%";
+            document.getElementById("overall").style.width = "0";
+        }
+        function overall() {
+            document.getElementById("page1").style.width = "0";
+            document.getElementById("page2").style.width = "0";
+            document.getElementById("page3").style.width = "0";
+            document.getElementById("overall").style.width = "100%";
+        }
+    </script>
     <style type="text/css">
     .auto-style1 {
         height: 30px;
     }
     .auto-style2 {
         width: 80%;
-                                  
     }
     .auto-style4 {
         width: 98px;
@@ -45,34 +86,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
-        <h2>Performance Evaluation Survey for Staffs</h2>
-        <table>
-            <tr id="trbc">
-                <td>Name of Employee</td>
-                <td>Position</td>
-                <td>College/Department</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr id="trbc0">
-                <td class="auto-style1">Name of Rater</td>
-                <td class="auto-style1">Appraisal Period</td>
-                <td class="auto-style1">Date Prepared</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-    </center>
-    <br />
-    <center>
         <br />
-        <div id ="section1">
+        <div class="section" id="page1">
+            <center>
+            <div class="navbar" id="navibar">
+                <a href="javascript:void(0)" onclick="page1()">Section 1</a> &nbsp; &nbsp; &nbsp;
+                <a href="javascript:void(0)" onclick="page2()">Section 2</a> &nbsp; &nbsp; &nbsp;
+                <a href="javascript:void(0)" onclick="page3()">Section 3</a> &nbsp; &nbsp; &nbsp;
+                <a href="javascript:void(0)" onclick="overall()">Overall</a>
+            </div>
+            </center>
+            <br />
+            <br />
             <table class="auto-style2">
                 <tr>
                     <td colspan="5" class="auto-style15" style="background-color: #C0C0C0"><strong>SECTION 1: PROFICIENCY / BEHAVIORAL-BASED PERFORMANCE</strong></td>
@@ -86,10 +111,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label1" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_1" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -121,10 +146,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox9" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label14" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_2" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -156,10 +181,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox10" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label15" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_3" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -191,10 +216,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox11" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label16" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_4" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -226,10 +251,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox12" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label17" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_5" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -261,10 +286,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox13" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label18" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_6" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -296,10 +321,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox14" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_7" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label19" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_7" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -331,10 +356,10 @@
                 <tr>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox15" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_8" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label20" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label1_8" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -363,16 +388,24 @@
                     <td class="auto-style9" style="border-style: none">&nbsp;</td>
                     <td class="auto-style4" style="border-style: none"><strong>TOTAL</strong></td>
                     <td style="border-style: none">
-                        <asp:Label ID="label13" runat="server"></asp:Label>
+                        <asp:Label ID="labelTotal1" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>
         </div>
         <br />
-        <div id ="section2">
+        <div class="section" id ="page2">
+            <div class="navbar">
+                <a href="javascript:void(0)" onclick="page1()">Section 1</a> &nbsp; &nbsp; &nbsp;
+                <a href="javascript:void(0)" onclick="page2()">Section 2</a> &nbsp; &nbsp; &nbsp;
+                <a href="javascript:void(0)" onclick="page3()">Section 3</a> &nbsp; &nbsp; &nbsp;
+                <a href="javascript:void(0)" onclick="overall()">Overall</a>
+            </div>
+            <br />
+            <br />
             <table class="auto-style2">
                 <tr>
-                    <td colspan="5" class="auto-style15" style="background-color: #C0C0C0"><strong>SECTION 2: DEMONSTRATION OF YGC CORE VALUES</strong></td>
+                    <td style="background-color: #C0C0C0" colspan="5" class="auto-style15"><strong>SECTION 2: DEMONSTRATION OF YGC CORE VALUES</strong></td>
                 </tr>
                 <tr>
                     <td colspan="2"><strong>PASSION FOR EXCELLENCE</strong></td>
@@ -384,13 +417,15 @@
                     <td class="auto-style8" colspan="2">Stiving to be great and not just good. Continuously improving our results.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating2_1" runat="server"
+                            Height="18px" TextMode="Number" Width="91px" oninput="focusOnRating2_1()"
+                            OnTextChanged="rating2_TextChanged" AutoPostBack="true">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label7" runat="server" Text="0"></asp:Label>
+                         <asp:Label ID="label2_1" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
-                <tr>
+                <tr>    
                     <td class="auto-style7">1</td>
                     <td class="auto-style8" colspan="4">&nbsp;Does not meet deadlines and standards. Displays low level of effort towards work. Has no concern for quality of products and services and commits numerous mistakes when working.</td>
                 </tr>
@@ -420,10 +455,10 @@
                     <td class="auto-style8" colspan="2">Doing things fast. Taking initiative to respond to needs of various stakeholders.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating2_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label8" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label2_2" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -456,10 +491,10 @@
                     <td class="auto-style8" colspan="2">Strong work ethic. Deserving of trust and respect. Prudent use of company resources, including time. Acting with fairness and objectivity.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating2_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label9" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label2_3" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -492,10 +527,10 @@
                     <td class="auto-style8" colspan="2">Actively tapping areas of synergy. Communicating and collaborating towards common goals.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox7" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating2_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label10" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label2_4" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -528,10 +563,10 @@
                     <td class="auto-style8" colspan="2">Being good corporate citizens. Pursuing corporate interests as his own. Speaking well of the company and taking pride of its achievements.</td>
                     <td class="auto-style9">20</td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox8" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating2_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
-                        <asp:Label ID="label11" runat="server" Text="0"></asp:Label>
+                        <asp:Label ID="label2_5" runat="server" Text="0"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -560,15 +595,22 @@
                     <td class="auto-style9" style="border-style: none">&nbsp;</td>
                     <td class="auto-style4" style="border-style: none"><strong>TOTAL</strong></td>
                     <td style="border-style: none">
-                        <asp:Label ID="label6" runat="server"></asp:Label>
+                        <asp:Label ID="labelTotal2" runat="server"></asp:Label>
                     </td>
                 </tr>
             </table>
         </div>
         <br />
-        <div id ="section3" width="80%" style="text-align:center">
+        <div class="section" id="page3" width="80%" style="text-align:center">
             <center>
-
+                <div class="navbar">
+                    <a href="javascript:void(0)" onclick="page1()">Section 1</a> &nbsp; &nbsp; &nbsp;
+                    <a href="javascript:void(0)" onclick="page2()">Section 2</a> &nbsp; &nbsp; &nbsp;
+                    <a href="javascript:void(0)" onclick="page3()">Section 3</a> &nbsp; &nbsp; &nbsp;
+                    <a href="javascript:void(0)" onclick="overall()">Overall</a>
+                </div>
+                <br/>
+                <br />
                 <table class="auto-style2">
                     <tr>
                         <td style="background-color: #C0C0C0"><strong>SECTION 3</strong></td>
@@ -601,37 +643,53 @@
             </center>
         </div>
         <br />
-        <div id ="overall" width="30%" style="text-align:center">
+        <div class="section" id ="overall" width="30%" style="text-align:center">
             <center>
+                <div class="navbar">
+                    <a href="javascript:void(0)" onclick="page1()">Section 1</a> &nbsp; &nbsp; &nbsp;
+                    <a href="javascript:void(0)" onclick="page2()">Section 2</a> &nbsp; &nbsp; &nbsp;
+                    <a href="javascript:void(0)" onclick="page3()">Section 3</a> &nbsp; &nbsp; &nbsp;
+                    <a href="javascript:void(0)" onclick="overall()">Overall</a>
+                </div>
                 <table width ="25%">
-                    <tr>
+                    <tr>    
                         <td style="background-color: #C0C0C0" colspan="3"><strong>OVERALL</strong></td>
+                        <br />
+                        <br />
                     </tr>
                     <tr>
                         <td class="auto-style17"><strong>SECTION 1</strong></td>
                         <td class="auto-style9">50%</td>
                         <td class="auto-style9">
-                            <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
+                            <asp:Label ID="sectionTotal_1" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td class="auto-style17"><strong>SECTION 2</strong></td>
                         <td class="auto-style9">50%</td>
-                        <td class="auto-style9">&nbsp;</td>
+                        <td class="auto-style9">
+                            <asp:Label ID="sectionTotal_2" runat="server"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style17">&nbsp;</td>
                         <td class="auto-style9">100%</td>
-                        <td class="auto-style9">&nbsp;</td>
+                        <td class="auto-style9">
+                            <asp:Label ID="sectionTotal_3" runat="server"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style16" colspan="2"><strong>TOTAL OVERALL PERFORMANCE POINTS</strong></td>
-                        <td class="auto-style9">&nbsp;</td>
+                        <td class="auto-style9">
+                            <asp:Label ID="sectionTotal_4" runat="server"></asp:Label>
+                        </td>
                     </tr>
                 </table>
+            
+            <asp:Button ID="Submit" runat="server" Text=" Submit "/>
+                <br />
             </center>
         </div>
-        <br />
-        <asp:Button ID="Submit" runat="server" Text=" Submit "/>
     </center>
+            
 </asp:Content>
