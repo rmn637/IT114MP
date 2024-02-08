@@ -25,7 +25,7 @@ namespace WebApplication1
                 {
                     if (double.Parse(weight.Text) > 100)
                     {
-                        weight1_1.Text = "5";
+                        weight1_1.Text = "100";
                     }
                     weightedScore = double.Parse(weight1_1.Text);
                 }
@@ -92,7 +92,14 @@ namespace WebApplication1
         }
         protected void Submit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("MyAccount.aspx");
+            if (labelTotal1.Text != "100.00")
+            {
+                Response.Write("<script>alert('Your total weight is not 100.')</script>");
+            }
+            else
+            {
+                Response.Redirect("MyAccount.aspx");
+            }
         }
     }
 }

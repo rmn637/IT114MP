@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementSection2Staff.aspx.cs" Inherits="WebApplication1.AgreementSection2Staff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementSection2Faculty.aspx.cs" Inherits="WebApplication1.AgreementSection2Faculty" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
     .auto-style1 {
@@ -50,11 +50,10 @@
         <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
     </div>
     <br />
-    </center>
-    <center>
+    <br />
     <table class="auto-style2">
         <tr>
-            <td style="background-color: #C0C0C0"  colspan="5" class="auto-style15"><strong>SECTION 2: DEMONSTRATION OF YGC CORE VALUES</strong></td>
+            <td style="background-color: #C0C0C0" colspan="5" class="auto-style15"><strong>SECTION 2: DEMONSTRATION OF YGC CORE VALUES</strong></td>
         </tr>
         <tr>
             <td colspan="2"><strong>PASSION FOR EXCELLENCE</strong></td>

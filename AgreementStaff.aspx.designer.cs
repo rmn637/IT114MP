@@ -15,51 +15,6 @@ namespace WebApplication1
     {
 
         /// <summary>
-        /// lblEmpID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpID;
-
-        /// <summary>
-        /// lblEmpName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpName;
-
-        /// <summary>
-        /// lblEmpDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpDept;
-
-        /// <summary>
-        /// lblEmpPos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpPos;
-
-        /// <summary>
-        /// lblEmpSupervisor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpSupervisor;
-
-        /// <summary>
         /// EvaluateBtn control.
         /// </summary>
         /// <remarks>

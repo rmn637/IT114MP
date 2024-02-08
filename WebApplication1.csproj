@@ -119,9 +119,11 @@
     <Content Include="Agreement.aspx" />
     <Content Include="AgreementFaculty.aspx" />
     <Content Include="AgreementOfficers.aspx" />
+    <Content Include="AgreementOverallFaculty.aspx" />
     <Content Include="AgreementOverallStaff.aspx" />
     <Content Include="AgreementSection1Faculty.aspx" />
     <Content Include="AgreementSection1Staff.aspx" />
+    <Content Include="AgreementSection2Faculty.aspx" />
     <Content Include="AgreementSection2Staff.aspx" />
     <Content Include="AgreementStaff.aspx" />
     <Content Include="Evaluation.aspx" />
@@ -161,6 +163,13 @@
     <Compile Include="AgreementOfficers.aspx.designer.cs">
       <DependentUpon>AgreementOfficers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgreementOverallFaculty.aspx.cs">
+      <DependentUpon>AgreementOverallFaculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementOverallFaculty.aspx.designer.cs">
+      <DependentUpon>AgreementOverallFaculty.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgreementOverallStaff.aspx.cs">
       <DependentUpon>AgreementOverallStaff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,6 +190,13 @@
     </Compile>
     <Compile Include="AgreementSection1Staff.aspx.designer.cs">
       <DependentUpon>AgreementSection1Staff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgreementSection2Faculty.aspx.cs">
+      <DependentUpon>AgreementSection2Faculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementSection2Faculty.aspx.designer.cs">
+      <DependentUpon>AgreementSection2Faculty.aspx</DependentUpon>
     </Compile>
     <Compile Include="AgreementSection2Staff.aspx.cs">
       <DependentUpon>AgreementSection2Staff.aspx</DependentUpon>

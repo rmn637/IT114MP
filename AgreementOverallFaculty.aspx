@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementOverallStaff.aspx.cs" Inherits="WebApplication1.AgreementOverallStaff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementOverallFaculty.aspx.cs" Inherits="WebApplication1.AgreementOverallFaculty" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
     function openNav() {
@@ -32,7 +32,7 @@
                 <br />
             </tr>
             <tr>
-                <td class="auto-style17"><strong>SECTION 1</strong></td>
+                <td class="auto-style17"><strong>SECTION 1-A</strong></td>
                 <td class="auto-style9">
                     <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
                 </td>
@@ -40,9 +40,25 @@
                 </td>
             </tr>
             <tr>
-                <td class="auto-style17"><strong>SECTION 2</strong></td>
+                <td class="auto-style17"><strong>SECTION 1-B</strong></td>
                 <td class="auto-style9">
                     <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                </td>
+                <td class="auto-style9">
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style17"><strong>SECTION 2</strong></td>
+                <td class="auto-style9">
+                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                </td>
+                <td class="auto-style9">
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style17"><strong>SECTION 3</strong></td>
+                <td class="auto-style9">
+                    <asp:TextBox ID="weight1_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
                 </td>
                 <td class="auto-style9">
                 </td>
@@ -53,7 +69,7 @@
                     <asp:Label ID="labelTotal1" runat="server"></asp:Label>
                 </td>
                 <td class="auto-style9">
-                        
+                    
                 </td>
             </tr>
             <tr>
@@ -62,6 +78,7 @@
                     &nbsp;</td>
             </tr>
         </table>
+        <center> 
     <asp:Button ID="Submit" runat="server" Text=" Submit " OnClick="Submit_Click" Enabled="false"/>
         <br />
     </center>

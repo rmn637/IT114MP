@@ -54,7 +54,7 @@ namespace WebApplication1
                 {
                     if (double.Parse(weight.Text) > 100)
                     {
-                        weight2_1.Text = "5";
+                        weight2_1.Text = "100";
                     }
                     weightedScore = double.Parse(weight2_1.Text);
                 }

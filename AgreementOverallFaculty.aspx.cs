@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class AgreementSection1Faculty : System.Web.UI.Page
+    public partial class AgreementOverallFaculty : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +25,7 @@ namespace WebApplication1
                 {
                     if (double.Parse(weight.Text) > 100)
                     {
-                        weight1_1.Text = "5";
+                        weight1_1.Text = "100";
                     }
                     weightedScore = double.Parse(weight1_1.Text);
                 }
@@ -53,39 +53,7 @@ namespace WebApplication1
                     }
                     weightedScore = double.Parse(weight1_4.Text);
                 }
-                else if (weight.ID == "weight1_5")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_5.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_5.Text);
-                }
-                else if (weight.ID == "weight1_A")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_A.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_A.Text);
-                }
-                else if (weight.ID == "weight1_B")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_B.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_B.Text);
-                }
-                else
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_C.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_C.Text);
-                }
-                computeTotalWeight1();
+                computeTotalWeight2();
             }
             catch (FormatException)
             {
@@ -104,27 +72,20 @@ namespace WebApplication1
                 return 0;
             }
         }
-        protected void computeTotalWeight1()
+        protected void computeTotalWeight2()
         {
-            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, weight5 = 0, weightA = 0, weightB = 0, weightC = 0, total = 0;
+            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, total = 0;
             weight1 = inputChecker(weight1_1.Text);
             weight2 = inputChecker(weight1_2.Text);
             weight3 = inputChecker(weight1_3.Text);
             weight4 = inputChecker(weight1_4.Text);
-            weight5 = inputChecker(weight1_5.Text);
-            weightA = inputChecker(weight1_A.Text);
-            weightB = inputChecker(weight1_B.Text);
-            weightC = inputChecker(weight1_C.Text);
-            total = weight1 + weight2 + weight3 + weight4 + weight5;
-            labelTotal1B.Text = total.ToString("0.00");
-            total = 0 + weightA + weightB + weightC;
-            labelTotal1A.Text = total.ToString("0.00");
-
+            total = weight1 + weight2 + weight3 + weight4;
+            labelTotal1.Text = total.ToString("0.00");
         }
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if (labelTotal1A.Text != "100.00" && labelTotal1B.Text != "100.00")
+            if (labelTotal1.Text != "100.00")
             {
                 Response.Write("<script>alert('Your total weight is not 100.')</script>");
             }
@@ -133,18 +94,29 @@ namespace WebApplication1
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementSection1Faculty.aspx");
+                    Response.Redirect("~/AgreementSection1Staff.aspx");
                 }
                 else if (link.ID == "btnSection2")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementSection2Faculty.aspx");
+                    Response.Redirect("~/AgreementSection2Staff.aspx");
                 }
                 else if (link.ID == "btnOverall")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementOverallFaculty.aspx");
+                    Response.Redirect("~/AgreementOverallStaff.aspx");
                 }
+            }
+        }
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            if (labelTotal1.Text != "100.00")
+            {
+                Response.Write("<script>alert('Your total weight is not 100.')</script>");
+            }
+            else
+            {
+                Response.Redirect("MyAccount.aspx");
             }
         }
     }

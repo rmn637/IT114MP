@@ -44,20 +44,35 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="center">
-        <h2>Employee Information</h2>
+    <center>
+        <h2>Performance Evaluation Survey for Staff</h2>
+            <table>
+                <tr id="trbc">
+                    <td>Name of Employee</td>
+                    <td>Position</td>
+                    <td>College/Department</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr id="trbc">
+                    <td class="auto-style1">Name of Rater</td>
+                    <td class="auto-style1">Appraisal Period</td>
+                    <td class="auto-style1">Date Prepared</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            </center>
         <br />
-        <strong>
-        <asp:Label ID="lblEmpID" runat="server" ></asp:Label>
-        <br />
-        <asp:Label ID="lblEmpName" runat="server" ></asp:Label>
-        <br />
-        <asp:Label ID="lblEmpDept" runat="server" ></asp:Label>
-        <br />
-        <asp:Label ID="lblEmpPos" runat="server" ></asp:Label>
-        <br />
-        <asp:Label ID="lblEmpSupervisor" runat="server" ></asp:Label>
-        </strong>
-        <asp:Button ID="EvaluateBtn" runat="server" Text="Evaluate" OnClick="EvaluateBtn_Click" />
+        <center>
+            <br />
+        <asp:Button ID="EvaluateBtn" runat="server" Text="Create Agreement" OnClick="EvaluateBtn_Click" />
     </div>    
 </asp:Content>
     
