@@ -3,10 +3,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="center">
-        <p>Name: John Doe</p>
-        <p>Employee ID: 2022123456</p>
-        <p>Employee Department: CCIS</p>
-        <p>Employee Position: Professor</p>
-        <p>Employee Supervisor: </p>
+        <h2>Employee Information</h2>
+        <br />
+        <strong>
+        <asp:Label ID="lblEmpID" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpName" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpDept" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpPos" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpSupervisor" runat="server" ></asp:Label>
+        </strong>
     </div>
 </asp:Content>

@@ -11,7 +11,12 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+        }
 
+        protected void EvaluateBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgreementSection1Faculty.aspx");
         }
     }
 }

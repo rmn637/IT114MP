@@ -119,11 +119,15 @@
     <Content Include="Agreement.aspx" />
     <Content Include="AgreementFaculty.aspx" />
     <Content Include="AgreementOfficers.aspx" />
+    <Content Include="AgreementSection1Faculty.aspx" />
     <Content Include="AgreementStaff.aspx" />
     <Content Include="Evaluation.aspx" />
     <Content Include="images\MMCL Logo.png" />
     <Content Include="images\MMCL Logo1.png" />
     <Content Include="LogIn.aspx" />
+    <Content Include="Section1Faculty.aspx" />
+    <Content Include="Section2Faculty.aspx" />
+    <Content Include="Section2Staff.aspx" />
     <Content Include="Settings.aspx" />
     <Content Include="Style.css" />
     <Content Include="Web.config" />
@@ -155,6 +159,13 @@
     <Compile Include="AgreementOfficers.aspx.designer.cs">
       <DependentUpon>AgreementOfficers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgreementSection1Faculty.aspx.cs">
+      <DependentUpon>AgreementSection1Faculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementSection1Faculty.aspx.designer.cs">
+      <DependentUpon>AgreementSection1Faculty.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgreementStaff.aspx.cs">
       <DependentUpon>AgreementStaff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,6 +188,27 @@
       <DependentUpon>LogIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Section1Faculty.aspx.cs">
+      <DependentUpon>Section1Faculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Section1Faculty.aspx.designer.cs">
+      <DependentUpon>Section1Faculty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Section2Faculty.aspx.cs">
+      <DependentUpon>Section2Faculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Section2Faculty.aspx.designer.cs">
+      <DependentUpon>Section2Faculty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Section2Staff.aspx.cs">
+      <DependentUpon>Section2Staff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Section2Staff.aspx.designer.cs">
+      <DependentUpon>Section2Staff.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

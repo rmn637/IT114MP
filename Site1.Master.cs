@@ -11,6 +11,7 @@ namespace WebApplication1
     public partial class Site1 : System.Web.UI.MasterPage
     {
         public string labelLogIDText { get { return labelLogID.Text; } set { labelLogID.Text = value; } }
+
         public string opt1class { get { return opt1.CssClass; } set { opt1.CssClass = value; } }
         public string opt2class { get { return opt2.CssClass; } set { opt2.CssClass = value; } }
 
@@ -42,27 +43,29 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Page.MaintainScrollPositionOnPostBack = true;                                                                                                                                                                                                                                
+            this.Page.MaintainScrollPositionOnPostBack = true;
+            string storedEmpID = Session["EmpID"].ToString();
             try
             {
                 using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
                 {
                     connection.Open();
-                    NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""EmpType"" FROM ""Employee"" INNER JOIN ""EmployeeAccount"" ON ""EmployeeAccount.EmpID"" = ""Employee.EmpID""", connection);
-                    command.Parameters.AddWithValue("@empID");
+                    NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" INNER JOIN ""EmployeeAccount"" ON ""Employee"".""EmpID"" = ""EmployeeAccount"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
+                    command.Parameters.AddWithValue("@empID", storedEmpID);
                     
 
                     NpgsqlDataReader reader = command.ExecuteReader();
+                    
                     while (reader.Read())
                     {
-                        string storedEmpType = reader.GetString(0);
+                        string storedEmpType = reader.GetString(4);
+                        string storedEmpName = reader.GetString(1);
                         if (storedEmpType == "Superviser")
                         {
                             opt3visible = true;
                             opt3enable = true;
-                            
                         }
-                        else
+                        else if (storedEmpType != "Superviser")
                         {
                             opt3visible = false;
                             opt3enable = false;
@@ -79,6 +82,7 @@ namespace WebApplication1
                                 opt2url = "~/AgreementOfficers.aspx";
                             }
                         }
+                        labelLogIDText = "Welcome, " + storedEmpType + " " + storedEmpName;
                     }
                     reader.Close();
                 }
