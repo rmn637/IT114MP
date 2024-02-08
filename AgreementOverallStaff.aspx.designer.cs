@@ -11,61 +11,70 @@ namespace WebApplication1
 {
 
 
-    public partial class AgreementStaff
+    public partial class AgreementOverallStaff
     {
 
         /// <summary>
-        /// lblEmpID control.
+        /// btnSection1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpID;
+        protected global::System.Web.UI.WebControls.LinkButton btnSection1;
 
         /// <summary>
-        /// lblEmpName control.
+        /// btnSection2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpName;
+        protected global::System.Web.UI.WebControls.LinkButton btnSection2;
 
         /// <summary>
-        /// lblEmpDept control.
+        /// btnOverall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpDept;
+        protected global::System.Web.UI.WebControls.LinkButton btnOverall;
 
         /// <summary>
-        /// lblEmpPos control.
+        /// weight1_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpPos;
+        protected global::System.Web.UI.WebControls.TextBox weight1_1;
 
         /// <summary>
-        /// lblEmpSupervisor control.
+        /// weight1_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmpSupervisor;
+        protected global::System.Web.UI.WebControls.TextBox weight1_2;
 
         /// <summary>
-        /// EvaluateBtn control.
+        /// labelTotal1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EvaluateBtn;
+        protected global::System.Web.UI.WebControls.Label labelTotal1;
+
+        /// <summary>
+        /// Submit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Submit;
     }
 }

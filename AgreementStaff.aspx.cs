@@ -16,7 +16,7 @@ namespace WebApplication1
 
         protected void EvaluateBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AgreementSection1Faculty.aspx");
+            Response.Redirect("AgreementSection1Staff.aspx");
         }
     }
 }

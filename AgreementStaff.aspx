@@ -43,5 +43,21 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Button ID="EvaluateBtn" runat="server" Text="Evaluate" OnClick="EvaluateBtn_Click" />
+    <div class="center">
+        <h2>Employee Information</h2>
+        <br />
+        <strong>
+        <asp:Label ID="lblEmpID" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpName" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpDept" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpPos" runat="server" ></asp:Label>
+        <br />
+        <asp:Label ID="lblEmpSupervisor" runat="server" ></asp:Label>
+        </strong>
+        <asp:Button ID="EvaluateBtn" runat="server" Text="Evaluate" OnClick="EvaluateBtn_Click" />
+    </div>    
 </asp:Content>
+    
