@@ -123,6 +123,7 @@ namespace WebApplication1
         }
         protected void checkWeight(object sender, EventArgs e)
         {
+
             LinkButton link = sender as LinkButton;
             if (labelTotal1A.Text != "100.00" && labelTotal1B.Text != "100.00")
             {
@@ -130,6 +131,8 @@ namespace WebApplication1
             }
             else
             {
+                string compiledCWR = CompileAnswers();
+
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
@@ -146,6 +149,15 @@ namespace WebApplication1
                     Response.Redirect("~/AgreementOverallFaculty.aspx");
                 }
             }
+        }
+
+        protected string CompileAnswers() 
+        {
+            string text = "";
+
+
+
+            return text;
         }
     }
 }

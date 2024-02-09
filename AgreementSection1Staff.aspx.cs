@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -128,22 +129,114 @@ namespace WebApplication1
             }
             else
             {
-                if (link.ID == "btnSection1")
+                string compiledCWR = CompileAnswers();
+                string storedFormID = "";
+                string storedEmpID = Session["EmpID"].ToString();
+                Response.Write("<script>alert('PAG ETO DI PUMASOK PUTANGINAMO')</script>");
+                try
                 {
-                    //insert database commands here
-                    Response.Redirect("~/AgreementSection1Staff.aspx");
+                    Response.Write("<script>alert('PASOK')</script>");
+                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                    {
+                        connection.Open();
+
+                        NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""FormID"" FROM ""EmployeePerformance"" INNER JOIN ""Employee"" ON ""EmployeePerformance"".""EmpID"" = ""Employee"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
+                        command.Parameters.AddWithValue("@empID", storedEmpID);
+                        NpgsqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            storedFormID = reader.GetString(0);
+                            Session["FormID"] = storedFormID;
+                            Response.Write("<script>alert('asdfasdfsadf')</script>");
+                        }
+                        reader.Close();
+
+                        
+                        //command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FormID"" = @FormID", connection);
+                        command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = :@Section1CWR WHERE ""FormID"" = @FormID", connection);
+
+                        command.Parameters.Add(new NpgsqlParameter("Section1CWR", NpgsqlTypes.NpgsqlDbType.Text));
+                        command.Parameters[0].Value = compiledCWR;
+                        command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
+                        command.Parameters.AddWithValue("@FormID", storedFormID);
+                        //command.ExecuteNonQuery();
+                        //Response.Write("<script>alert('aaaaaaaaaaaaaaa')</script>");
+                        Response.Write($"<script>alert('{storedFormID}')</script>");
+                        using (var transaction = connection.BeginTransaction())
+                        {
+                            try
+                            {
+                                // Execute the update command
+                                int rowsAffected = command.ExecuteNonQuery();
+                                Response.Write("<script>alert('aaaaaaaaaaaaaaa')</script>");
+                                // Commit the transaction
+                                transaction.Commit();
+
+                                Response.Write("<script>alert('pumasok')</script>");
+                            }
+                            catch (Exception ex)
+                            {
+                                // Rollback the transaction if an exception occurs
+                                transaction.Rollback();
+                                Response.Write("<script>alert('Error occurred while updating Section1CWR')</script>");
+                                return; // Exit method
+                            }
+                        }
+                        //using (var transaction = connection.BeginTransaction())
+                        //{
+                        //    // Execute your update command
+                        //    command.ExecuteNonQuery(); // dito may error
+                        //    Response.Write("<script>alert('aaaaaaaaaaaaaaa')</script>");
+                        //    // Commit the transaction
+                        //    transaction.Commit();
+                        //}
+
+                        Response.Write("<script>alert('pumasok')</script>");
+                    }
+
+                    if (link.ID == "btnSection1")
+                    {
+                        //insert database commands here
+                        Response.Redirect("~/AgreementSection1Staff.aspx");
+                    }
+                    else if (link.ID == "btnSection2")
+                    {
+                        //insert database commands here
+                        Response.Redirect("~/AgreementSection2Staff.aspx");
+                    }
+                    else if (link.ID == "btnOverall")
+                    {
+                        //insert database commands here
+                        Response.Redirect("~/AgreementOverallStaff.aspx");
+                    }
+
                 }
-                else if (link.ID == "btnSection2")
+                catch (Exception ex)
                 {
-                    //insert database commands here
-                    Response.Redirect("~/AgreementSection2Staff.aspx");
+                    Response.Write("<script>alert('walang pumasok')</script>");
                 }
-                else if (link.ID == "btnOverall")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/AgreementOverallStaff.aspx");
-                }
+                    
+
+
+                
             }
+        }
+
+        protected string CompileAnswers()
+        {
+            string text = "";
+
+            text += $"1,{weight1_1.Text},0;\n";
+            text += $"2,{weight1_1.Text},0;\n";
+            text += $"3,{weight1_1.Text},0;\n";
+            text += $"4,{weight1_1.Text},0;\n";
+            text += $"5,{weight1_1.Text},0;\n";
+            text += $"6,{weight1_1.Text},0;\n";
+            text += $"7,{weight1_1.Text},0;\n";
+            text += $"8,{weight1_1.Text},0";
+
+            return text;
         }
     }
 }
