@@ -45,11 +45,14 @@ namespace WebApplication1
         {
             this.Page.MaintainScrollPositionOnPostBack = true;
             string storedEmpID = Session["EmpID"].ToString();
+            string storedAccType = Session["AccType"].ToString();
+
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
+
                     NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" INNER JOIN ""EmployeeAccount"" ON ""Employee"".""EmpID"" = ""EmployeeAccount"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
                     command.Parameters.AddWithValue("@empID", storedEmpID);
                     
@@ -60,12 +63,12 @@ namespace WebApplication1
                     {
                         string storedEmpType = reader.GetString(4);
                         string storedEmpName = reader.GetString(1);
-                        if (storedEmpType == "Superviser")
+                        if (storedAccType == "Supervisor")
                         {
                             opt3visible = true;
                             opt3enable = true;
                         }
-                        else if (storedEmpType != "Superviser")
+                        else if (storedAccType != "Supervisor")
                         {
                             opt3visible = false;
                             opt3enable = false;

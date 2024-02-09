@@ -20,32 +20,35 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt1class = "active";
             string storedEmpID = Session["EmpID"].ToString();
+
+            string storedEmpName = "", storedEmpPos = "", storedEmpDept = "", storedEmpSupervisor = "";
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
-                    NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" INNER JOIN ""EmployeeAccount"" ON ""Employee"".""EmpID"" = ""EmployeeAccount"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
-                    command.Parameters.AddWithValue("@empID", storedEmpID);
+                    //NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" INNER JOIN ""EmployeeAccount"" ON ""Employee"".""EmpID"" = ""EmployeeAccount"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
+                    //command.Parameters.AddWithValue("@empID", storedEmpID);
 
+                    NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" WHERE ""Employee"".""EmpID"" = @empID", connection);
+                    command.Parameters.AddWithValue("@empID", storedEmpID);
 
                     NpgsqlDataReader reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        string storedEmpName = reader.GetString(1);
-                        string storedEmpPos = reader.GetString(2);
-                        string storedEmpDept = reader.GetString(3);
-                        string storedEmpSupervisor = reader.GetString(5);
-
-
-                        lblEmpIDText = "Employee ID: " + storedEmpID;
-                        lblEmpNameText = "Employee Name: " + storedEmpName;
-                        lblEmpDeptText = "Employee Department: " + storedEmpDept;
-                        lblEmpPosText = "Employee Position: " + storedEmpPos;
-                        lblEmpSupervisorText = "Employee Supervisor: " + storedEmpSupervisor;
+                        storedEmpName = reader.GetString(1);
+                        storedEmpPos = reader.GetString(2);
+                        storedEmpDept = reader.GetString(3);
+                        storedEmpSupervisor = reader.GetString(5);
                     }
                     reader.Close();
+
+                    lblEmpIDText = "Employee ID: " + storedEmpID;
+                    lblEmpNameText = "Employee Name: " + storedEmpName;
+                    lblEmpDeptText = "Employee Department: " + storedEmpDept;
+                    lblEmpPosText = "Employee Position: " + storedEmpPos;
+                    lblEmpSupervisorText = "Employee Supervisor: " + storedEmpSupervisor;
                 }
             }
             catch (Exception ex)
