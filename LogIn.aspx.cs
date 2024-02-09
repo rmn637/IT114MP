@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,7 +23,7 @@ namespace WebApplication1
 
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
                 {
                     connection.Open();
 
@@ -78,7 +77,7 @@ namespace WebApplication1
                     {
                         storedPassword = reader.GetString(0);
                         storedEmpID = reader.GetString(1);
-                        storedEmpUser = reader.GetString(2); 
+                        storedEmpUser = reader.GetString(2);
                     }
 
                     if (password.Equals(storedPassword))

@@ -122,17 +122,17 @@
     <Content Include="AgreementOverallFaculty.aspx" />
     <Content Include="AgreementOverallStaff.aspx" />
     <Content Include="AgreementSection1Faculty.aspx" />
+    <Content Include="AgreementSection1Officers.aspx" />
     <Content Include="AgreementSection1Staff.aspx" />
     <Content Include="AgreementSection2Faculty.aspx" />
     <Content Include="AgreementSection2Staff.aspx" />
     <Content Include="AgreementStaff.aspx" />
+    <Content Include="EvaluationSection1Staff.aspx" />
     <Content Include="Evaluation.aspx" />
+    <Content Include="EvaluationSection2Staff.aspx" />
     <Content Include="images\MMCL Logo.png" />
     <Content Include="images\MMCL Logo1.png" />
     <Content Include="LogIn.aspx" />
-    <Content Include="Section1Faculty.aspx" />
-    <Content Include="Section2Faculty.aspx" />
-    <Content Include="Settings.aspx" />
     <Content Include="Style.css" />
     <Content Include="Web.config" />
     <Content Include="Start.aspx" />
@@ -184,6 +184,13 @@
     <Compile Include="AgreementSection1Faculty.aspx.designer.cs">
       <DependentUpon>AgreementSection1Faculty.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgreementSection1Officers.aspx.cs">
+      <DependentUpon>AgreementSection1Officers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementSection1Officers.aspx.designer.cs">
+      <DependentUpon>AgreementSection1Officers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgreementSection1Staff.aspx.cs">
       <DependentUpon>AgreementSection1Staff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -212,12 +219,26 @@
     <Compile Include="AgreementStaff.aspx.designer.cs">
       <DependentUpon>AgreementStaff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EvaluationSection1Staff.aspx.cs">
+      <DependentUpon>EvaluationSection1Staff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSection1Staff.aspx.designer.cs">
+      <DependentUpon>EvaluationSection1Staff.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Evaluation.aspx.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Evaluation.aspx.designer.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationSection2Staff.aspx.cs">
+      <DependentUpon>EvaluationSection2Staff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSection2Staff.aspx.designer.cs">
+      <DependentUpon>EvaluationSection2Staff.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.aspx.cs">
       <DependentUpon>LogIn.aspx</DependentUpon>
@@ -227,27 +248,6 @@
       <DependentUpon>LogIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Section1Faculty.aspx.cs">
-      <DependentUpon>Section1Faculty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Section1Faculty.aspx.designer.cs">
-      <DependentUpon>Section1Faculty.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Section2Faculty.aspx.cs">
-      <DependentUpon>Section2Faculty.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Section2Faculty.aspx.designer.cs">
-      <DependentUpon>Section2Faculty.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Settings.aspx.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Settings.aspx.designer.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

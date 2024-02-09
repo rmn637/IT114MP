@@ -69,7 +69,7 @@ namespace WebApplication1
             }
         }
 
-        public static double inputChecker(string weight)
+        protected double inputChecker(string weight)
         {
             if (weight != "0")
             {
@@ -77,6 +77,7 @@ namespace WebApplication1
             }
             else
             {
+                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
                 return 0;
             }
         }

@@ -25,7 +25,7 @@ namespace WebApplication1
                 {
                     if (double.Parse(weight.Text) > 100)
                     {
-                        weight1_1.Text = "5";
+                        weight1_1.Text = "100";
                     }
                     weightedScore = double.Parse(weight1_1.Text);
                 }
@@ -93,7 +93,7 @@ namespace WebApplication1
             }
         }
 
-        public static double inputChecker(string weight)
+        protected double inputChecker(string weight)
         {
             if (weight != "0")
             {
@@ -101,6 +101,7 @@ namespace WebApplication1
             }
             else
             {
+                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
                 return 0;
             }
         }
@@ -123,7 +124,6 @@ namespace WebApplication1
         }
         protected void checkWeight(object sender, EventArgs e)
         {
-
             LinkButton link = sender as LinkButton;
             if (labelTotal1A.Text != "100.00" && labelTotal1B.Text != "100.00")
             {
@@ -131,8 +131,6 @@ namespace WebApplication1
             }
             else
             {
-                string compiledCWR = CompileAnswers();
-
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
@@ -149,15 +147,6 @@ namespace WebApplication1
                     Response.Redirect("~/AgreementOverallFaculty.aspx");
                 }
             }
-        }
-
-        protected string CompileAnswers() 
-        {
-            string text = "";
-
-
-
-            return text;
         }
     }
 }

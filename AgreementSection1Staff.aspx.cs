@@ -13,7 +13,7 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            ((Site1)Page.Master).opt3class = "active";
+            ((Site1)Page.Master).opt2class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
         }
 
@@ -94,8 +94,7 @@ namespace WebApplication1
                 Response.Write("<script>alert('Error: Please type a positive number')</script>");
             }
         }
-
-        public static double inputChecker(string weight)
+        protected double inputChecker(string weight)
         {
             if (weight != "0")
             {
@@ -123,20 +122,24 @@ namespace WebApplication1
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if (labelTotal1.Text != "100.00")
+            if(weight1_1.Text == "0" || weight1_2.Text == "0" || weight1_3.Text == "0"  || weight1_4.Text == "0" || weight1_5.Text == "0" || weight1_6.Text == "0" || weight1_7.Text == "0" || weight1_8.Text == "0")
+            {
+                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
+            }
+            else if (labelTotal1.Text != "100.00")
             {
                 Response.Write("<script>alert('Your total weight is not 100.')</script>");
             }
             else
             {
                 string compiledCWR = CompileAnswers();
-                string storedFormID = "";
+                string storedFormID = "1234567890";
                 string storedEmpID = Session["EmpID"].ToString();
                 Response.Write("<script>alert('PAG ETO DI PUMASOK PUTANGINAMO')</script>");
                 try
                 {
                     Response.Write("<script>alert('PASOK')</script>");
-                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
                     {
                         connection.Open();
 
@@ -148,78 +151,46 @@ namespace WebApplication1
                         {
                             storedFormID = reader.GetString(0);
                             Session["FormID"] = storedFormID;
-                            Response.Write("<script>alert('asdfasdfsadf')</script>");
+                            Response.Write($"<script>alert('{storedFormID} {compiledCWR}')</script>");
                         }
                         reader.Close();
 
-                        
-                        //command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FormID"" = @FormID", connection);
-                        command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = :@Section1CWR WHERE ""FormID"" = @FormID", connection);
 
-                        command.Parameters.Add(new NpgsqlParameter("Section1CWR", NpgsqlTypes.NpgsqlDbType.Text));
-                        command.Parameters[0].Value = compiledCWR;
+                        //command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FormID"" = @FormID", connection);
+                        command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FormID"" = @FormID", connection);
                         command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
                         command.Parameters.AddWithValue("@FormID", storedFormID);
-                        //command.ExecuteNonQuery();
+                        int vr = command.ExecuteNonQuery();
                         //Response.Write("<script>alert('aaaaaaaaaaaaaaa')</script>");
-                        Response.Write($"<script>alert('{storedFormID}')</script>");
-                        using (var transaction = connection.BeginTransaction())
-                        {
-                            try
-                            {
-                                // Execute the update command
-                                int rowsAffected = command.ExecuteNonQuery();
-                                Response.Write("<script>alert('aaaaaaaaaaaaaaa')</script>");
-                                // Commit the transaction
-                                transaction.Commit();
-
-                                Response.Write("<script>alert('pumasok')</script>");
-                            }
-                            catch (Exception ex)
-                            {
-                                // Rollback the transaction if an exception occurs
-                                transaction.Rollback();
-                                Response.Write("<script>alert('Error occurred while updating Section1CWR')</script>");
-                                return; // Exit method
-                            }
-                        }
-                        //using (var transaction = connection.BeginTransaction())
-                        //{
-                        //    // Execute your update command
-                        //    command.ExecuteNonQuery(); // dito may error
-                        //    Response.Write("<script>alert('aaaaaaaaaaaaaaa')</script>");
-                        //    // Commit the transaction
-                        //    transaction.Commit();
-                        //}
+                        Response.Write($"<script>alert('{storedFormID} {vr}')</script>");
 
                         Response.Write("<script>alert('pumasok')</script>");
                     }
-
-                    if (link.ID == "btnSection1")
-                    {
-                        //insert database commands here
-                        Response.Redirect("~/AgreementSection1Staff.aspx");
-                    }
-                    else if (link.ID == "btnSection2")
-                    {
-                        //insert database commands here
-                        Response.Redirect("~/AgreementSection2Staff.aspx");
-                    }
-                    else if (link.ID == "btnOverall")
-                    {
-                        //insert database commands here
-                        Response.Redirect("~/AgreementOverallStaff.aspx");
-                    }
-
                 }
                 catch (Exception ex)
                 {
                     Response.Write("<script>alert('walang pumasok')</script>");
                 }
-                    
+
+                if (link.ID == "btnSection1")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/AgreementSection1Staff.aspx");
+                }
+                else if (link.ID == "btnSection2")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/AgreementSection2Staff.aspx");
+                }
+                else if (link.ID == "btnOverall")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/AgreementOverallStaff.aspx");
+                }
 
 
-                
+
+
             }
         }
 
@@ -227,14 +198,14 @@ namespace WebApplication1
         {
             string text = "";
 
-            text += $"1,{weight1_1.Text},0;\n";
-            text += $"2,{weight1_1.Text},0;\n";
-            text += $"3,{weight1_1.Text},0;\n";
-            text += $"4,{weight1_1.Text},0;\n";
-            text += $"5,{weight1_1.Text},0;\n";
-            text += $"6,{weight1_1.Text},0;\n";
-            text += $"7,{weight1_1.Text},0;\n";
-            text += $"8,{weight1_1.Text},0";
+            text += $"1,{weight1_1.Text},0;";
+            text += $"2,{weight1_2.Text},0;";
+            text += $"3,{weight1_3.Text},0;";
+            text += $"4,{weight1_4.Text},0;";
+            text += $"5,{weight1_5.Text},0;";
+            text += $"6,{weight1_6.Text},0;";
+            text += $"7,{weight1_7.Text},0;";
+            text += $"8,{weight1_8.Text},0;";
 
             return text;
         }

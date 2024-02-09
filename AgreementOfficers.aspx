@@ -1,84 +1,84 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementOfficers.aspx.cs" Inherits="WebApplication1.AgreementOfficers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-.auto-style1 {
-    height: 30px;
-}
-.auto-style2 {
-    width: 80%;
-                              
-}
-.auto-style3 {
-    width: 914px;
-}
-.auto-style4 {
-    width: 98px;
-}
-.auto-style5 {
-    width: 102px;
-}
-.auto-style6 {
-    width: 914px;
-    text-align: left;
-}
-.auto-style7 {
-    width: 27px;
-    text-align: left;
-}
-.auto-style8 {
-    text-align: left;
-}
-.auto-style9 {
-    width: 101px;
-}
-.auto-style14 {
-    width: 27px;
-    text-align: left;
-    height: 24px;
-}
-.auto-style15 {
-    height: 24px;
-}
-.auto-style16 {
-    text-align: right;
-}
-.auto-style17 {
-    text-align: left;
-    width: 183px;
-}
-.auto-style18 {
-    width: 104px;
-}
-    .auto-style20 {
-        width: 296px;
-        text-align: left;
-    }
-    .auto-style21 {
-        width: 296px;
-        text-align: left;
-        height: 22px;
-    }
-    .auto-style22 {
-        width: 914px;
-        text-align: right;
-        height: 22px;
-    }
-    .auto-style23 {
-        width: 104px;
-        height: 22px;
-    }
-    .auto-style24 {
-        width: 223px;
-        height: 22px;
-    }
-    .auto-style25 {
-        height: 22px;
-            width: 149px;
+        .auto-style1 {
+            height: 30px;
         }
-    .auto-style26 {
-        text-align: left;
-        height: 24px;
-    }
+        .auto-style2 {
+            width: 80%;
+                              
+        }
+        .auto-style3 {
+            width: 914px;
+        }
+        .auto-style4 {
+            width: 98px;
+        }
+        .auto-style5 {
+            width: 102px;
+        }
+        .auto-style6 {
+            width: 914px;
+            text-align: left;
+        }
+        .auto-style7 {
+            width: 27px;
+            text-align: left;
+        }
+        .auto-style8 {
+            text-align: left;
+        }
+        .auto-style9 {
+            width: 101px;
+        }
+        .auto-style14 {
+            width: 27px;
+            text-align: left;
+            height: 24px;
+        }
+        .auto-style15 {
+            height: 24px;
+        }
+        .auto-style16 {
+            text-align: right;
+        }
+        .auto-style17 {
+            text-align: left;
+            width: 183px;
+        }
+        .auto-style18 {
+            width: 104px;
+        }
+        .auto-style20 {
+            width: 296px;
+            text-align: left;
+        }
+        .auto-style21 {
+            width: 296px;
+            text-align: left;
+            height: 22px;
+        }
+        .auto-style22 {
+            width: 914px;
+            text-align: right;
+            height: 22px;
+        }
+        .auto-style23 {
+            width: 104px;
+            height: 22px;
+        }
+        .auto-style24 {
+            width: 223px;
+            height: 22px;
+        }
+        .auto-style25 {
+            height: 22px;
+                width: 149px;
+            }
+        .auto-style26 {
+            text-align: left;
+            height: 24px;
+        }
         .auto-style27 {
             width: 914px;
             text-align: center;
@@ -912,7 +912,7 @@
         </table>
     </div>
     <br />
-    <div id ="section5" width="80%" style="text-align:center">
+    <%--<div id ="section5" width="80%" style="text-align:center">
         <center>
 
             <table class="auto-style2">
@@ -924,7 +924,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style8">
-                        <asp:TextBox ID="TextBox33" runat="server" Width="1008px"></asp:TextBox>
+                        <asp:TextBox ID="strength" runat="server" Width="1008px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -932,7 +932,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style8">
-                        <asp:TextBox ID="TextBox34" runat="server" Width="1008px"></asp:TextBox>
+                        <asp:TextBox ID="improvement" runat="server" Width="1008px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -940,7 +940,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style8">
-                        <asp:TextBox ID="TextBox35" runat="server" Width="1008px"></asp:TextBox>
+                        <asp:TextBox ID="development" runat="server" Width="1008px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -948,12 +948,12 @@
                 </tr>
                 <tr>
                     <td class="auto-style8">
-                        <asp:TextBox ID="TextBox36" runat="server" Width="1008px"></asp:TextBox>
+                        <asp:TextBox ID="acknowledgement" runat="server" Width="1008px"></asp:TextBox>
                     </td>
                 </tr>
             </table>
         </center>
-    </div>
+    </div>--%>
     <br />
 <div id ="overall" width="30%" style="text-align:center">
         <center> 

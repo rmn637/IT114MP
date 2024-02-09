@@ -104,4 +104,187 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <center>
+    <br />
+    <div class="navbar" id="navibar">
+        <asp:LinkButton ID="btnSection1" runat="server" Enabled="false">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection3" runat="server" OnClick="checkWeight">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection4" runat="server" OnClick="checkWeight">Section 4</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
+    </div>
+        <table class="auto-style2">
+            <tr>
+                <td colspan="5" style="background-color: #C0C0C0"><strong>SECTION 1: INSTITUTIONAL OBJECTIVES</strong></td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>KRA 1</strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Key Initiative<asp:RequiredFieldValidator ID="rfvInitiative1" runat="server" ErrorMessage="*" ControlToValidate="initiative1"></asp:RequiredFieldValidator>
+                </td>
+                <td class="auto-style27">
+                    <asp:TextBox ID="initiative1" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style9">W</td>
+                <td class="auto-style30">R</td>
+                <td class="auto-style31">WS</td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Specific Objectives</td>
+                <td class="auto-style6">
+                    <asp:TextBox ID="objectives1" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style18">
+                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged1">0</asp:TextBox>
+                </td>
+                <td class="auto-style30">
+                    &nbsp;</td>
+                <td class="auto-style31">
+                    <asp:Label ID="label1_1" runat="server" Text="0"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>KRA 2</strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Key Initiative</td>
+                <td class="auto-style3">
+                    <asp:TextBox ID="initiative2" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style9">W</td>
+                <td class="auto-style30">R</td>
+                <td class="auto-style31">WS</td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Specific Objectives</td>
+                <td class="auto-style6">
+                    <asp:TextBox ID="objectives2" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style18">
+                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged1">0</asp:TextBox>
+                </td>
+                <td class="auto-style30">
+                    &nbsp;</td>
+                <td class="auto-style31">
+                    <asp:Label ID="label1_2" runat="server" Text="0"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>KRA 3</strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Key Initiative</td>
+                <td class="auto-style3">
+                    <asp:TextBox ID="initiative3" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style9">W</td>
+                <td class="auto-style30">R</td>
+                <td class="auto-style31">WS</td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Specific Objectives</td>
+                <td class="auto-style6">
+                    <asp:TextBox ID="objectives3" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style18">
+                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged1">0</asp:TextBox>
+                </td>
+                <td class="auto-style30">
+                    &nbsp;</td>
+                <td class="auto-style31">
+                    <asp:Label ID="label1_3" runat="server" Text="0"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>KRA 4</strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Key Initiative</td>
+                <td class="auto-style3">
+                    <asp:TextBox ID="initiative4" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style9">W</td>
+                <td class="auto-style30">R</td>
+                <td class="auto-style31">WS</td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Specific Objectives</td>
+                <td class="auto-style6">
+                    <asp:TextBox ID="objectives4" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style18">
+                    <asp:TextBox ID="weight1_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged1">0</asp:TextBox>
+                </td>
+                <td class="auto-style30">
+                    &nbsp;</td>
+                <td class="auto-style31">
+                    <asp:Label ID="label1_4" runat="server" Text="0"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>KRA 5</strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Key Initiative</td>
+                <td class="auto-style3">
+                    <asp:TextBox ID="initiative5" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style9">W</td>
+                <td class="auto-style30">R</td>
+                <td class="auto-style31">WS</td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Specific Objectives</td>
+                <td class="auto-style6">
+                    <asp:TextBox ID="objectives5" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style18">
+                    <asp:TextBox ID="weight1_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged1">0</asp:TextBox>
+                </td>
+                <td class="auto-style30">
+                    &nbsp;</td>
+                <td class="auto-style31">
+                    <asp:Label ID="label1_5" runat="server" Text="0"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>KRA 6</strong></td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Key Initiative</td>
+                <td class="auto-style3">
+                    <asp:TextBox ID="initiative6" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style9">W</td>
+                <td class="auto-style30">R</td>
+                <td class="auto-style31">WS</td>
+            </tr>
+            <tr>
+                <td class="auto-style20">Specific Objectives</td>
+                <td class="auto-style6">
+                    <asp:TextBox ID="objectives6" runat="server" Width="528px" MaxLength="256"></asp:TextBox>
+                </td>
+                <td class="auto-style18">
+                    <asp:TextBox ID="weight1_6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged1">0</asp:TextBox>
+                </td>
+                <td class="auto-style30">
+                    &nbsp;</td>
+                <td class="auto-style31">
+                    <asp:Label ID="label1_6" runat="server" Text="0"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style21" style="border-style: none"></td>
+                <td class="auto-style22" style="border-style: none">TOTAL</td>
+                <td class="auto-style23" style="border-style: none">
+                    <asp:Label ID="labelTotal1" runat="server"></asp:Label>
+                </td>
+                <td class="auto-style24" style="border-style: none"></td>
+                <td style="border-style: none" class="auto-style25">
+                    &nbsp;</td>
+            </tr>
+        </table>
+        <br />
+    </center>
 </asp:Content>

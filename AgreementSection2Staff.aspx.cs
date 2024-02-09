@@ -13,7 +13,7 @@ namespace WebApplication1
         {
             //write form id
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            ((Site1)Page.Master).opt3class = "active";
+            ((Site1)Page.Master).opt2class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
         }
         //protected string ratingComp(string rating)
@@ -98,7 +98,7 @@ namespace WebApplication1
             }
         }
 
-        public static double inputChecker(string weight)
+        protected double inputChecker(string weight)
         {
             if (weight != "0")
             {
@@ -123,7 +123,11 @@ namespace WebApplication1
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if (labelTotal2.Text != "100.00")
+            if (weight2_1.Text == "0" || weight2_2.Text == "0" || weight2_3.Text == "0" || weight2_4.Text == "0" || weight2_5.Text == "0")
+            {
+                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
+            }
+            else if (labelTotal2.Text != "100.00")
             {
                 Response.Write("<script>alert('Your total weight is not 100.')</script>");
             }
