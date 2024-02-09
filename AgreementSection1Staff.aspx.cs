@@ -133,36 +133,24 @@ namespace WebApplication1
             else
             {
                 string compiledCWR = CompileAnswers();
-                string storedFormID = "1234567890";
                 string storedEmpID = Session["EmpID"].ToString();
-                Response.Write("<script>alert('PAG ETO DI PUMASOK PUTANGINAMO')</script>");
+                string storedFormID = Session["FormID"].ToString();
+                string storedStaffFormID = Session["StaffFormID"].ToString();
+
                 try
                 {
-                    Response.Write("<script>alert('PASOK')</script>");
-                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                    // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                     {
                         connection.Open();
 
                         NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""FormID"" FROM ""EmployeePerformance"" INNER JOIN ""Employee"" ON ""EmployeePerformance"".""EmpID"" = ""Employee"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
                         command.Parameters.AddWithValue("@empID", storedEmpID);
-                        NpgsqlDataReader reader = command.ExecuteReader();
 
-                        while (reader.Read())
-                        {
-                            storedFormID = reader.GetString(0);
-                            Session["FormID"] = storedFormID;
-                            Response.Write($"<script>alert('{storedFormID} {compiledCWR}')</script>");
-                        }
-                        reader.Close();
-
-
-                        //command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FormID"" = @FormID", connection);
                         command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FormID"" = @FormID", connection);
                         command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
                         command.Parameters.AddWithValue("@FormID", storedFormID);
-                        int vr = command.ExecuteNonQuery();
-                        //Response.Write("<script>alert('aaaaaaaaaaaaaaa')</script>");
-                        Response.Write($"<script>alert('{storedFormID} {vr}')</script>");
+                        command.ExecuteNonQuery();
 
                         Response.Write("<script>alert('pumasok')</script>");
                     }
