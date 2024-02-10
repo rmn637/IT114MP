@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebApplication1
 {
@@ -15,6 +16,52 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt2class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+
+            string CWR = "";
+
+            if (!IsPostBack)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    string storedStaffFormID = Session["StaffFormID"].ToString();
+
+                    string sqlCode = @"SELECT ""Section1CWR"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
+                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CWR = reader.GetString(0);
+                    }
+                    reader.Close();
+
+                    if (CWR != "0")
+                    {
+                        string[] CWRArr = CWR.Split(';');
+                        string[] CWRArr2 = new string[3];
+                        string[] weightArr = new string[8];
+
+                        for (int i = 0; i < CWRArr.Length; i++)
+                        {
+                            CWRArr2 = CWRArr[i].Split(',');
+                            weightArr[i] = CWRArr2[1];
+                        }
+
+                        weight1_1.Text = weightArr[0];
+                        weight1_2.Text = weightArr[1];
+                        weight1_3.Text = weightArr[2];
+                        weight1_4.Text = weightArr[3];
+                        weight1_5.Text = weightArr[4];
+                        weight1_6.Text = weightArr[5];
+                        weight1_7.Text = weightArr[6];
+                        weight1_8.Text = weightArr[7];
+                    }
+                }
+            }
+            
         }
 
         protected void weight_TextChanged(object sender, EventArgs e)
@@ -144,41 +191,35 @@ namespace WebApplication1
                     {
                         connection.Open();
 
-                        NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""FormID"" FROM ""EmployeePerformance"" INNER JOIN ""Employee"" ON ""EmployeePerformance"".""EmpID"" = ""Employee"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
-                        command.Parameters.AddWithValue("@empID", storedEmpID);
-
-                        command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FormID"" = @FormID", connection);
+                        NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
                         command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
-                        command.Parameters.AddWithValue("@FormID", storedFormID);
+                        command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
                         command.ExecuteNonQuery();
-
-                        Response.Write("<script>alert('pumasok')</script>");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('walang pumasok')</script>");
+
                 }
 
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
                     Response.Redirect("~/AgreementSection1Staff.aspx");
+                    //Server.Transfer("~/AgreementSection1Staff.aspx");
                 }
                 else if (link.ID == "btnSection2")
                 {
                     //insert database commands here
                     Response.Redirect("~/AgreementSection2Staff.aspx");
+                    //Server.Transfer("~/AgreementSection2Staff.aspx");
                 }
                 else if (link.ID == "btnOverall")
                 {
                     //insert database commands here
                     Response.Redirect("~/AgreementOverallStaff.aspx");
+                    //Server.Transfer("~/AgreementOverallStaff.aspx");
                 }
-
-
-
-
             }
         }
 
@@ -193,7 +234,7 @@ namespace WebApplication1
             text += $"5,{weight1_5.Text},0;";
             text += $"6,{weight1_6.Text},0;";
             text += $"7,{weight1_7.Text},0;";
-            text += $"8,{weight1_8.Text},0;";
+            text += $"8,{weight1_8.Text},0";
 
             return text;
         }

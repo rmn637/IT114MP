@@ -55,10 +55,28 @@
             <a href="AgreementFaculty.aspx">Faculty Members</a>
             <a href="AgreementOfficers.aspx">Officers</a>
             <a href="AgreementStaff.aspx">Staff</a>
+
             </center>
        
         </div>
-        
+        <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Staff</th>
+                        <th>Faculty Member</th>
+                        <th>Officer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><asp:LinkButton runat="server" type="button" onclick="StaffClicked">Reese Ramos</asp:LinkButton></td>
+                        <td>Aaron Cabueñas</td>
+                        <td>Jerome Mendoza</td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
     </form>
 </body>
 </html>

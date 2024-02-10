@@ -47,26 +47,28 @@ namespace WebApplication1
                     int rowCount = Convert.ToInt32(result);
                     int intFormID = 200000000 + rowCount + 1;
                     string formID = intFormID.ToString();
+                    string status = "In Progress";
                     Session["FormID"] = formID;
 
-                    sqlCode = @"INSERT INTO ""EmployeePerformance"" (""FormID"", ""EmpID"", ""SupID"", ""PerfPts"") VALUES (@FormID , @EmpID , @SupID , 0)";
+                    sqlCode = @"INSERT INTO ""EmployeePerformance"" (""FormID"", ""EmpID"", ""SupID"", ""PerfPts"", ""Status"") VALUES (@FormID , @EmpID , @SupID , 0, @Status)";
                     command = new NpgsqlCommand(sqlCode, connection);
                     command.Parameters.AddWithValue("@FormID", formID);
                     command.Parameters.AddWithValue("@EmpID", storedEmpID);
                     command.Parameters.AddWithValue("@SupID", storedSupID);
+                    command.Parameters.AddWithValue("@Status", status);
                     command.ExecuteNonQuery();
 
                     
                     // INSERTING A ROW INTO STAFF FORM TABLE
                     sqlCode = @"SELECT COUNT(*) FROM ""StaffForm""";
                     command = new NpgsqlCommand(sqlCode, connection);
-                    result = command.ExecuteScalar(); ;
+                    result = command.ExecuteScalar();
                     rowCount = Convert.ToInt32(result);
                     int intStaffFormID = 300000000 + rowCount + 1;
                     string StaffFormID = intStaffFormID.ToString();
                     Session["StaffFormID"] = StaffFormID;
 
-                    sqlCode = @"INSERT INTO ""StaffForm"" (""StaffFormID"" , ""FormID"", ""Section1CWR"", ""Section2CWR"", ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"") VALUES (@StaffFormID, @FormID , 0, 0, 0, 0, 0, 0)";
+                    sqlCode = @"INSERT INTO ""StaffForm"" (""StaffFormID"" , ""FormID"", ""Section1CWR"", ""Section2CWR"", ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"", ""OverallWR"") VALUES (@StaffFormID, @FormID , 0, 0, 0, 0, 0, 0, 0)";
                     command = new NpgsqlCommand(sqlCode, connection);
 
                     command.Parameters.AddWithValue("@StaffFormID", StaffFormID);

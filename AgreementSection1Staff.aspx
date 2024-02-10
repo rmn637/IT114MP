@@ -67,7 +67,7 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged" Text="0"></asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>

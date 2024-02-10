@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,34 +16,50 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt2class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+
+            string CWR = "";
+
+            if (!IsPostBack)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    string storedStaffFormID = Session["StaffFormID"].ToString();
+
+                    string sqlCode = @"SELECT ""Section2CWR"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
+                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CWR = reader.GetString(0);
+                        Response.Write($"<script>alert('{CWR}')</script>");
+                    }
+                    reader.Close();
+
+                    if (CWR != "0")
+                    {
+                        string[] CWRArr = CWR.Split(';');
+                        string[] CWRArr2 = new string[3];
+                        string[] weightArr = new string[8];
+
+                        for (int i = 0; i < CWRArr.Length; i++)
+                        {
+                            CWRArr2 = CWRArr[i].Split(',');
+                            weightArr[i] = CWRArr2[1];
+                        }
+
+                        weight2_1.Text = weightArr[0];
+                        weight2_2.Text = weightArr[1];
+                        weight2_3.Text = weightArr[2];
+                        weight2_4.Text = weightArr[3];
+                        weight2_5.Text = weightArr[4];
+                    }
+                }
+            }
         }
-        //protected string ratingComp(string rating)
-        //{
-        //    if (rating == "5")
-        //    {
-        //        return "100";
-        //    }
-        //    else if (rating == "4")
-        //    {
-        //        return "80";
-        //    }
-        //    else if (rating == "3")
-        //    {
-        //        return "60";
-        //    }
-        //    else if (rating == "2")
-        //    {
-        //        return "40";
-        //    }
-        //    else if (rating == "1")
-        //    {
-        //        return "20";
-        //    }
-        //    else
-        //    {
-        //        return "0";
-        //    }
-        //}
 
         protected void weight_TextChanged(object sender, EventArgs e)
         {
@@ -133,6 +150,30 @@ namespace WebApplication1
             }
             else
             {
+
+                string compiledCWR = CompileAnswers();
+                string storedEmpID = Session["EmpID"].ToString();
+                string storedFormID = Session["FormID"].ToString();
+                string storedStaffFormID = Session["StaffFormID"].ToString();
+
+                try
+                {
+                    // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                    {
+                        connection.Open();
+
+                        NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section2CWR"" = @Section2CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
+                        command.Parameters.AddWithValue("@Section2CWR", compiledCWR);
+                        command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
@@ -149,6 +190,19 @@ namespace WebApplication1
                     Response.Redirect("~/AgreementOverallStaff.aspx");
                 }
             }
+        }
+
+        protected string CompileAnswers()
+        {
+            string text = "";
+
+            text += $"1,{weight2_1.Text},0;";
+            text += $"2,{weight2_2.Text},0;";
+            text += $"3,{weight2_3.Text},0;";
+            text += $"4,{weight2_4.Text},0;";
+            text += $"5,{weight2_5.Text},0";
+
+            return text;
         }
     }
 }
