@@ -11,7 +11,7 @@ namespace WebApplication1
 {
 
 
-    public partial class EvaluationSection2Staff
+    public partial class EvaluationSection2Faculty
     {
 
         /// <summary>

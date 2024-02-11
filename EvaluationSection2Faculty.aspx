@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationSection2Staff.aspx.cs" Inherits="WebApplication1.EvaluationSection2Staff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationSection2Faculty.aspx.cs" Inherits="WebApplication1.EvaluationSection2Faculty" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
     .auto-style2 {
-        width: 80%;     
+        width: 80%;
+                               
     }
     .auto-style4 {
         width: 98px;
@@ -54,15 +55,15 @@
         <tr>
             <td class="auto-style8" colspan="2">Stiving to be great and not just good. Continuously improving our results.</td>
             <td class="auto-style9">
-                <asp:Label ID="weight2_1" runat="server">0</asp:Label>
-            </td>
+                    <asp:Label ID="weight2_1" runat="server" Text="0"></asp:Label>
+                </td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_1" runat="server"
                     Height="18px" TextMode="Number" Width="91px" oninput="focusOnRating2_1()"
                     OnTextChanged="rating2_TextChanged" AutoPostBack="true">0</asp:TextBox>
             </td>
             <td>
-                 <asp:Label ID="label2_1" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="label2_1" runat="server" Text="0"></asp:Label>
             </td>
         </tr>
         <tr>    
@@ -94,8 +95,8 @@
         <tr>
             <td class="auto-style8" colspan="2">Doing things fast. Taking initiative to respond to needs of various stakeholders.</td>
             <td class="auto-style9">
-                <asp:Label ID="weight2_2" runat="server">0</asp:Label>
-            </td>
+                    <asp:Label ID="weight2_2" runat="server" Text="0"></asp:Label>
+                </td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>
@@ -132,8 +133,8 @@
         <tr>
             <td class="auto-style8" colspan="2">Strong work ethic. Deserving of trust and respect. Prudent use of company resources, including time. Acting with fairness and objectivity.</td>
             <td class="auto-style9">
-                <asp:Label ID="weight2_3" runat="server">0</asp:Label>
-            </td>
+                    <asp:Label ID="weight2_3" runat="server" Text="0"></asp:Label>
+                </td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>
@@ -170,8 +171,8 @@
         <tr>
             <td class="auto-style8" colspan="2">Actively tapping areas of synergy. Communicating and collaborating towards common goals.</td>
             <td class="auto-style9">
-                <asp:Label ID="weight2_4" runat="server">0</asp:Label>
-            </td>
+                    <asp:Label ID="weight2_4" runat="server" Text="0"></asp:Label>
+                </td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>
@@ -208,8 +209,8 @@
         <tr>
             <td class="auto-style8" colspan="2">Being good corporate citizens. Pursuing corporate interests as his own. Speaking well of the company and taking pride of its achievements.</td>
             <td class="auto-style9">
-                <asp:Label ID="weight2_5" runat="server">0</asp:Label>
-            </td>
+                    <asp:Label ID="weight2_5" runat="server" Text="0"></asp:Label>
+                </td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>

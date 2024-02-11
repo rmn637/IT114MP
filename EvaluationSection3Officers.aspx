@@ -1,6 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationSection2Staff.aspx.cs" Inherits="WebApplication1.EvaluationSection2Staff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationSection3Officers.aspx.cs" Inherits="WebApplication1.EvaluationSection3Officers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
+    .auto-style1 {
+        height: 30px;
+    }
     .auto-style2 {
         width: 80%;     
     }
@@ -29,16 +32,24 @@
     .auto-style15 {
         height: 24px;
     }
+    .auto-style16 {
+        text-align: right;
+    }
+    .auto-style17 {
+        text-align: left;
+        width: 183px;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
-    <div class="navbar">
-        <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="btnSection2" runat="server" Enabled="false">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="btnSection3" runat="server" OnClick="checkWeight">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
-    </div>
+    <div class="navbar" id="navibar">
+    <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+    <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+    <asp:LinkButton ID="btnSection3" runat="server" Enabled="false">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="checkWeight">Section 4</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+    <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
+</div>
     <br />
     <br />
     <table class="auto-style2">
@@ -53,9 +64,7 @@
         </tr>
         <tr>
             <td class="auto-style8" colspan="2">Stiving to be great and not just good. Continuously improving our results.</td>
-            <td class="auto-style9">
-                <asp:Label ID="weight2_1" runat="server">0</asp:Label>
-            </td>
+            <td class="auto-style9">20</td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_1" runat="server"
                     Height="18px" TextMode="Number" Width="91px" oninput="focusOnRating2_1()"
@@ -93,9 +102,7 @@
         </tr>
         <tr>
             <td class="auto-style8" colspan="2">Doing things fast. Taking initiative to respond to needs of various stakeholders.</td>
-            <td class="auto-style9">
-                <asp:Label ID="weight2_2" runat="server">0</asp:Label>
-            </td>
+            <td class="auto-style9">20</td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>
@@ -131,9 +138,7 @@
         </tr>
         <tr>
             <td class="auto-style8" colspan="2">Strong work ethic. Deserving of trust and respect. Prudent use of company resources, including time. Acting with fairness and objectivity.</td>
-            <td class="auto-style9">
-                <asp:Label ID="weight2_3" runat="server">0</asp:Label>
-            </td>
+            <td class="auto-style9">20</td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>
@@ -169,9 +174,7 @@
         </tr>
         <tr>
             <td class="auto-style8" colspan="2">Actively tapping areas of synergy. Communicating and collaborating towards common goals.</td>
-            <td class="auto-style9">
-                <asp:Label ID="weight2_4" runat="server">0</asp:Label>
-            </td>
+            <td class="auto-style9">20</td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>
@@ -207,9 +210,7 @@
         </tr>
         <tr>
             <td class="auto-style8" colspan="2">Being good corporate citizens. Pursuing corporate interests as his own. Speaking well of the company and taking pride of its achievements.</td>
-            <td class="auto-style9">
-                <asp:Label ID="weight2_5" runat="server">0</asp:Label>
-            </td>
+            <td class="auto-style9">20</td>
             <td class="auto-style4">
                 <asp:TextBox ID="rating2_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
             </td>

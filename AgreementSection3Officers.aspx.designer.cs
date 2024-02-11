@@ -11,7 +11,7 @@ namespace WebApplication1
 {
 
 
-    public partial class EvaluationSection2Staff
+    public partial class AgreementSection3Officers
     {
 
         /// <summary>
@@ -24,22 +24,13 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.LinkButton btnSection1;
 
         /// <summary>
-        /// btnSection2 control.
+        /// LinkButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSection2;
-
-        /// <summary>
-        /// btnSection3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSection3;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
 
         /// <summary>
         /// btnOverall control.
@@ -57,16 +48,7 @@ namespace WebApplication1
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label weight2_1;
-
-        /// <summary>
-        /// rating2_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rating2_1;
+        protected global::System.Web.UI.WebControls.TextBox weight2_1;
 
         /// <summary>
         /// label2_1 control.
@@ -84,16 +66,7 @@ namespace WebApplication1
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label weight2_2;
-
-        /// <summary>
-        /// rating2_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rating2_2;
+        protected global::System.Web.UI.WebControls.TextBox weight2_2;
 
         /// <summary>
         /// label2_2 control.
@@ -111,16 +84,7 @@ namespace WebApplication1
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label weight2_3;
-
-        /// <summary>
-        /// rating2_3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rating2_3;
+        protected global::System.Web.UI.WebControls.TextBox weight2_3;
 
         /// <summary>
         /// label2_3 control.
@@ -138,16 +102,7 @@ namespace WebApplication1
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label weight2_4;
-
-        /// <summary>
-        /// rating2_4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rating2_4;
+        protected global::System.Web.UI.WebControls.TextBox weight2_4;
 
         /// <summary>
         /// label2_4 control.
@@ -165,16 +120,7 @@ namespace WebApplication1
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label weight2_5;
-
-        /// <summary>
-        /// rating2_5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox rating2_5;
+        protected global::System.Web.UI.WebControls.TextBox weight2_5;
 
         /// <summary>
         /// label2_5 control.

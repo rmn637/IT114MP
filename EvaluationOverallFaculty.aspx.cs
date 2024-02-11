@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class EvaluationOverallStaff : System.Web.UI.Page
+    public partial class EvaluationOverallFaculty : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,10 +33,11 @@ namespace WebApplication1
 
         protected void total_TextChanged(object sender, EventArgs e)
         {
-            double weight1 = 0, weight2 = 0, total = 0;
+            double weight1 = 0, weight2 = 0, weight3 = 0, total = 0;
             weight1 = double.Parse(total1.Text);
             weight2 = double.Parse(total2.Text);
-            total = weight1 + weight2;
+            weight3 = double.Parse(total3.Text);
+            total = weight1 + weight2 + weight3;
             labelTotal1.Text = total.ToString("0.00");
             Submit.Enabled = true;
         }

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class EvaluationOverallStaff : System.Web.UI.Page
+    public partial class EvaluationOverallOfficers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,10 +33,12 @@ namespace WebApplication1
 
         protected void total_TextChanged(object sender, EventArgs e)
         {
-            double weight1 = 0, weight2 = 0, total = 0;
+            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, total = 0;
             weight1 = double.Parse(total1.Text);
             weight2 = double.Parse(total2.Text);
-            total = weight1 + weight2;
+            weight3 = double.Parse(total3.Text);
+            weight4 = double.Parse(total4.Text);
+            total = weight1 + weight2 + weight3 + weight4;
             labelTotal1.Text = total.ToString("0.00");
             Submit.Enabled = true;
         }
@@ -46,22 +48,27 @@ namespace WebApplication1
             if (link.ID == "btnSection1")
             {
                 //insert database commands here
-                Response.Redirect("~/EvaluationSection1Faculty.aspx");
+                Response.Redirect("~/EvaluationSection1Officers.aspx");
             }
             else if (link.ID == "btnSection2")
             {
                 //insert database commands here
-                Response.Redirect("~/EvaluationSection2Faculty.aspx");
+                Response.Redirect("~/EvaluationSection2Officers.aspx");
             }
             else if (link.ID == "btnSection3")
             {
                 //insert database commands here
-                Response.Redirect("~/EvaluationCommentsFaculty.aspx");
+                Response.Redirect("~/EvaluationSection3Officers.aspx");
+            }
+            else if (link.ID == "btnSection4")
+            {
+                //insert database commands here
+                Response.Redirect("~/EvaluationCommentsOfficers.aspx");
             }
             else if (link.ID == "btnOverall")
             {
                 //insert database commands here
-                Response.Redirect("~/EvaluationOverallFaculty.aspx");
+                Response.Redirect("~EvaluationOverallOfficers.aspx");
             }
         }
     }

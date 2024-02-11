@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationSection1Staff.aspx.cs" Inherits="WebApplication1.EvaaluationSection1Staff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationSection2Officers.aspx.cs" Inherits="WebApplication1.EvaluationSection2Officers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         function openNav() {
@@ -46,16 +46,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <center>
             <div class="navbar" id="navibar">
-                <asp:LinkButton ID="btnSection1" runat="server" Enabled="false">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-                <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+                <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+                <asp:LinkButton ID="btnSection2" runat="server" Enabled="false">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
                 <asp:LinkButton ID="btnSection3" runat="server" OnClick="checkWeight">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+                <asp:LinkButton ID="LinkButton1" runat="server" OnClick="checkWeight">Section 4</asp:LinkButton> &nbsp; &nbsp; &nbsp;
                 <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
             </div>
             <br />
             <br />
             <table class="auto-style2">
                 <tr>
-                    <td colspan="5" class="auto-style15" style="background-color: #C0C0C0"><strong>SECTION 1: PROFICIENCY / BEHAVIORAL-BASED PERFORMANCE</strong></td>
+                    <td colspan="5" class="auto-style15" style="background-color: #C0C0C0"><strong>SECTION 3: PROFICIENCY / BEHAVIORAL-BASED PERFORMANCE</strong></td>
                 </tr>
                 <tr>
                     <td colspan="2" rowspan="2"><strong>JOB KNOWLEDGE</strong></td>
@@ -65,10 +66,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_1" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_1" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_1" runat="server" Text="0"></asp:Label>
@@ -102,10 +103,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_2" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_2" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_2" runat="server" Text="0"></asp:Label>
@@ -139,10 +140,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_3" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_3" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_3" runat="server" Text="0"></asp:Label>
@@ -176,10 +177,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_4" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_4" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_4" runat="server" Text="0"></asp:Label>
@@ -213,10 +214,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_5" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_5" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_5" runat="server" Text="0"></asp:Label>
@@ -250,10 +251,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_6" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_6" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_6" runat="server" Text="0"></asp:Label>
@@ -287,10 +288,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_7" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_7" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_7" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_7" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_7" runat="server" Text="0"></asp:Label>
@@ -324,10 +325,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">
-                        <asp:Label ID="weight1_8" runat="server" Text="0"></asp:Label>
+                    <asp:Label ID="weight3_8" runat="server" Text="0"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="rating1_8" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px">0</asp:TextBox>
+                        <asp:TextBox ID="rating1_8" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="rating2_TextChanged">0</asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="label1_8" runat="server" Text="0"></asp:Label>
