@@ -11,6 +11,13 @@ namespace WebApplication1
 {
     public partial class AgreementOverallStaff : System.Web.UI.Page
     {
+        public bool btnOverallVisible { get { return Submit.Visible; } set { Submit.Visible = value; } }
+        public bool btnOverallEnable { get { return Submit.Enabled; } set { Submit.Enabled = value; } }
+        public bool agreeEnable { get { return Agree.Enabled; } set { Agree.Enabled = value; } }
+        public bool agreeVisible { get { return Agree.Visible; } set { Agree.Visible = value; } }
+        public bool disagreeEnable { get { return Disagree.Enabled; } set { Disagree.Enabled = value; } }
+        public bool disagreeVisible { get { return Disagree.Visible; } set { Disagree.Visible = value; } }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -25,6 +32,17 @@ namespace WebApplication1
 
             if (!IsPostBack)
             {
+                if (Session["AccType"].ToString() == "Supervisor")
+                {
+                    DisableButtons();
+                }
+                else
+                {
+                    agreeEnable = false;
+                    agreeVisible = false;
+                    disagreeEnable = false;
+                    disagreeVisible = false;
+                }
                 using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
@@ -57,9 +75,26 @@ namespace WebApplication1
 
                         weight1_1.Text = weightArr[0];
                         weight1_2.Text = weightArr[1];
+
+                        
                     }
+                    computeTotalWeight2();
+
+                    
                 }
             }
+        }
+
+        protected void DisableButtons() 
+        {
+            weight1_1.Enabled = false;
+            weight1_2.Enabled = false;
+            btnOverallVisible = false;
+            btnOverallEnable = false;
+            agreeEnable = true;
+            agreeVisible = true;
+            disagreeEnable = true;
+            disagreeVisible = true;
         }
 
         protected void weight_TextChanged(object sender, EventArgs e)
@@ -128,29 +163,8 @@ namespace WebApplication1
             }
             else
             {
-                string compiledCWR = CompileAnswers();
-                string storedEmpID = Session["EmpID"].ToString();
-                string storedFormID = Session["FormID"].ToString();
-                string storedStaffFormID = Session["StaffFormID"].ToString();
+                UpdateCWR();
 
-                UpdateDatabase();
-                //try
-                //{
-                //    // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                //    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-                //    {
-                //        connection.Open();
-
-                //        NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""OverallWR"" = @OverallWR WHERE ""StaffFormID"" = @StaffFormID", connection);
-                //        command.Parameters.AddWithValue("@OverallWR", compiledCWR);
-                //        command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
-                //        command.ExecuteNonQuery();
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-
-                //}
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
@@ -169,7 +183,7 @@ namespace WebApplication1
             }
         }
 
-        protected void UpdateDatabase() 
+        protected void UpdateCWR() 
         {
             string compiledCWR = CompileAnswers();
             string storedStaffFormID = Session["StaffFormID"].ToString();
@@ -239,7 +253,7 @@ namespace WebApplication1
                     Response.Write("<script>alert('The total weight in section 3 is not equal to 100.')</script>");
                 else 
                 {
-                    UpdateDatabase();
+                    UpdateCWR();
                     string storedFormID = Session["FormID"].ToString();
                     string status = "To Be Checked";
                     // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
@@ -283,5 +297,47 @@ namespace WebApplication1
                 return 0;
             }
         }
+
+        protected void Agree_Click(object sender, EventArgs e) 
+        {
+            string storedFormID = Session["FormID"].ToString();
+            string status = "Approved";
+            // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            {
+                connection2.Open();
+
+                NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""EmployeePerformance"" SET ""Status"" = @Status WHERE ""FormID"" = @FormID", connection2);
+                command.Parameters.AddWithValue("@Status", status);
+                command.Parameters.AddWithValue("@FormID", storedFormID);
+                command.ExecuteNonQuery();
+            }
+            Response.Redirect("MyAccount.aspx");
+        }
+
+        protected void Disgree_Click(object sender, EventArgs e)
+        {
+            string storedStaffFormID = Session["StaffFormID"].ToString();
+            string storedFormID = Session["FormID"].ToString();
+            string status = "Rejected";
+            // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            {
+                connection.Open();
+
+                NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""EmployeePerformance"" SET ""Status"" = @Status WHERE ""FormID"" = @FormID", connection);
+                command.Parameters.AddWithValue("@Status", status);
+                command.Parameters.AddWithValue("@FormID", storedFormID);
+                command.ExecuteNonQuery();
+
+                command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = 0, ""Section2CWR"" = 0, ""OverallWR"" = 0 WHERE ""StaffFormID"" = @StaffFormID", connection);
+                command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                command.ExecuteNonQuery();
+
+            }
+            Response.Redirect("MyAccount.aspx");
+
+        }
+
     }
 }

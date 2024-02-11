@@ -17,6 +17,11 @@ namespace WebApplication1
             ((Site1)Page.Master).opt2class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
 
+            Initialize();
+        }
+
+        protected void Initialize() 
+        {
             string CWR = "";
 
             if (!IsPostBack)
@@ -38,7 +43,7 @@ namespace WebApplication1
                         Response.Write($"<script>alert('{CWR}')</script>");
                     }
                     reader.Close();
-
+                    
                     if (CWR != "0")
                     {
                         string[] CWRArr = CWR.Split(';');
@@ -56,11 +61,25 @@ namespace WebApplication1
                         weight2_3.Text = weightArr[2];
                         weight2_4.Text = weightArr[3];
                         weight2_5.Text = weightArr[4];
+
+                        computeTotalWeight2();
+
+                        if (Session["AccType"].ToString() == "Supervisor")
+                        {
+                            DisableButtons();
+                        }
                     }
                 }
             }
         }
-
+        protected void DisableButtons()
+        {
+            weight2_1.Enabled = false;
+            weight2_2.Enabled = false;
+            weight2_3.Enabled = false;
+            weight2_4.Enabled = false;
+            weight2_5.Enabled = false;
+        }
         protected void weight_TextChanged(object sender, EventArgs e)
         {
             try
@@ -151,28 +170,7 @@ namespace WebApplication1
             else
             {
 
-                string compiledCWR = CompileAnswers();
-                string storedEmpID = Session["EmpID"].ToString();
-                string storedFormID = Session["FormID"].ToString();
-                string storedStaffFormID = Session["StaffFormID"].ToString();
-
-                try
-                {
-                    // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-                    {
-                        connection.Open();
-
-                        NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section2CWR"" = @Section2CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
-                        command.Parameters.AddWithValue("@Section2CWR", compiledCWR);
-                        command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
+                UpdateCWR();
 
                 if (link.ID == "btnSection1")
                 {
@@ -192,6 +190,29 @@ namespace WebApplication1
             }
         }
 
+        protected void UpdateCWR() 
+        {
+            string compiledCWR = CompileAnswers();
+            string storedStaffFormID = Session["StaffFormID"].ToString();
+
+            try
+            {
+                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section2CWR"" = @Section2CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
+                    command.Parameters.AddWithValue("@Section2CWR", compiledCWR);
+                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         protected string CompileAnswers()
         {
             string text = "";

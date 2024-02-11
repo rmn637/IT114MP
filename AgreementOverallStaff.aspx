@@ -62,7 +62,9 @@
                     &nbsp;</td>
             </tr>
         </table>
-    <asp:Button ID="Submit" runat="server" Text=" Submit " OnClick="Submit_Click" Enabled="false"/>
+        <asp:Button ID="Submit" runat="server" Text=" Submit " OnClick="Submit_Click" Enabled="false"/>
+        <asp:Button ID="Agree" runat="server" Text=" Agree " OnClick="Agree_Click"/>
+        <asp:Button ID="Disagree" runat="server" Text=" Disagree " OnClick="Disgree_Click"/>
         <br />
     </center>
 </asp:Content>

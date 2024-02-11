@@ -16,7 +16,11 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt2class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+            Initialize();
+        }
 
+        protected void Initialize() 
+        {
             string CWR = "";
 
             if (!IsPostBack)
@@ -25,6 +29,7 @@ namespace WebApplication1
                 {
                     connection.Open();
 
+                    
                     string storedStaffFormID = Session["StaffFormID"].ToString();
 
                     string sqlCode = @"SELECT ""Section1CWR"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
@@ -59,9 +64,27 @@ namespace WebApplication1
                         weight1_7.Text = weightArr[6];
                         weight1_8.Text = weightArr[7];
                     }
+
+                    computeTotalWeight1();
+
+                    if (Session["AccType"].ToString() == "Supervisor")
+                    {
+                        DisableButtons();
+                    }
                 }
             }
-            
+        }
+
+        protected void DisableButtons()
+        {
+            weight1_1.Enabled = false;
+            weight1_2.Enabled = false;
+            weight1_3.Enabled = false;
+            weight1_4.Enabled = false;
+            weight1_5.Enabled = false;
+            weight1_6.Enabled = false;
+            weight1_7.Enabled = false;
+            weight1_8.Enabled = false;
         }
 
         protected void weight_TextChanged(object sender, EventArgs e)
@@ -169,7 +192,7 @@ namespace WebApplication1
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if(weight1_1.Text == "0" || weight1_2.Text == "0" || weight1_3.Text == "0"  || weight1_4.Text == "0" || weight1_5.Text == "0" || weight1_6.Text == "0" || weight1_7.Text == "0" || weight1_8.Text == "0")
+            if (weight1_1.Text == "0" || weight1_2.Text == "0" || weight1_3.Text == "0" || weight1_4.Text == "0" || weight1_5.Text == "0" || weight1_6.Text == "0" || weight1_7.Text == "0" || weight1_8.Text == "0")
             {
                 Response.Write("<script>alert('Please input a number from 1-100.')</script>");
             }
@@ -179,46 +202,22 @@ namespace WebApplication1
             }
             else
             {
-                string compiledCWR = CompileAnswers();
-                string storedEmpID = Session["EmpID"].ToString();
-                string storedFormID = Session["FormID"].ToString();
-                string storedStaffFormID = Session["StaffFormID"].ToString();
-
-                try
-                {
-                    // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                    using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-                    {
-                        connection.Open();
-
-                        NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
-                        command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
-                        command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
+                UpdateCWR();
 
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
                     Response.Redirect("~/AgreementSection1Staff.aspx");
-                    //Server.Transfer("~/AgreementSection1Staff.aspx");
                 }
                 else if (link.ID == "btnSection2")
                 {
                     //insert database commands here
                     Response.Redirect("~/AgreementSection2Staff.aspx");
-                    //Server.Transfer("~/AgreementSection2Staff.aspx");
                 }
                 else if (link.ID == "btnOverall")
                 {
                     //insert database commands here
                     Response.Redirect("~/AgreementOverallStaff.aspx");
-                    //Server.Transfer("~/AgreementOverallStaff.aspx");
                 }
             }
         }
@@ -237,6 +236,30 @@ namespace WebApplication1
             text += $"8,{weight1_8.Text},0";
 
             return text;
+        }
+
+        protected void UpdateCWR()
+        {
+            string compiledCWR = CompileAnswers();
+            string storedStaffFormID = Session["StaffFormID"].ToString();
+
+            try
+            {
+                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
+                    command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
+                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

@@ -73,6 +73,33 @@
             </center>
         </div>
         </div>
+        <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Staff</th>
+                        <th>Faculty Member</th>
+                        <th>Officer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <asp:Button runat="server" ID="staff" OnClick="StaffClicked" Text="Reese Ramos" Enabled="False" ></asp:Button>
+                        </td>
+                        <td>Aaron Cabueñas</td>
+                        <td>Jerome Mendoza</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Button runat="server" ID="staff2" OnClick="StaffClicked" Text="Reese Ramos2" Enabled="False" ></asp:Button>
+                        </td>
+                        <td>Aaron Cabueñas</td>
+                        <td>Jerome Mendoza</td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
     </form>
 </body>
 </html>

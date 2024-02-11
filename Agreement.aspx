@@ -6,16 +6,7 @@
 <head runat="server">
     <title>Evaluation</title>
     <link href="Style.css" rel="stylesheet" />
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-        }
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-    </script>
+    
     <style type="text/css">
         .auto-style1 {
             height: 23px;
@@ -70,7 +61,16 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><asp:LinkButton runat="server" type="button" onclick="StaffClicked">Reese Ramos</asp:LinkButton></td>
+                        <td>
+                            <asp:Button runat="server" ID="staff" OnClick="StaffClicked" Text="Reese Ramos" Enabled="False" ></asp:Button>
+                        </td>
+                        <td>Aaron Cabueñas</td>
+                        <td>Jerome Mendoza</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Button runat="server" ID="staff2" OnClick="StaffClicked" Text="Reese Ramos2" Enabled="False" ></asp:Button>
+                        </td>
                         <td>Aaron Cabueñas</td>
                         <td>Jerome Mendoza</td>
                     </tr>
