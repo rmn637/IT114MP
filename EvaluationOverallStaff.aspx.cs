@@ -95,6 +95,14 @@ namespace WebApplication1
             {
                 Response.Write("<script>alert('You have not finished commenting.')</script>");
             }
+            else if (total1.Text == "0") 
+            {
+                Response.Write("<script>alert('You have not finished evaulating in section 1.')</script>");
+            }
+            else if (total2.Text == "0")
+            {
+                Response.Write("<script>alert('You have not finished evaulating in section 2.')</script>");
+            }
             else
             {
                 UpdateEmpPerf();

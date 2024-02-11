@@ -40,10 +40,14 @@ namespace WebApplication1
                     NpgsqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        strComment = reader.GetString(0);
-                        impComment = reader.GetString(1);
-                        devComment = reader.GetString(2);
-                        ackComment = reader.GetString(3);
+                        if (reader.GetString(0) != "0")
+                            strComment = reader.GetString(0);
+                        if (reader.GetString(1) != "0")
+                            impComment = reader.GetString(1);
+                        if (reader.GetString(2) != "0")
+                            devComment = reader.GetString(2);
+                        if (reader.GetString(3) != "0")
+                            ackComment = reader.GetString(3);
                     }
                     reader.Close();
 

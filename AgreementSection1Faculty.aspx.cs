@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,74 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+            Initialize();
         }
+
+        protected void Initialize()
+        {
+            string CWR = "";
+
+            if (!IsPostBack)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+
+                    string storedFacultyFormID = Session["FacultyFormID"].ToString();
+
+                    string sqlCode = @"SELECT ""Section1CWR"" FROM ""FacultyForm"" WHERE ""FacultyFormID"" = @FacultyFormID";
+                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                    command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
+
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CWR = reader.GetString(0);
+                    }
+                    reader.Close();
+
+                    if (CWR != "0")
+                    {
+                        string[] CWRArr = CWR.Split(';');
+                        string[] CWRArr2 = new string[3];
+                        string[] weightArr = new string[8];
+
+                        for (int i = 0; i < CWRArr.Length; i++)
+                        {
+                            CWRArr2 = CWRArr[i].Split(',');
+                            weightArr[i] = CWRArr2[1];
+                        }
+
+                        weight1_1.Text = weightArr[0];
+                        weight1_2.Text = weightArr[1];
+                        weight1_3.Text = weightArr[2];
+                        weight1_4.Text = weightArr[3];
+                        weight1_5.Text = weightArr[4];
+                        weight1_A.Text = weightArr[5];
+                        weight1_B.Text = weightArr[6];
+                        weight1_C.Text = weightArr[7];
+                    }
+
+                    computeTotalWeight1();
+
+                    if (Session["AccType"].ToString() == "Supervisor")
+                    {
+                        DisableButtons();
+                    }
+                }
+            }
+        }
+
+        protected void DisableButtons()
+        {
+            weight1_1.Enabled = false;
+            weight1_2.Enabled = false;
+            weight1_3.Enabled = false;
+            weight1_4.Enabled = false;
+            weight1_5.Enabled = false;
+        }
+
         protected void weight_TextChanged(object sender, EventArgs e)
         {
             try
@@ -101,7 +169,6 @@ namespace WebApplication1
             }
             else
             {
-                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
                 return 0;
             }
         }
@@ -125,12 +192,18 @@ namespace WebApplication1
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if (labelTotal1A.Text != "100.00" && labelTotal1B.Text != "100.00")
+            if (weight1_1.Text == "0" || weight1_2.Text == "0" || weight1_3.Text == "0" || weight1_4.Text == "0" || weight1_5.Text == "0" || weight1_A.Text == "0" || weight1_B.Text == "0" || weight1_C.Text == "0")
+            {
+                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
+            }
+            else if (labelTotal1A.Text != "100.00" && labelTotal1B.Text != "100.00")
             {
                 Response.Write("<script>alert('Your total weight is not 100.')</script>");
             }
             else
             {
+                UpdateCWR();
+
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
@@ -148,5 +221,48 @@ namespace WebApplication1
                 }
             }
         }
+
+        protected string CompileAnswers()
+        {
+            string text = "";
+
+            text += $"1,{weight1_1.Text},0;";
+            text += $"2,{weight1_2.Text},0;";
+            text += $"3,{weight1_3.Text},0;";
+            text += $"4,{weight1_4.Text},0;";
+            text += $"5,{weight1_5.Text},0;";
+            text += $"6,{weight1_A.Text},0;";
+            text += $"7,{weight1_B.Text},0;";
+            text += $"8,{weight1_C.Text},0";
+
+            return text;
+        }
+
+        protected void UpdateCWR()
+        {
+            string compiledCWR = CompileAnswers();
+            string storedFacultyForm = Session["FacultyFormID"].ToString();
+
+            try
+            {
+                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""FacultyForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""FacultyFormID"" = @FacultyFormID", connection);
+                    command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
+                    command.Parameters.AddWithValue("@FacultyFormID", storedFacultyForm);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+
     }
 }

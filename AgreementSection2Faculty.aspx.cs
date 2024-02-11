@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,67 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+            Initialize();
+        }
+        protected void Initialize()
+        {
+            string CWR = "";
+
+            if (!IsPostBack)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    string storedFacultyFormID = Session["FacultyFormID"].ToString();
+
+                    string sqlCode = @"SELECT ""Section2CWR"" FROM ""FacultyForm"" WHERE ""FacultyFormID"" = @FacultyFormID";
+                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                    command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
+
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CWR = reader.GetString(0);
+                        Response.Write($"<script>alert('{CWR}')</script>");
+                    }
+                    reader.Close();
+
+                    if (CWR != "0")
+                    {
+                        string[] CWRArr = CWR.Split(';');
+                        string[] CWRArr2 = new string[3];
+                        string[] weightArr = new string[8];
+
+                        for (int i = 0; i < CWRArr.Length; i++)
+                        {
+                            CWRArr2 = CWRArr[i].Split(',');
+                            weightArr[i] = CWRArr2[1];
+                        }
+
+                        weight2_1.Text = weightArr[0];
+                        weight2_2.Text = weightArr[1];
+                        weight2_3.Text = weightArr[2];
+                        weight2_4.Text = weightArr[3];
+                        weight2_5.Text = weightArr[4];
+
+                        computeTotalWeight2();
+
+                        if (Session["AccType"].ToString() == "Supervisor")
+                        {
+                            DisableButtons();
+                        }
+                    }
+                }
+            }
+        }
+        protected void DisableButtons()
+        {
+            weight2_1.Enabled = false;
+            weight2_2.Enabled = false;
+            weight2_3.Enabled = false;
+            weight2_4.Enabled = false;
+            weight2_5.Enabled = false;
         }
         protected void weight_TextChanged(object sender, EventArgs e)
         {
@@ -101,6 +163,8 @@ namespace WebApplication1
             }
             else
             {
+                UpdateCWR();
+
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
@@ -117,6 +181,42 @@ namespace WebApplication1
                     Response.Redirect("~/AgreementOverallFaculty.aspx");
                 }
             }
+
+        }
+        protected void UpdateCWR()
+        {
+            string compiledCWR = CompileAnswers();
+            string storedFacultyFormID = Session["FacultyFormID"].ToString();
+
+            try
+            {
+                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""FacultyForm"" SET ""Section2CWR"" = @Section2CWR WHERE ""FacultyFormID"" = @FacultyFormID", connection);
+                    command.Parameters.AddWithValue("@Section2CWR", compiledCWR);
+                    command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        protected string CompileAnswers()
+        {
+            string text = "";
+
+            text += $"1,{weight2_1.Text},0;";
+            text += $"2,{weight2_2.Text},0;";
+            text += $"3,{weight2_3.Text},0;";
+            text += $"4,{weight2_4.Text},0;";
+            text += $"5,{weight2_5.Text},0";
+
+            return text;
         }
     }
 }

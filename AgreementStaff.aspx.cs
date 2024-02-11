@@ -45,7 +45,7 @@ namespace WebApplication1
 
                     object result = command.ExecuteScalar(); ;
                     int rowCount = Convert.ToInt32(result);
-                    int intFormID = 200000000 + rowCount + 1;
+                    int intFormID = 2000000000 + rowCount + 1;
                     string formID = intFormID.ToString();
                     string status = "In Progress";
                     Session["FormID"] = formID;
@@ -64,7 +64,7 @@ namespace WebApplication1
                     command = new NpgsqlCommand(sqlCode, connection);
                     result = command.ExecuteScalar();
                     rowCount = Convert.ToInt32(result);
-                    int intStaffFormID = 300000000 + rowCount + 1;
+                    long intStaffFormID = 3000000000 + rowCount + 1;
                     string StaffFormID = intStaffFormID.ToString();
                     Session["StaffFormID"] = StaffFormID;
 
