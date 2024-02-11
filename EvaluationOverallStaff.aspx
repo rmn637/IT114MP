@@ -58,19 +58,19 @@
             <tr>
                 <td class="auto-style17"><strong>SECTION 1</strong></td>
                 <td class="auto-style9">
-                    <asp:Label ID="lblTotalWeight1" runat="server"></asp:Label>
+                    <asp:Label ID="lblTotalWeight1" runat="server" Text="60"></asp:Label>
                 </td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="total1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="total_TextChanged" Enabled="False">0</asp:TextBox>
+                    <asp:TextBox ID="total1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" Enabled="False">0</asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style17"><strong>SECTION 2</strong></td>
                 <td class="auto-style9">
-                    <asp:Label ID="lblTotalWeight2" runat="server"></asp:Label>
+                    <asp:Label ID="lblTotalWeight2" runat="server" Text="40"></asp:Label>
                 </td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="total2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged" Enabled="False">0</asp:TextBox>
+                    <asp:TextBox ID="total2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" Enabled="False">0</asp:TextBox>
                 </td>
             </tr>
             <tr>

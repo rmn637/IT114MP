@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace WebApplication1
 {
@@ -14,7 +16,45 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+            if (!IsPostBack)
+            {
+                Initialize();
+            }
         }
+
+        protected void Initialize()
+        {
+            string strComment = "", impComment = "", devComment = "", ackComment = "";
+
+            if (!IsPostBack)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+                    string storedStaffFormID = Session["StaffFormID"].ToString();
+
+                    string sqlCode = @"SELECT ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
+                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        strComment = reader.GetString(0);
+                        impComment = reader.GetString(1);
+                        devComment = reader.GetString(2);
+                        ackComment = reader.GetString(3);
+                    }
+                    reader.Close();
+
+                    strength.Text = strComment;
+                    improvement.Text = impComment;
+                    development.Text = devComment;
+                    acknowledgement.Text = ackComment;
+                }
+            }
+        }
+
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
@@ -22,25 +62,54 @@ namespace WebApplication1
             {
                 Response.Write("<script>alert('Please Type Comments.')</script>");
             }
-            else if (link.ID == "btnSection1")
+            else 
             {
-                //insert database commands here
-                Response.Redirect("~/EvaluationSection1Staff.aspx");
+                UpdateCWR();
+                if (link.ID == "btnSection1")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationSection1Staff.aspx");
+                }
+                else if (link.ID == "btnSection2")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationSection2Staff.aspx");
+                }
+                else if (link.ID == "btnSection3")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationCommentsStaff.aspx");
+                }
+                else if (link.ID == "btnOverall")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationOverallStaff.aspx");
+                }
             }
-            else if (link.ID == "btnSection2")
+            
+        }
+        protected void UpdateCWR()
+        {
+            string storedStaffFormID = Session["StaffFormID"].ToString();
+            try
             {
-                //insert database commands here
-                Response.Redirect("~/EvaluationSection2Staff.aspx");
+                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Strength"" = @Strength, ""Improvement"" = @Improvement, ""Development"" = @Development, ""Acknowledgement"" = @Acknowledgement WHERE ""StaffFormID"" = @StaffFormID", connection);
+                    command.Parameters.AddWithValue("@Strength", strength.Text);
+                    command.Parameters.AddWithValue("@Improvement", improvement.Text);
+                    command.Parameters.AddWithValue("@Development", development.Text);
+                    command.Parameters.AddWithValue("@Acknowledgement", acknowledgement.Text);
+                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    command.ExecuteNonQuery();
+                }
             }
-            else if (link.ID == "btnSection3")
+            catch (Exception ex)
             {
-                //insert database commands here
-                Response.Redirect("~/EvaluationCommentsStaff.aspx");
-            }
-            else if (link.ID == "btnOverall")
-            {
-                //insert database commands here
-                Response.Redirect("~/EvaluationOverallStaff.aspx");
+
             }
         }
     }

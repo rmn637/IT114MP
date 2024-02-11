@@ -34,7 +34,7 @@
             <tr>
                 <td class="auto-style17"><strong>SECTION 1</strong></td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" Text="60" Enabled="False"></asp:TextBox>
                 </td>
                 <td class="auto-style9">
                 </td>
@@ -42,7 +42,7 @@
             <tr>
                 <td class="auto-style17"><strong>SECTION 2</strong></td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" Text="40" Enabled="False"></asp:TextBox>
                 </td>
                 <td class="auto-style9">
                 </td>
