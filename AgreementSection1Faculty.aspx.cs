@@ -54,14 +54,14 @@ namespace WebApplication1
                             weightArr[i] = CWRArr2[1];
                         }
 
-                        weight1_1.Text = weightArr[0];
-                        weight1_2.Text = weightArr[1];
-                        weight1_3.Text = weightArr[2];
-                        weight1_4.Text = weightArr[3];
-                        weight1_5.Text = weightArr[4];
-                        weight1_A.Text = weightArr[5];
-                        weight1_B.Text = weightArr[6];
-                        weight1_C.Text = weightArr[7];
+                        weight1_A.Text = weightArr[0];
+                        weight1_B.Text = weightArr[1];
+                        weight1_C.Text = weightArr[2];
+                        weight1_1.Text = weightArr[3];
+                        weight1_2.Text = weightArr[4];
+                        weight1_3.Text = weightArr[5];
+                        weight1_4.Text = weightArr[6];
+                        weight1_5.Text = weightArr[7];
                     }
 
                     computeTotalWeight1();
@@ -76,6 +76,9 @@ namespace WebApplication1
 
         protected void DisableButtons()
         {
+            weight1_A.Enabled = false;
+            weight1_B.Enabled = false;
+            weight1_C.Enabled = false; 
             weight1_1.Enabled = false;
             weight1_2.Enabled = false;
             weight1_3.Enabled = false;
@@ -226,14 +229,14 @@ namespace WebApplication1
         {
             string text = "";
 
-            text += $"1,{weight1_1.Text},0;";
-            text += $"2,{weight1_2.Text},0;";
-            text += $"3,{weight1_3.Text},0;";
-            text += $"4,{weight1_4.Text},0;";
-            text += $"5,{weight1_5.Text},0;";
-            text += $"6,{weight1_A.Text},0;";
-            text += $"7,{weight1_B.Text},0;";
-            text += $"8,{weight1_C.Text},0";
+            text += $"1,{weight1_A.Text},0;";
+            text += $"2,{weight1_B.Text},0;";
+            text += $"3,{weight1_C.Text},0;";
+            text += $"4,{weight1_1.Text},0;";
+            text += $"5,{weight1_2.Text},0;";
+            text += $"6,{weight1_3.Text},0;";
+            text += $"7,{weight1_4.Text},0;";
+            text += $"8,{weight1_5.Text},0";
 
             return text;
         }

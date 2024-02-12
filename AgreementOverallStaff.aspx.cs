@@ -246,9 +246,9 @@ namespace WebApplication1
                 overallWeight = GetTotalWeight(CWR3);
 
                 if (sec1Weight != 100)
-                    Response.Write("<script>alert('The total weight in section 1 is not equal to 100.')</script>");
+                    Response.Write($"<script>alert('The total weight in section 1 is not equal to 100.')</script>");
                 else if (sec2Weight != 100)
-                    Response.Write("<script>alert('The total weight in section 2 is not equal to 100.')</script>");
+                    Response.Write($"<script>alert('The total weight in section 2 is not equal to 100.')</script>");
                 else 
                 {
                     UpdateCWR();

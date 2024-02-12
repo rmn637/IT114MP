@@ -139,7 +139,6 @@ namespace WebApplication1
             }
             else
             {
-                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
                 return 0;
             }
         }

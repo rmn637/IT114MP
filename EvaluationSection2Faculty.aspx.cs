@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,70 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+            if (!IsPostBack)
+            {
+                Initialize();
+            }
+        }
+
+        protected void Initialize()
+        {
+            string CWR = "";
+
+            if (!IsPostBack)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+                    string storedFacultyFormID = Session["FacultyFormID"].ToString();
+
+                    string sqlCode = @"SELECT ""Section2CWR"" FROM ""FacultyForm"" WHERE ""FacultyFormID"" = @FacultyFormID";
+                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                    command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
+
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CWR = reader.GetString(0);
+                    }
+                    reader.Close();
+
+                    if (CWR != "0")
+                    {
+                        string[] CWRArr = CWR.Split(';');
+                        string[] CWRArr2 = new string[3];
+                        string[] weightArr = new string[8];
+                        string[] ratingArr = new string[8];
+
+                        for (int i = 0; i < CWRArr.Length; i++)
+                        {
+                            CWRArr2 = CWRArr[i].Split(',');
+                            weightArr[i] = CWRArr2[1];
+                            ratingArr[i] = CWRArr2[2];
+                        }
+
+                        weight2_1.Text = weightArr[0];
+                        weight2_2.Text = weightArr[1];
+                        weight2_3.Text = weightArr[2];
+                        weight2_4.Text = weightArr[3];
+                        weight2_5.Text = weightArr[4];
+
+                        rating2_1.Text = ratingArr[0];
+                        rating2_2.Text = ratingArr[1];
+                        rating2_3.Text = ratingArr[2];
+                        rating2_4.Text = ratingArr[3];
+                        rating2_5.Text = ratingArr[4];
+
+                        label2_1.Text = (double.Parse(weight2_1.Text) * double.Parse(ratingComp(ratingArr[0])) * 0.01).ToString("0.00");
+                        label2_2.Text = (double.Parse(weight2_2.Text) * double.Parse(ratingComp(ratingArr[1])) * 0.01).ToString("0.00");
+                        label2_3.Text = (double.Parse(weight2_3.Text) * double.Parse(ratingComp(ratingArr[2])) * 0.01).ToString("0.00");
+                        label2_4.Text = (double.Parse(weight2_4.Text) * double.Parse(ratingComp(ratingArr[3])) * 0.01).ToString("0.00");
+                        label2_5.Text = (double.Parse(weight2_5.Text) * double.Parse(ratingComp(ratingArr[4])) * 0.01).ToString("0.00");
+
+                    }
+                }
+                computeTotalScore();
+            }
         }
 
         protected string ratingComp(string rating)
@@ -57,7 +122,7 @@ namespace WebApplication1
                     {
                         rating2_1.Text = "5";
                     }
-                    weightedScore = double.Parse(ratingComp(rating2_1.Text)) * weight;
+                    weightedScore = double.Parse(ratingComp(rating2_1.Text)) * double.Parse(weight2_1.Text) * 0.01;
                     label2_1.Text = weightedScore.ToString("0.00");
                 }
                 else if (rating.ID == "rating2_2")
@@ -66,7 +131,7 @@ namespace WebApplication1
                     {
                         rating2_2.Text = "5";
                     }
-                    weightedScore = double.Parse(ratingComp(rating2_2.Text)) * weight;
+                    weightedScore = double.Parse(ratingComp(rating2_2.Text)) * double.Parse(weight2_2.Text) * 0.01;
                     label2_2.Text = weightedScore.ToString("0.00");
                 }
                 else if (rating.ID == "rating2_3")
@@ -75,7 +140,7 @@ namespace WebApplication1
                     {
                         rating2_3.Text = "5";
                     }
-                    weightedScore = double.Parse(ratingComp(rating2_3.Text)) * weight;
+                    weightedScore = double.Parse(ratingComp(rating2_3.Text)) * double.Parse(weight2_3.Text) * 0.01;
                     label2_3.Text = weightedScore.ToString("0.00");
                 }
                 else if (rating.ID == "rating2_4")
@@ -84,7 +149,7 @@ namespace WebApplication1
                     {
                         rating2_4.Text = "5";
                     }
-                    weightedScore = double.Parse(ratingComp(rating2_4.Text)) * weight;
+                    weightedScore = double.Parse(ratingComp(rating2_4.Text)) * double.Parse(weight2_4.Text) * 0.01;
                     label2_4.Text = weightedScore.ToString("0.00");
                 }
                 else
@@ -93,7 +158,7 @@ namespace WebApplication1
                     {
                         rating2_5.Text = "5";
                     }
-                    weightedScore = double.Parse(ratingComp(rating2_5.Text)) * weight;
+                    weightedScore = double.Parse(ratingComp(rating2_5.Text)) * double.Parse(weight2_5.Text) * 0.01;
                     label2_5.Text = weightedScore.ToString("0.00");
                 }
                 computeTotalScore();
@@ -133,26 +198,67 @@ namespace WebApplication1
             {
                 Response.Write("<script>alert('Please input a number from 1-5.')</script>");
             }
-            else if (link.ID == "btnSection1")
+            else 
             {
-                //insert database commands here
-                Response.Redirect("~/EvaluationSection1Faculty.aspx");
+                UpdateCWR();
+                if (link.ID == "btnSection1")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationSection1Faculty.aspx");
+                }
+                else if (link.ID == "btnSection2")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationSection2Faculty.aspx");
+                }
+                else if (link.ID == "btnSection3")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationCommentsFaculty.aspx");
+                }
+                else if (link.ID == "btnOverall")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationOverallFaculty.aspx");
+                }
             }
-            else if (link.ID == "btnSection2")
+            
+        }
+
+        protected void UpdateCWR()
+        {
+            string compiledCWR = CompileAnswers();
+            string storedFacultyFormID = Session["FacultyFormID"].ToString();
+            try
             {
-                //insert database commands here
-                Response.Redirect("~/EvaluationSection2Faculty.aspx");
+                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""FacultyForm"" SET ""Section2CWR"" = @Section2CWR WHERE ""FacultyFormID"" = @FacultyFormID", connection);
+                    command.Parameters.AddWithValue("@Section2CWR", compiledCWR);
+                    command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
+                    command.ExecuteNonQuery();
+                }
             }
-            else if (link.ID == "btnSection3")
+            catch (Exception ex)
             {
-                //insert database commands here
-                Response.Redirect("~/EvaluationCommentsFaculty.aspx");
-            }
-            else if (link.ID == "btnOverall")
-            {
-                //insert database commands here
-                Response.Redirect("~/EvaluationOverallFaculty.aspx");
+
             }
         }
+        protected string CompileAnswers()
+        {
+            string text = "";
+
+            text += $"1,{weight2_1.Text},{rating2_1.Text};";
+            text += $"2,{weight2_2.Text},{rating2_2.Text};";
+            text += $"3,{weight2_3.Text},{rating2_3.Text};";
+            text += $"4,{weight2_4.Text},{rating2_4.Text};";
+            text += $"5,{weight2_5.Text},{rating2_5.Text}";
+
+            return text;
+        }
+
     }
 }

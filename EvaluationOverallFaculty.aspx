@@ -58,7 +58,7 @@
             <tr>
                 <td class="auto-style17"><strong>SECTION 1-A</strong></td>
                 <td class="auto-style9">
-                    <asp:Label ID="lblTotalWeight1A" runat="server"></asp:Label>
+                    <asp:Label ID="lblTotalWeight1A" runat="server" Text ="50"></asp:Label>
                 </td>
                 <td class="auto-style9">
                     <asp:TextBox ID="total1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" Enabled="False">0</asp:TextBox>
@@ -67,7 +67,7 @@
             <tr>
                 <td class="auto-style17"><strong>SECTION 1B</strong></td>
                 <td class="auto-style9">
-                    <asp:Label ID="lblTotalWeight1B" runat="server"></asp:Label>
+                    <asp:Label ID="lblTotalWeight1B" runat="server" Text="20"></asp:Label>
                 </td>
                 <td class="auto-style9">
                     <asp:TextBox ID="total2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" Enabled="False">0</asp:TextBox>
@@ -76,7 +76,7 @@
             <tr>
                 <td class="auto-style17"><strong>SECTION 2</strong></td>
                 <td class="auto-style9">
-                    <asp:Label ID="lblTotalWeight2" runat="server"></asp:Label>
+                    <asp:Label ID="lblTotalWeight2" runat="server" Text="30"></asp:Label>
                 </td>
                 <td class="auto-style9">
                     <asp:TextBox ID="total3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="total_TextChanged" Enabled="False">0</asp:TextBox>

@@ -64,15 +64,24 @@
                         <td>
                             <asp:Button runat="server" ID="staff" OnClick="StaffClicked" Text="Reese Ramos" Enabled="False" ></asp:Button>
                         </td>
-                        <td>Aaron Cabueñas</td>
-                        <td>Jerome Mendoza</td>
+                        <td>
+                            <asp:Button runat="server" ID="faculty1" OnClick="FacultyClicked" Text="Aaron Cabueñas" Enabled="False" ></asp:Button>
+                        </td>
+                        <td>
+                            <asp:Button runat="server" ID="officer1" OnClick="FacultyClicked" Text="Jerome Mendoza" Enabled="False" ></asp:Button>
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <asp:Button runat="server" ID="staff2" OnClick="StaffClicked" Text="Reese Ramos2" Enabled="False" ></asp:Button>
                         </td>
-                        <td>Aaron Cabueñas</td>
-                        <td>Jerome Mendoza</td>
+                        <td>
+                            <asp:Button runat="server" ID="faculty2" OnClick="FacultyClicked" Text="Aaron Cabueñas2" Enabled="False" ></asp:Button>
+                        </td>
+                        <td>
+                            <asp:Button runat="server" ID="officer2" OnClick="FacultyClicked" Text="Jerome Mendoza2" Enabled="False" ></asp:Button>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>

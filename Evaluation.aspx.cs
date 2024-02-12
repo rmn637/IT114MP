@@ -12,6 +12,11 @@ namespace WebApplication1
     {
         public bool staff1Enable { get { return staff.Enabled; } set { staff.Enabled = value; } }
         public bool staff2Enable { get { return staff2.Enabled; } set { staff2.Enabled = value; } }
+        public bool faculty1Enable { get { return faculty1.Enabled; } set { faculty1.Enabled = value; } }
+        public bool faculty2Enable { get { return faculty2.Enabled; } set { faculty1.Enabled = value; } }
+
+        public bool officer1Enable { get { return officer1.Enabled; } set { officer1.Enabled = value; } }
+        public bool officer2Enable { get { return officer2.Enabled; } set { officer2.Enabled = value; } }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -63,6 +68,10 @@ namespace WebApplication1
 
             staff1Enable = ShowButtons(staff.Text);
             staff2Enable = ShowButtons(staff2.Text);
+            faculty1Enable = ShowButtons(faculty1.Text);
+            faculty2Enable = ShowButtons(faculty2.Text);
+            officer1Enable = ShowButtons(officer1.Text);
+            officer2Enable = ShowButtons(officer2.Text);
 
         }
 
@@ -101,11 +110,11 @@ namespace WebApplication1
             Button staff = sender as Button;
             Response.Write($"<script>alert('EmpID:')</script>");
 
-            SetSessionInfo(staff.Text);
+            SetStaffSessionInfo(staff.Text);
             Response.Redirect("~/EvaluationSection1Staff.aspx");
         }
 
-        protected void SetSessionInfo(string name)
+        protected void SetStaffSessionInfo(string name)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
@@ -129,6 +138,80 @@ namespace WebApplication1
                 }
                 reader.Close();
                 Response.Write($"<script>alert('EmpID:{Session["EmpID"].ToString()}FormID:{Session["FormID"].ToString()}StaffFormID:{Session["StaffFormID"].ToString()}')</script>");
+
+            }
+        }
+
+        protected void FacultyClicked(object sender, EventArgs e)
+        {
+            Button faculty = sender as Button;
+            Response.Write($"<script>alert('EmpID:')</script>");
+
+            SetFacultySessionInfo(faculty.Text);
+            Response.Redirect("~/EvaluationSection1Faculty.aspx");
+        }
+
+        protected void SetFacultySessionInfo(string name)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            {
+                connection.Open();
+                string storedEmpID = "", storedFormID = "", storedFacultyFormID = "";
+                string sqlCode = @"SELECT ""Employee"".""EmpID"", ""EmployeePerformance"".""FormID"", ""FacultyFormID"" FROM ""Employee"" INNER JOIN ""EmployeePerformance"" ON ""Employee"".""EmpID"" = ""EmployeePerformance"".""EmpID"" INNER JOIN ""FacultyForm"" ON ""EmployeePerformance"".""FormID"" = ""FacultyForm"".""FormID"" WHERE ""Employee"".""EmpName"" = @empName";
+                NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                command.Parameters.AddWithValue("@empName", name);
+
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    storedEmpID = reader.GetString(0);
+                    storedFormID = reader.GetString(1);
+                    storedFacultyFormID = reader.GetString(2);
+
+
+                    Session["EmpID"] = storedEmpID;
+                    Session["FormID"] = storedFormID;
+                    Session["FacultyFormID"] = storedFacultyFormID;
+                }
+                reader.Close();
+                Response.Write($"<script>alert('EmpID:{Session["EmpID"].ToString()}FormID:{Session["FormID"].ToString()}FacultyFormID:{Session["FacultyFormID"].ToString()}')</script>");
+
+            }
+        }
+
+        protected void OfficerClicked(object sender, EventArgs e)
+        {
+            Button officer = sender as Button;
+            Response.Write($"<script>alert('EmpID:')</script>");
+
+            SetOfficerSessionInfo(officer.Text);
+            Response.Redirect("~/EvaluationSection1Officer.aspx");
+        }
+
+        protected void SetOfficerSessionInfo(string name)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            {
+                connection.Open();
+                string storedEmpID = "", storedFormID = "", storedOfficerFormID = "";
+                string sqlCode = @"SELECT ""Employee"".""EmpID"", ""EmployeePerformance"".""FormID"", ""OfficerFormID"" FROM ""Employee"" INNER JOIN ""EmployeePerformance"" ON ""Employee"".""EmpID"" = ""EmployeePerformance"".""EmpID"" INNER JOIN ""OfficerForm"" ON ""EmployeePerformance"".""FormID"" = ""OfficerForm"".""FormID"" WHERE ""Employee"".""EmpName"" = @empName";
+                NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                command.Parameters.AddWithValue("@empName", name);
+
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    storedEmpID = reader.GetString(0);
+                    storedFormID = reader.GetString(1);
+                    storedOfficerFormID = reader.GetString(2);
+
+
+                    Session["EmpID"] = storedEmpID;
+                    Session["FormID"] = storedFormID;
+                    Session["OfficerFormID"] = storedOfficerFormID;
+                }
+                reader.Close();
+                Response.Write($"<script>alert('EmpID:{Session["EmpID"].ToString()}FormID:{Session["FormID"].ToString()}OfficerFormID:{Session["OfficerFormID"].ToString()}')</script>");
 
             }
         }
