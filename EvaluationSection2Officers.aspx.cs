@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,8 +15,115 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+            if (!IsPostBack)
+            {
+                Initialize();
+            }
         }
+        protected void Initialize()
+        {
+            string CWR = "";
 
+            if (!IsPostBack)
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+                    string storedOfficerFormID = Session["OfficerFormID"].ToString();
+
+                    string sqlCode = @"SELECT ""Section2CNWR"" FROM ""OfficerForm"" WHERE ""OfficerFormID"" = @OfficerFormID";
+                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
+                    command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
+
+                    NpgsqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CWR = reader.GetString(0);
+                    }
+                    reader.Close();
+
+                    if (CWR != "0")
+                    {
+                        string[] CWRArr = CWR.Split(';');
+                        string[] CWRArr2 = new string[5];
+                        string[] weightArr = new string[4];
+                        string[] ratingArr = new string[4];
+                        string[] scopeArr = new string[4];
+                        string[] notesArr = new string[4];
+
+
+                        for (int i = 0; i < CWRArr.Length; i++)
+                        {
+                            CWRArr2 = CWRArr[i].Split('|');
+                            scopeArr[i] = CWRArr2[1];
+                            notesArr[i] = CWRArr2[2];
+                            weightArr[i] = CWRArr2[3];
+                            ratingArr[i] = CWRArr2[4];
+
+                        }
+
+                        weight2_1.Text = weightArr[0];
+                        weight2_2.Text = weightArr[1];
+                        weight2_3.Text = weightArr[2];
+                        weight2_4.Text = weightArr[3];
+
+                        rating2_1.Text = ratingArr[0];
+                        rating2_2.Text = ratingArr[1];
+                        rating2_3.Text = ratingArr[2];
+                        rating2_4.Text = ratingArr[3];
+
+                        scope1.Text = scopeArr[0];
+                        scope2.Text = scopeArr[1];
+                        scope3.Text = scopeArr[2];
+                        scope4.Text = scopeArr[3];
+
+                        notes1.Text = notesArr[0];
+                        notes2.Text = notesArr[1];
+                        notes3.Text = notesArr[2];
+                        notes4.Text = notesArr[3];
+
+                        label2_1.Text = (double.Parse(weight2_1.Text) * double.Parse(ratingComp(ratingArr[0])) * 0.01).ToString("0.00");
+                        label2_2.Text = (double.Parse(weight2_2.Text) * double.Parse(ratingComp(ratingArr[1])) * 0.01).ToString("0.00");
+                        label2_3.Text = (double.Parse(weight2_3.Text) * double.Parse(ratingComp(ratingArr[2])) * 0.01).ToString("0.00");
+                        label2_4.Text = (double.Parse(weight2_4.Text) * double.Parse(ratingComp(ratingArr[3])) * 0.01).ToString("0.00");
+                    }
+                }
+                computeTotal1();
+            }
+        }
+        protected void UpdateCWR()
+        {
+            string compiledCWR = CompileAnswers();
+            string storedOfficerFormID = Session["OfficerFormID"].ToString();
+            try
+            {
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                {
+                    connection.Open();
+
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""OfficerForm"" SET ""Section2CNWR"" = @Section2CNWR WHERE ""OfficerFormID"" = @OfficerFormID", connection);
+                    command.Parameters.AddWithValue("@Section1IOWR", compiledCWR);
+                    command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        protected string CompileAnswers()
+        {
+            string text = "";
+
+            text += $"1|{scope1.Text}|{notes1.Text}|{weight2_1.Text}|{rating2_1.Text};";
+            text += $"2|{scope2.Text}|{notes2.Text}|{weight2_2.Text}|{rating2_2.Text};";
+            text += $"3|{scope3.Text}|{notes3.Text}|{weight2_3.Text}|{rating2_3.Text};";
+            text += $"4|{scope4.Text}|{notes4.Text}|{weight2_4.Text}|{rating2_4.Text};";
+            return text;
+        }
         protected string ratingComp(string rating)
         {
             if (rating == "5")
@@ -44,93 +152,63 @@ namespace WebApplication1
             }
         }
 
-        protected void rating2_TextChanged(object sender, EventArgs e)
+        protected void rating1_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 TextBox rating = sender as TextBox;
-                double weight = 0.2;
+                double weight = 0;
                 double weightedScore;
-                if (rating.ID == "rating1_1")
+                if (rating.ID == "rating2_1")
                 {
-                    if (double.Parse(rating.Text) > 5)
+                    weight = 0.7;
+                    if (double.Parse(rating2_1.Text) > 5)
                     {
-                        rating1_1.Text = "5";
+                        rating2_1.Text = "5";
                     }
-                    weightedScore = double.Parse(ratingComp(rating1_1.Text)) * weight;
-                    label1_1.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating1_2")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating1_2.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating1_2.Text)) * weight;
-                    label1_2.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating1_3")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating1_3.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating1_3.Text)) * weight;
-                    label1_3.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating1_4")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating1_4.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating1_4.Text)) * weight;
-                    label1_4.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating1_5")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating1_5.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating1_5.Text)) * weight;
-                    label1_5.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating1_6")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating1_6.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating1_6.Text)) * weight;
-                    label1_6.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating1_7")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating1_7.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating1_7.Text)) * weight;
-                    label1_7.Text = weightedScore.ToString("0.00");
+                    weightedScore = double.Parse(ratingComp(rating2_1.Text)) * weight;
+                    label2_1.Text = weightedScore.ToString("0.00");
                 }
                 else
                 {
-                    if (double.Parse(rating.Text) > 5)
+                    if (rating.ID == "rating2_2")
                     {
-                        rating1_8.Text = "5";
+                        weight = 0.15;
+                        if (double.Parse(rating2_2.Text) > 5)
+                        {
+                            rating2_2.Text = "5";
+                        }
+                        weightedScore = double.Parse(ratingComp(rating2_2.Text)) * weight;
+                        label2_2.Text = weightedScore.ToString("0.00");
                     }
-                    weightedScore = double.Parse(ratingComp(rating1_8.Text)) * weight;
-                    label1_8.Text = weightedScore.ToString("0.00");
+                    else if(rating.ID == "rating2_3")
+                    {
+                        weight = 0.15;
+                        if (double.Parse(rating2_3.Text) > 5)
+                        {
+                            rating2_3.Text = "5";
+                        }
+                        weightedScore = double.Parse(ratingComp(rating2_3.Text)) * weight;
+                        label2_3.Text = weightedScore.ToString("0.00");
+                    }
+                    else if(rating.ID == "rating2_4")
+                    {
+                        weight = 0.15;
+                        if (double.Parse(rating2_4.Text) > 5)
+                        {
+                            rating2_4.Text = "5";
+                        }
+                        weightedScore = double.Parse(ratingComp(rating2_4.Text)) * weight;
+                        label2_4.Text = weightedScore.ToString("0.00");
+                    }
                 }
-                computeTotalScore();
+                computeTotal1();
             }
             catch (FormatException)
             {
                 Response.Write("<script>alert('Error: Please type a positive number')</script>");
             }
         }
-
         protected double inputChecker(string weight)
         {
             if (weight != "0")
@@ -142,29 +220,77 @@ namespace WebApplication1
                 return 0;
             }
         }
-        protected void computeTotalScore()
+        protected void computeTotal1()
         {
-            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, weight5 = 0, weight6 = 0, weight7 = 0, weight8 = 0, total = 0;
-            weight1 = inputChecker(label1_1.Text);
-            weight2 = inputChecker(label1_2.Text);
-            weight3 = inputChecker(label1_3.Text);
-            weight4 = inputChecker(label1_4.Text);
-            weight5 = inputChecker(label1_5.Text);
-            weight6 = inputChecker(label1_6.Text);
-            weight7 = inputChecker(label1_7.Text);
-            weight8 = inputChecker(label1_8.Text);
-            total = weight1 + weight2 + weight3 + weight4 + weight5 + weight6 + weight7 + weight8;
-            labelTotal1.Text = total.ToString("0.00");
+            double weightedScore1 = 0, weightedScore2 = 0, weightedScore3 = 0, weightedScore4 = 0, total = 0;
+            weightedScore1 = inputChecker(label2_1.Text);
+            weightedScore2 = inputChecker(label2_2.Text);
+            weightedScore3 = inputChecker(label2_3.Text);
+            weightedScore4 = inputChecker(label2_4.Text);
+            total = weightedScore1 + weightedScore2 + weightedScore3 + weightedScore4;
+            labelTotal2.Text = total.ToString("0.00");
+        }
+
+        protected void rating2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                TextBox rating = sender as TextBox;
+                double weight = 0.2;
+                double weightedScore;
+                if (rating.ID == "rating2_1")
+                {
+                    if (double.Parse(rating.Text) > 5)
+                    {
+                        rating2_1.Text = "5";
+                    }
+                    weightedScore = double.Parse(ratingComp(rating2_1.Text)) * weight;
+                    label2_1.Text = weightedScore.ToString("0.00");
+                }
+                else if (rating.ID == "rating2_2")
+                {
+                    if (double.Parse(rating.Text) > 5)
+                    {
+                        rating2_2.Text = "5";
+                    }
+                    weightedScore = double.Parse(ratingComp(rating2_2.Text)) * weight;
+                    label2_2.Text = weightedScore.ToString("0.00");
+                }
+                else if (rating.ID == "rating2_3")
+                {
+                    if (double.Parse(rating.Text) > 5)
+                    {
+                        rating2_3.Text = "5";
+                    }
+                    weightedScore = double.Parse(ratingComp(rating2_3.Text)) * weight;
+                    label2_3.Text = weightedScore.ToString("0.00");
+                }
+                else
+                {
+                    if (double.Parse(rating.Text) > 5)
+                    {
+                        rating2_4.Text = "5";
+                    }
+                    weightedScore = double.Parse(ratingComp(rating2_4.Text)) * weight;
+                    rating2_4.Text = weightedScore.ToString("0.00");
+                }
+                computeTotal1();
+            }
+            catch (FormatException)
+            {
+                Response.Write("<script>alert('Error: Please type a positive number')</script>");
+            }
         }
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if (label1_1.Text == "0" || label1_2.Text == "0" || label1_3.Text == "0" || label1_4.Text == "0" || label1_5.Text == "0" || label1_6.Text == "0" || label1_7.Text == "0" || label1_8.Text == "0")
+            if (labelTotal2.Text != "100.00")
             {
-                Response.Write("<script>alert('Please input a number from 1-5.')</script>");
+                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
             }
             else
             {
+                UpdateCWR();
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
@@ -181,6 +307,11 @@ namespace WebApplication1
                     Response.Redirect("~/EvaluationSection3Officers.aspx");
                 }
                 else if (link.ID == "btnSection4")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationSection4Officers.aspx");
+                }
+                else if (link.ID == "btnSection5")
                 {
                     //insert database commands here
                     Response.Redirect("~/EvaluationCommentsOfficers.aspx");

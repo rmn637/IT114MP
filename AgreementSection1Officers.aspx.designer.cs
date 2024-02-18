@@ -60,15 +60,6 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.LinkButton btnOverall;
 
         /// <summary>
-        /// rfvInitiative1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvInitiative1;
-
-        /// <summary>
         /// initiative1 control.
         /// </summary>
         /// <remarks>

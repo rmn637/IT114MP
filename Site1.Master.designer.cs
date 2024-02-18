@@ -51,15 +51,6 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.Label labelLogID;
 
         /// <summary>
-        /// opt1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton opt1;
-
-        /// <summary>
         /// opt2 control.
         /// </summary>
         /// <remarks>
@@ -76,5 +67,32 @@ namespace WebApplication1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton opt3;
+
+        /// <summary>
+        /// opt4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton opt4;
+
+        /// <summary>
+        /// opt5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton opt5;
+
+        /// <summary>
+        /// opt1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton opt1;
     }
 }

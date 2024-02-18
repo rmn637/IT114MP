@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -20,17 +21,17 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt1class = "active";
             string storedEmpID = Session["EmpID"].ToString();
-            string storedEmpName = "", storedEmpPos = "", storedEmpDept = "", storedEmpSupervisor = "";
+            string storedEmpName = "", storedEmpPos = "", storedEmpDept = "", storedEmpSupervisor = "", storedSupName = "";
             try
             {
-                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
                     //NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" INNER JOIN ""EmployeeAccount"" ON ""Employee"".""EmpID"" = ""EmployeeAccount"".""EmpID"" WHERE ""Employee"".""EmpID"" = @empID", connection);
                     //command.Parameters.AddWithValue("@empID", storedEmpID);
 
-                    NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" WHERE ""Employee"".""EmpID"" = @empID", connection);
+                    NpgsqlCommand command = new NpgsqlCommand(@"SELECT * FROM ""Employee"" WHERE ""EmpID"" = @empID", connection);
                     command.Parameters.AddWithValue("@empID", storedEmpID);
 
                     NpgsqlDataReader reader = command.ExecuteReader();
@@ -44,11 +45,22 @@ namespace WebApplication1
                     }
                     reader.Close();
 
+                    NpgsqlCommand command2 = new NpgsqlCommand(@"SELECT ""EmpName"" FROM ""Employee"" WHERE ""EmpID"" = @empID", connection);
+                    command2.Parameters.AddWithValue("@empID", storedEmpSupervisor);
+
+                    NpgsqlDataReader reader2 = command2.ExecuteReader();
+
+                    while (reader2.Read())
+                    {
+                        storedSupName = reader2.GetString(0);
+                    }
+                    reader2.Close();
+
                     lblEmpIDText = "Employee ID: " + storedEmpID;
                     lblEmpNameText = "Employee Name: " + storedEmpName;
                     lblEmpDeptText = "Employee Department: " + storedEmpDept;
                     lblEmpPosText = "Employee Position: " + storedEmpPos;
-                    lblEmpSupervisorText = "Employee Supervisor: " + storedEmpSupervisor;
+                    lblEmpSupervisorText = "Employee Supervisor: " + storedSupName;
                 }
             }
             catch (Exception ex)

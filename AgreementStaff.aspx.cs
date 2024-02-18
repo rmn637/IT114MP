@@ -20,11 +20,11 @@ namespace WebApplication1
         protected void EvaluateBtn_Click(object sender, EventArgs e)
         {
             string sqlCode, storedSupID = "";
-            string storedEmpID = Session["EmpID"].ToString();
+            string storedEmpID = Session["RateeID"].ToString();
             try
             {
-                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
                     
@@ -67,14 +67,13 @@ namespace WebApplication1
                     long intStaffFormID = 3000000000 + rowCount + 1;
                     string StaffFormID = intStaffFormID.ToString();
                     Session["StaffFormID"] = StaffFormID;
+                    Response.Write($"<script>alert(' {formID} {StaffFormID}')</script>");
 
-                    sqlCode = @"INSERT INTO ""StaffForm"" (""StaffFormID"" , ""FormID"", ""Section1CWR"", ""Section2CWR"", ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"", ""OverallWR"") VALUES (@StaffFormID, @FormID , 0, 0, 0, 0, 0, 0, 0)";
+                    sqlCode = @"INSERT INTO ""StaffForm"" (""StaffFormID"", ""FormID"", ""Section1CWR"", ""Section2CWR"", ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"", ""OverallWR"") VALUES (@StaffFormID, @FormID , 0, 0, 0, 0, 0, 0, 0)";
                     command = new NpgsqlCommand(sqlCode, connection);
-
                     command.Parameters.AddWithValue("@StaffFormID", StaffFormID);
                     command.Parameters.AddWithValue("@FormID", formID);
                     command.ExecuteNonQuery();
-
                 }
             }
             catch (Exception ex)

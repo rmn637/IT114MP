@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class AgreementOverallStaff : System.Web.UI.Page
+    public partial class AgreementOverallOfficers : System.Web.UI.Page
     {
         public bool btnOverallVisible { get { return Submit.Visible; } set { Submit.Visible = value; } }
         public bool btnOverallEnable { get { return Submit.Enabled; } set { Submit.Enabled = value; } }
@@ -17,7 +16,7 @@ namespace WebApplication1
         public bool agreeVisible { get { return Agree.Visible; } set { Agree.Visible = value; } }
         public bool disagreeEnable { get { return Disagree.Enabled; } set { Disagree.Enabled = value; } }
         public bool disagreeVisible { get { return Disagree.Visible; } set { Disagree.Visible = value; } }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -26,7 +25,7 @@ namespace WebApplication1
 
             Initialize();
         }
-        protected void Initialize() 
+        protected void Initialize()
         {
             string CWR = "";
 
@@ -48,11 +47,11 @@ namespace WebApplication1
                 {
                     connection.Open();
 
-                    string storedStaffFormID = Session["StaffFormID"].ToString();
+                    string storedOfficerFormID = Session["OfficerFormID"].ToString();
 
-                    string sqlCode = @"SELECT ""OverallWR"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
+                    string sqlCode = @"SELECT ""OverallWR"" FROM ""OfficerForm"" WHERE ""OfficerFormID"" = @OfficerFormID";
                     NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
 
                     NpgsqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -76,17 +75,17 @@ namespace WebApplication1
 
                         weight1_1.Text = weightArr[0];
                         weight1_2.Text = weightArr[1];
+                        weight1_3.Text = weightArr[2];
+                        weight1_4.Text = weightArr[3];
 
-                        
+
                     }
                     computeTotalWeight2();
-
-                    
                 }
             }
         }
 
-        protected void DisableButtons() 
+        protected void DisableButtons()
         {
             weight1_1.Enabled = false;
             weight1_2.Enabled = false;
@@ -96,36 +95,6 @@ namespace WebApplication1
             agreeVisible = true;
             disagreeEnable = true;
             disagreeVisible = true;
-        }
-
-        protected void weight_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                TextBox weight = sender as TextBox;
-                double weightedScore;
-                if (weight.ID == "weight1_1")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_1.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_1.Text);
-                }
-                else if (weight.ID == "weight1_2")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_2.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_2.Text);
-                }
-                computeTotalWeight2();
-            }
-            catch (FormatException)
-            {
-                Response.Write("<script>alert('Error: Please type a positive number')</script>");
-            }
         }
 
         protected double inputChecker(string weight)
@@ -141,10 +110,8 @@ namespace WebApplication1
         }
         protected void computeTotalWeight2()
         {
-            double weight1 = 0, weight2 = 0, total = 0;
-            weight1 = inputChecker(weight1_1.Text);
-            weight2 = inputChecker(weight1_2.Text);
-            total = weight1 + weight2;
+            double weight1 = 30, weight2 = 20, weight3 = 30, weight4 = 20, total = 0;
+            total = weight1 + weight2 + weight3 + weight4;
             labelTotal1.Text = total.ToString("0.00");
             if (labelTotal1.Text == "100.00")
             {
@@ -154,45 +121,54 @@ namespace WebApplication1
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if (weight1_1.Text == "0" || weight1_2.Text == "0")
+            if (labelTotal1.Text != "100.00")
             {
-                Response.Write("<script>alert('Please input a number from 1-100.')</script>");
+                Response.Write("<script>alert('Your total weight is not 100.')</script>");
             }
             else
             {
                 UpdateCWR();
-
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementSection1Staff.aspx");
+                    Response.Redirect("~/AgreementSection1Officers.aspx");
                 }
                 else if (link.ID == "btnSection2")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementSection2Staff.aspx");
+                    Response.Redirect("~/AgreementSection2Officers.aspx");
+                }
+                else if (link.ID == "btnSection3")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/AgreementSection3Officers.aspx");
+                }
+                else if (link.ID == "btnSection4")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/AgreementSection4Officers.aspx");
                 }
                 else if (link.ID == "btnOverall")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementOverallStaff.aspx");
+                    Response.Redirect("~/AgreementOverallOfficers.aspx");
                 }
             }
         }
 
-        protected void UpdateCWR() 
+        protected void UpdateCWR()
         {
             string compiledCWR = CompileAnswers();
-            string storedStaffFormID = Session["StaffFormID"].ToString();
+            string storedOfficerFormID = Session["OfficerFormID"].ToString();
 
             using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
 
-                NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""OverallWR"" = @OverallWR WHERE ""StaffFormID"" = @StaffFormID", connection);
+                NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""OfficerForm"" SET ""OverallWR"" = @OverallWR WHERE ""OfficerFormID"" = @OfficerFormID", connection);
                 command.Parameters.AddWithValue("@OverallWR", compiledCWR);
-                command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
                 command.ExecuteNonQuery();
             }
         }
@@ -201,7 +177,9 @@ namespace WebApplication1
             string text = "";
 
             text += $"1,{weight1_1.Text},0;";
-            text += $"2,{weight1_2.Text},0";
+            text += $"2,{weight1_2.Text},0;";
+            text += $"3,{weight1_3.Text},0;";
+            text += $"4,{weight1_4.Text},0";
 
 
             return text;
@@ -220,12 +198,12 @@ namespace WebApplication1
             using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
-                string CWR1 = "", CWR2= "", CWR3 = "";
-                string storedStaffFormID = Session["StaffFormID"].ToString();
+                string CWR1 = "", CWR2 = "", CWR3 = "", CWR4 = "", CWR5 = "";
+                string storedOfficerFormID = Session["OfficerFormID"].ToString();
                 connection.Open();
 
-                NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""Section1CWR"", ""Section2CWR"", ""OverallWR"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID", connection);
-                command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""Section1IOWR"", ""Section2CNWR"", ""Section3CWR"", ""Section4CWR"", ""OverallWR"" FROM ""OfficerForm"" WHERE ""OfficerFormID"" = @OfficerFormID", connection);
+                command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
 
                 NpgsqlDataReader reader = command.ExecuteReader();
 
@@ -234,19 +212,24 @@ namespace WebApplication1
                     CWR1 = reader.GetString(0);
                     CWR2 = reader.GetString(1);
                     CWR3 = reader.GetString(2);
+                    CWR4 = reader.GetString(3);
+                    CWR5 = reader.GetString(4);
                 }
                 reader.Close();
 
-                int sec1Weight, sec2Weight, overallWeight;
-                sec1Weight = GetTotalWeight(CWR1);
-                sec2Weight = GetTotalWeight(CWR2);
-                overallWeight = GetTotalWeight(CWR3);
+                int sec1Weight, sec2Weight, sec3Weight, sec4Weight, overallWeight;
+                sec1Weight = GetTotalWeight(CWR1, 5);
+                sec2Weight = GetTotalWeight(CWR2, 5);
+                sec3Weight = GetTotalWeight(CWR3, 3);
+                sec4Weight = GetTotalWeight(CWR4, 3);
+                overallWeight = GetTotalWeight(CWR5, 3);
+
 
                 if (sec1Weight != 100)
                     Response.Write("<script>alert('The total weight in section 1 is not equal to 100.')</script>");
                 else if (sec2Weight != 100)
                     Response.Write("<script>alert('The total weight in section 2 is not equal to 100.')</script>");
-                else 
+                else
                 {
                     UpdateCWR();
                     string storedFormID = Session["FormID"].ToString();
@@ -266,34 +249,34 @@ namespace WebApplication1
             }
         }
 
-        protected int GetTotalWeight(string text) 
+        protected int GetTotalWeight(string text, int length)
         {
             if (text != "0")
             {
                 string[] textArr = text.Split(';');
-                string[] textArr2 = new string[3];
+                string[] textArr2= new string[length];
                 string[] weight1Arr = new string[textArr.Length];
 
                 for (int i = 0; i < textArr.Length; i++)
                 {
-                    textArr2 = textArr[i].Split(',');
-                    weight1Arr[i] = textArr2[1];
+                    textArr2 = textArr[i].Split('|');
+                    weight1Arr[i] = textArr2[textArr2.Length - 2];
                 }
 
                 int weight = 0;
-                foreach (var item in weight1Arr)
+                foreach (string item in weight1Arr)    
                 {
                     weight += int.Parse(item);
                 }
                 return weight;
             }
-            else 
+            else
             {
                 return 0;
             }
         }
 
-        protected void Agree_Click(object sender, EventArgs e) 
+        protected void Agree_Click(object sender, EventArgs e)
         {
             string storedFormID = Session["FormID"].ToString();
             string status = "Approved";
@@ -312,7 +295,7 @@ namespace WebApplication1
 
         protected void Disgree_Click(object sender, EventArgs e)
         {
-            string storedStaffFormID = Session["StaffFormID"].ToString();
+            string storedOfficerFormID = Session["OfficerFormID"].ToString();
             string storedFormID = Session["FormID"].ToString();
             string status = "Rejected";
             using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
@@ -326,13 +309,12 @@ namespace WebApplication1
                 command.ExecuteNonQuery();
 
                 command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = 0, ""Section2CWR"" = 0, ""OverallWR"" = 0 WHERE ""StaffFormID"" = @StaffFormID", connection);
-                command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                command.Parameters.AddWithValue("@StaffFormID", storedOfficerFormID);
                 command.ExecuteNonQuery();
 
             }
             Response.Redirect("MyAccount.aspx");
 
         }
-
     }
 }

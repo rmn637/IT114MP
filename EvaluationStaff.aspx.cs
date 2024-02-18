@@ -14,7 +14,6 @@ namespace WebApplication1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
-  
         }
         protected void EvaluateBtn_Click(object sender, EventArgs e)
         {

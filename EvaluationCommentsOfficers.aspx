@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationCommentsFaculty.aspx.cs" Inherits="WebApplication1.EvaluationCommentsFaculty" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationCommentsOfficers.aspx.cs" Inherits="WebApplication1.EvaluationCommentsOfficers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
     .auto-style1 {
@@ -43,10 +43,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
-        <div class="navbar">
+        <div class="navbar" id="navibar">
             <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-            <asp:LinkButton ID="btnSection2" runat="server" Enabled="false">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
             <asp:LinkButton ID="btnSection3" runat="server" OnClick="checkWeight">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection4" runat="server" OnClick="checkWeight">Section 4</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection5" runat="server" Enabled="false">Section 4</asp:LinkButton> &nbsp; &nbsp; &nbsp;
             <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
         </div>
         <br/>

@@ -46,7 +46,7 @@
     <br />
     <div class="navbar">
         <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="LinkButton2" runat="server" Enabled="false">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="LinkButton2" runat="server" Enabled="false" style="color:black; background-color:#eaeaea">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
         <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
     </div>
     <br />
@@ -66,7 +66,7 @@
             <td class="auto-style8" colspan="2">Stiving to be great and not just good. Continuously improving our results.</td>
             <td class="auto-style9">
                 <asp:TextBox ID="weight2_1" runat="server"
-                    Height="18px" TextMode="Number" Width="91px" oninput="focusOnRating2_1()"
+                    Height="18px" TabIndex="1" Width="91px" oninput="focusOnRating2_1()"
                     OnTextChanged="weight_TextChanged" AutoPostBack="true">0</asp:TextBox>
             </td>
             <td class="auto-style4">
@@ -104,7 +104,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Doing things fast. Taking initiative to respond to needs of various stakeholders.</td>
             <td class="auto-style9" id="weight2_2">
-                <asp:TextBox ID="weight2_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                <asp:TextBox ID="weight2_2" runat="server" AutoPostBack="True" Height="18px" TabIndex="2" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>
@@ -141,7 +141,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Strong work ethic. Deserving of trust and respect. Prudent use of company resources, including time. Acting with fairness and objectivity.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                <asp:TextBox ID="weight2_3" runat="server" AutoPostBack="True" Height="18px" TabIndex="3" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>
@@ -178,7 +178,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Actively tapping areas of synergy. Communicating and collaborating towards common goals.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                <asp:TextBox ID="weight2_4" runat="server" AutoPostBack="True" Height="18px" TabIndex="4" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>
@@ -215,7 +215,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Being good corporate citizens. Pursuing corporate interests as his own. Speaking well of the company and taking pride of its achievements.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                <asp:TextBox ID="weight2_5" runat="server" AutoPostBack="True" Height="18px" TabIndex="5" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>

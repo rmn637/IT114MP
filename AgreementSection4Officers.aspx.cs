@@ -5,21 +5,22 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WebApplication1
 {
-    public partial class AgreementSection1Staff : System.Web.UI.Page
+    public partial class AgreementSection4Officers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //write form id
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt2class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
+
             Initialize();
         }
 
-        protected void Initialize() 
+        protected void Initialize()
         {
             string CWR = "";
 
@@ -30,17 +31,17 @@ namespace WebApplication1
                 {
                     connection.Open();
 
-                    
-                    string storedStaffFormID = Session["StaffFormID"].ToString();
+                    string storedOfficerFormID = Session["OfficerFormID"].ToString();
 
-                    string sqlCode = @"SELECT ""Section1CWR"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
+                    string sqlCode = @"SELECT ""Section4CWR"" FROM ""OfficerForm"" WHERE ""OfficerFormID"" = @OfficerFormID";
                     NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
 
                     NpgsqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
                         CWR = reader.GetString(0);
+                        Response.Write($"<script>alert('{CWR}')</script>");
                     }
                     reader.Close();
 
@@ -52,42 +53,34 @@ namespace WebApplication1
 
                         for (int i = 0; i < CWRArr.Length; i++)
                         {
-                            CWRArr2 = CWRArr[i].Split(',');
+                            CWRArr2 = CWRArr[i].Split('|');
                             weightArr[i] = CWRArr2[1];
                         }
 
-                        weight1_1.Text = weightArr[0];
-                        weight1_2.Text = weightArr[1];
-                        weight1_3.Text = weightArr[2];
-                        weight1_4.Text = weightArr[3];
-                        weight1_5.Text = weightArr[4];
-                        weight1_6.Text = weightArr[5];
-                        weight1_7.Text = weightArr[6];
-                        weight1_8.Text = weightArr[7];
-                    }
+                        weight2_1.Text = weightArr[0];
+                        weight2_2.Text = weightArr[1];
+                        weight2_3.Text = weightArr[2];
+                        weight2_4.Text = weightArr[3];
+                        weight2_5.Text = weightArr[4];
 
-                    computeTotalWeight1();
+                        computeTotalWeight2();
 
-                    if (Session["AccType"].ToString() == "Supervisor")
-                    {
-                        //DisableButtons();
+                        if (Session["AccType"].ToString() == "Supervisor")
+                        {
+                            DisableButtons();
+                        }
                     }
                 }
             }
         }
-
         protected void DisableButtons()
         {
-            weight1_1.Enabled = false;
-            weight1_2.Enabled = false;
-            weight1_3.Enabled = false;
-            weight1_4.Enabled = false;
-            weight1_5.Enabled = false;
-            weight1_6.Enabled = false;
-            weight1_7.Enabled = false;
-            weight1_8.Enabled = false;
+            weight2_1.Enabled = false;
+            weight2_2.Enabled = false;
+            weight2_3.Enabled = false;
+            weight2_4.Enabled = false;
+            weight2_5.Enabled = false;
         }
-
         protected void weight_TextChanged(object sender, EventArgs e)
         {
             TextBox weight = sender as TextBox;
@@ -101,7 +94,7 @@ namespace WebApplication1
                 {
                     weight.Text = "0";
                 }
-                computeTotalWeight1();
+                computeTotalWeight2();
             }
             catch (FormatException)
             {
@@ -109,6 +102,7 @@ namespace WebApplication1
                 weight.Text = "0";
             }
         }
+
         protected double inputChecker(string weight)
         {
             if (weight != "0")
@@ -120,69 +114,60 @@ namespace WebApplication1
                 return 0;
             }
         }
-        protected void computeTotalWeight1()
+        protected void computeTotalWeight2()
         {
-            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, weight5 = 0, weight6 = 0, weight7 = 0, weight8 = 0, total = 0;
-            weight1 = inputChecker(weight1_1.Text);
-            weight2 = inputChecker(weight1_2.Text);
-            weight3 = inputChecker(weight1_3.Text);
-            weight4 = inputChecker(weight1_4.Text);
-            weight5 = inputChecker(weight1_5.Text);
-            weight6 = inputChecker(weight1_6.Text);
-            weight7 = inputChecker(weight1_7.Text);
-            weight8 = inputChecker(weight1_8.Text);
-            total = weight1 + weight2 + weight3 + weight4 + weight5 + weight6 + weight7 + weight8;
-            labelTotal1.Text = total.ToString("0.00");
+            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, weight5 = 0, total = 0;
+            weight1 = inputChecker(weight2_1.Text);
+            weight2 = inputChecker(weight2_2.Text);
+            weight3 = inputChecker(weight2_3.Text);
+            weight4 = inputChecker(weight2_4.Text);
+            weight5 = inputChecker(weight2_5.Text);
+            total = weight1 + weight2 + weight3 + weight4 + weight5;
+            labelTotal2.Text = total.ToString("0.00");
         }
         protected void checkWeight(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
-            if (weight1_1.Text == "0" || weight1_2.Text == "0" || weight1_3.Text == "0" || weight1_4.Text == "0" || weight1_5.Text == "0" || weight1_6.Text == "0" || weight1_7.Text == "0" || weight1_8.Text == "0")
+            if (weight2_1.Text == "0" || weight2_2.Text == "0" || weight2_3.Text == "0" || weight2_4.Text == "0" || weight2_5.Text == "0")
             {
                 Response.Write("<script>alert('Please input a number from 1-100.')</script>");
             }
             else
             {
-                UpdateCWR();
 
+                UpdateCWR();
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementSection1Staff.aspx");
+                    Response.Redirect("~/AgreementSection1Officers.aspx");
                 }
                 else if (link.ID == "btnSection2")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementSection2Staff.aspx");
+                    Response.Redirect("~/AgreementSection2Officers.aspx");
+                }
+                else if (link.ID == "btnSection3")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/AgreementSection3Officers.aspx");
+                }
+                else if (link.ID == "btnSection4")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/AgreementSection4Officers.aspx");
                 }
                 else if (link.ID == "btnOverall")
                 {
                     //insert database commands here
-                    Response.Redirect("~/AgreementOverallStaff.aspx");
+                    Response.Redirect("~/AgreementOverallOfficers.aspx");
                 }
             }
-        }
-
-        protected string CompileAnswers()
-        {
-            string text = "";
-
-            text += $"1,{weight1_1.Text},0;";
-            text += $"2,{weight1_2.Text},0;";
-            text += $"3,{weight1_3.Text},0;";
-            text += $"4,{weight1_4.Text},0;";
-            text += $"5,{weight1_5.Text},0;";
-            text += $"6,{weight1_6.Text},0;";
-            text += $"7,{weight1_7.Text},0;";
-            text += $"8,{weight1_8.Text},0";
-
-            return text;
         }
 
         protected void UpdateCWR()
         {
             string compiledCWR = CompileAnswers();
-            string storedStaffFormID = Session["StaffFormID"].ToString();
+            string storedOfficerFormID = Session["OfficerFormID"].ToString();
 
             try
             {
@@ -191,9 +176,9 @@ namespace WebApplication1
                 {
                     connection.Open();
 
-                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section1CWR"" = @Section1CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
-                    command.Parameters.AddWithValue("@Section1CWR", compiledCWR);
-                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""OfficerForm"" SET ""Section4CWR"" = @Section4CWR WHERE ""OfficerFormID"" = @OfficerFormID", connection);
+                    command.Parameters.AddWithValue("@Section4CWR", compiledCWR);
+                    command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
                     command.ExecuteNonQuery();
                 }
             }
@@ -201,6 +186,18 @@ namespace WebApplication1
             {
 
             }
+        }
+        protected string CompileAnswers()
+        {
+            string text = "";
+
+            text += $"1|{weight2_1.Text}|0;";
+            text += $"2|{weight2_2.Text}|0;";
+            text += $"3|{weight2_3.Text}|0;";
+            text += $"4|{weight2_4.Text}|0;";
+            text += $"5|{weight2_5.Text}|0";
+
+            return text;
         }
     }
 }

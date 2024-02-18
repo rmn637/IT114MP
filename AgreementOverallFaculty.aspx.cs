@@ -40,7 +40,8 @@ namespace WebApplication1
                     disagreeEnable = false;
                     disagreeVisible = false;
                 }
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 
@@ -147,7 +148,7 @@ namespace WebApplication1
             }
             else
             {
-                
+
                 return 0;
             }
         }
@@ -193,8 +194,8 @@ namespace WebApplication1
             string compiledCWR = CompileAnswers();
             string storedFacultyFormID = Session["FacultyFormID"].ToString();
 
-            // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
 
@@ -225,8 +226,8 @@ namespace WebApplication1
             //{
             //    Response.Redirect("MyAccount.aspx");
             //}
-
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 string CWR1 = "", CWR2 = "", CWR3 = "";
                 string storedFacultyFormID = Session["FacultyFormID"].ToString();
@@ -259,8 +260,8 @@ namespace WebApplication1
                     UpdateCWR();
                     string storedFormID = Session["FormID"].ToString();
                     string status = "To Be Checked";
-                    // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                    using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                    using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                    //using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                     {
                         connection2.Open();
 
@@ -304,8 +305,8 @@ namespace WebApplication1
         {
             string storedFormID = Session["FormID"].ToString();
             string status = "Approved";
-            // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection2.Open();
 
@@ -322,8 +323,8 @@ namespace WebApplication1
             string storedFacultyFormID = Session["FacultyFormID"].ToString();
             string storedFormID = Session["FormID"].ToString();
             string status = "Rejected";
-            // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
 
@@ -340,6 +341,5 @@ namespace WebApplication1
             Response.Redirect("MyAccount.aspx");
 
         }
-
     }
 }

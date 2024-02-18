@@ -120,6 +120,7 @@
     <Content Include="AgreementFaculty.aspx" />
     <Content Include="AgreementOfficers.aspx" />
     <Content Include="AgreementOverallFaculty.aspx" />
+    <Content Include="AgreementOverallOfficers.aspx" />
     <Content Include="AgreementOverallStaff.aspx" />
     <Content Include="AgreementSection1Faculty.aspx" />
     <Content Include="AgreementSection1Officers.aspx" />
@@ -128,8 +129,11 @@
     <Content Include="AgreementSection2Officers.aspx" />
     <Content Include="AgreementSection2Staff.aspx" />
     <Content Include="AgreementSection3Officers.aspx" />
+    <Content Include="AgreementSection4Officers.aspx" />
     <Content Include="AgreementStaff.aspx" />
+    <Content Include="Evaluation.aspx" />
     <Content Include="EvaluationCommentsFaculty.aspx" />
+    <Content Include="EvaluationCommentsOfficers.aspx" />
     <Content Include="EvaluationCommentsStaff.aspx" />
     <Content Include="EvaluationOverallFaculty.aspx" />
     <Content Include="EvaluationOverallOfficers.aspx" />
@@ -137,11 +141,11 @@
     <Content Include="EvaluationSection1Faculty.aspx" />
     <Content Include="EvaluationSection1Officers.aspx" />
     <Content Include="EvaluationSection1Staff.aspx" />
-    <Content Include="Evaluation.aspx" />
     <Content Include="EvaluationSection2Faculty.aspx" />
     <Content Include="EvaluationSection2Officers.aspx" />
     <Content Include="EvaluationSection2Staff.aspx" />
     <Content Include="EvaluationSection3Officers.aspx" />
+    <Content Include="EvaluationSection4Officers.aspx" />
     <Content Include="images\MMCL Logo.png" />
     <Content Include="images\MMCL Logo1.png" />
     <Content Include="LogIn.aspx" />
@@ -181,6 +185,13 @@
     </Compile>
     <Compile Include="AgreementOverallFaculty.aspx.designer.cs">
       <DependentUpon>AgreementOverallFaculty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgreementOverallOfficers.aspx.cs">
+      <DependentUpon>AgreementOverallOfficers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementOverallOfficers.aspx.designer.cs">
+      <DependentUpon>AgreementOverallOfficers.aspx</DependentUpon>
     </Compile>
     <Compile Include="AgreementOverallStaff.aspx.cs">
       <DependentUpon>AgreementOverallStaff.aspx</DependentUpon>
@@ -238,6 +249,13 @@
     <Compile Include="AgreementSection3Officers.aspx.designer.cs">
       <DependentUpon>AgreementSection3Officers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgreementSection4Officers.aspx.cs">
+      <DependentUpon>AgreementSection4Officers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementSection4Officers.aspx.designer.cs">
+      <DependentUpon>AgreementSection4Officers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgreementStaff.aspx.cs">
       <DependentUpon>AgreementStaff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,12 +263,26 @@
     <Compile Include="AgreementStaff.aspx.designer.cs">
       <DependentUpon>AgreementStaff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Evaluation.aspx.cs">
+      <DependentUpon>Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Evaluation.aspx.designer.cs">
+      <DependentUpon>Evaluation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EvaluationCommentsFaculty.aspx.cs">
       <DependentUpon>EvaluationCommentsFaculty.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EvaluationCommentsFaculty.aspx.designer.cs">
       <DependentUpon>EvaluationCommentsFaculty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationCommentsOfficers.aspx.cs">
+      <DependentUpon>EvaluationCommentsOfficers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationCommentsOfficers.aspx.designer.cs">
+      <DependentUpon>EvaluationCommentsOfficers.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationCommentsStaff.aspx.cs">
       <DependentUpon>EvaluationCommentsStaff.aspx</DependentUpon>
@@ -301,13 +333,6 @@
     <Compile Include="EvaluationSection1Staff.aspx.designer.cs">
       <DependentUpon>EvaluationSection1Staff.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Evaluation.aspx.cs">
-      <DependentUpon>Evaluation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Evaluation.aspx.designer.cs">
-      <DependentUpon>Evaluation.aspx</DependentUpon>
-    </Compile>
     <Compile Include="EvaluationSection2Faculty.aspx.cs">
       <DependentUpon>EvaluationSection2Faculty.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -335,6 +360,13 @@
     </Compile>
     <Compile Include="EvaluationSection3Officers.aspx.designer.cs">
       <DependentUpon>EvaluationSection3Officers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluationSection4Officers.aspx.cs">
+      <DependentUpon>EvaluationSection4Officers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluationSection4Officers.aspx.designer.cs">
+      <DependentUpon>EvaluationSection4Officers.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.aspx.cs">
       <DependentUpon>LogIn.aspx</DependentUpon>

@@ -1,11 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementSection2Faculty.aspx.cs" Inherits="WebApplication1.AgreementSection2Faculty" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementSection4Officers.aspx.cs" Inherits="WebApplication1.AgreementSection4Officers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-    .auto-style1 {
-        height: 30px;
-    }
     .auto-style2 {
-        width: 80%;     
+        width: 80%;
     }
     .auto-style4 {
         width: 98px;
@@ -32,13 +29,6 @@
     .auto-style15 {
         height: 24px;
     }
-    .auto-style16 {
-        text-align: right;
-    }
-    .auto-style17 {
-        text-align: left;
-        width: 183px;
-    }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -46,14 +36,17 @@
     <br />
     <div class="navbar">
         <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="LinkButton2" runat="server" Enabled="false" style="color:black; background-color:#eaeaea">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection3" runat="server" OnClick="checkWeight">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection4" runat="server" Enabled="false" style="color:black; background-color:#eaeaea">Section 4</asp:LinkButton> &nbsp; &nbsp; &nbsp;
         <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
     </div>
     <br />
-    <br />
+    </center>
+    <center>
     <table class="auto-style2">
         <tr>
-            <td style="background-color: #C0C0C0" colspan="5" class="auto-style15"><strong>SECTION 2: DEMONSTRATION OF YGC CORE VALUES</strong></td>
+            <td style="background-color: #C0C0C0"  colspan="5" class="auto-style15"><strong>SECTION 4: DEMONSTRATION OF YGC CORE VALUES</strong></td>
         </tr>
         <tr>
             <td colspan="2"><strong>PASSION FOR EXCELLENCE</strong></td>
@@ -64,7 +57,9 @@
         <tr>
             <td class="auto-style8" colspan="2">Stiving to be great and not just good. Continuously improving our results.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_1" runat="server" Height="18px" Width="91px" CssClass="normal" OnTextChanged="weight_TextChanged" AutoPostBack="true" TabIndex="1">0</asp:TextBox>
+                <asp:TextBox ID="weight2_1" runat="server" CssClass="normal"
+                    Height="18px" TabIndex="1" Width="91px" oninput="focusOnRating2_1()"
+                    OnTextChanged="weight_TextChanged" AutoPostBack="true">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>
@@ -101,7 +96,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Doing things fast. Taking initiative to respond to needs of various stakeholders.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_2" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="2">0</asp:TextBox>
+                <asp:TextBox ID="weight2_2" runat="server" AutoPostBack="True" Height="18px" TabIndex="2" Width="91px" CssClass="normal" OnTextChanged="weight_TextChanged">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>
@@ -138,7 +133,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Strong work ethic. Deserving of trust and respect. Prudent use of company resources, including time. Acting with fairness and objectivity.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_3" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="3">0</asp:TextBox>
+                <asp:TextBox ID="weight2_3" runat="server" AutoPostBack="True" Height="18px" TabIndex="3" Width="91px" CssClass="normal" OnTextChanged="weight_TextChanged">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>
@@ -175,7 +170,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Actively tapping areas of synergy. Communicating and collaborating towards common goals.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_4" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="4">0</asp:TextBox>
+                <asp:TextBox ID="weight2_4" runat="server" AutoPostBack="True" Height="18px" TabIndex="4" Width="91px" CssClass="normal" OnTextChanged="weight_TextChanged">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>
@@ -212,7 +207,7 @@
         <tr>
             <td class="auto-style8" colspan="2">Being good corporate citizens. Pursuing corporate interests as his own. Speaking well of the company and taking pride of its achievements.</td>
             <td class="auto-style9">
-                <asp:TextBox ID="weight2_5" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="5">0</asp:TextBox>
+                <asp:TextBox ID="weight2_5" runat="server" AutoPostBack="True" Height="18px" TabIndex="5" Width="91px" CssClass="normal" OnTextChanged="weight_TextChanged">0</asp:TextBox>
             </td>
             <td class="auto-style4">
                 &nbsp;</td>

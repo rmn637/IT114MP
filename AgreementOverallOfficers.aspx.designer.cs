@@ -11,7 +11,7 @@ namespace WebApplication1
 {
 
 
-    public partial class AgreementSection3Officers
+    public partial class AgreementOverallOfficers
     {
 
         /// <summary>
@@ -69,15 +69,6 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox weight1_1;
 
         /// <summary>
-        /// label1_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label1_1;
-
-        /// <summary>
         /// weight1_2 control.
         /// </summary>
         /// <remarks>
@@ -105,42 +96,6 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox weight1_4;
 
         /// <summary>
-        /// weight1_5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox weight1_5;
-
-        /// <summary>
-        /// weight1_6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox weight1_6;
-
-        /// <summary>
-        /// weight1_7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox weight1_7;
-
-        /// <summary>
-        /// weight1_8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox weight1_8;
-
-        /// <summary>
         /// labelTotal1 control.
         /// </summary>
         /// <remarks>
@@ -148,5 +103,32 @@ namespace WebApplication1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelTotal1;
+
+        /// <summary>
+        /// Submit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Submit;
+
+        /// <summary>
+        /// Agree control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Agree;
+
+        /// <summary>
+        /// Disagree control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Disagree;
     }
 }

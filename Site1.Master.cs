@@ -21,8 +21,12 @@ namespace WebApplication1
 
         public string opt3url { get { return opt3.PostBackUrl; } set { opt3.PostBackUrl = value; } }
 
-        public bool opt3enable { get { return opt3.Enabled; } set { opt3.Enabled = value; } }
-        public bool opt3visible { get { return opt3.Visible; } set { opt3.Visible = value; } }
+        public bool opt4enable { get { return opt4.Enabled; } set { opt4.Enabled = value; } }
+        public bool opt4visible { get { return opt4.Visible; } set { opt4.Visible = value; } }
+        public bool opt5enable { get { return opt5.Enabled; } set { opt5.Enabled = value; } }
+        public bool opt5visible { get { return opt5.Visible; } set { opt5.Visible = value; } }
+        public string opt4class { get { return opt4.CssClass; } set { opt4.CssClass = value; } }
+        public string opt5class { get { return opt5.CssClass; } set { opt5.CssClass = value; } }
         public void opt1_Click(Object sender, EventArgs e)
         {
             opt1.CssClass = "active";
@@ -48,8 +52,8 @@ namespace WebApplication1
             string storedAccType = Session["AccType"].ToString();
             try
             {
-                //reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 
@@ -63,15 +67,20 @@ namespace WebApplication1
                     {
                         string storedEmpType = reader.GetString(4);
                         string storedEmpName = reader.GetString(1);
+                        
                         if (storedAccType == "Supervisor")
                         {
-                            opt3visible = true;
-                            opt3enable = true;
+                            opt4visible = true;
+                            opt4enable = true;
+                            opt5visible = true;
+                            opt5enable = true;
                         }
                         else if (storedAccType != "Supervisor")
                         {
-                            opt3visible = false;
-                            opt3enable = false;
+                            opt4visible = false;
+                            opt4enable = false;
+                            opt5visible = false;
+                            opt5enable = false;
                             if (storedEmpType == "Faculty")
                             {
                                 opt2url = "~/AgreementFaculty.aspx";

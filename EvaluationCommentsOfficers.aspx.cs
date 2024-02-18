@@ -5,11 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 
 namespace WebApplication1
 {
-    public partial class EvaluationCommentsStaff : System.Web.UI.Page
+    public partial class EvaluationCommentsOfficers : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,11 +31,11 @@ namespace WebApplication1
                 //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
-                    string storedStaffFormID = Session["StaffFormID"].ToString();
+                    string storedOfficerFormID = Session["OfficerFormID"].ToString();
 
-                    string sqlCode = @"SELECT ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
+                    string sqlCode = @"SELECT ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"" FROM ""OfficerForm"" WHERE ""OfficerFormID"" = @OfficerFormID";
                     NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    command.Parameters.AddWithValue("@OfficerFormID", storedOfficerFormID);
 
                     NpgsqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -63,35 +62,45 @@ namespace WebApplication1
             {
                 Response.Write("<script>alert('Please Type Comments.')</script>");
             }
-            else 
+            else
             {
                 UpdateCWR();
                 if (link.ID == "btnSection1")
                 {
                     //insert database commands here
-                    Response.Redirect("~/EvaluationSection1Staff.aspx");
+                    Response.Redirect("~/EvaluationSection1Officers.aspx");
                 }
                 else if (link.ID == "btnSection2")
                 {
                     //insert database commands here
-                    Response.Redirect("~/EvaluationSection2Staff.aspx");
+                    Response.Redirect("~/EvaluationSection2Officers.aspx");
                 }
                 else if (link.ID == "btnSection3")
                 {
                     //insert database commands here
-                    Response.Redirect("~/EvaluationCommentsStaff.aspx");
+                    Response.Redirect("~/EvaluationSection3Officers.aspx");
+                }
+                else if (link.ID == "btnSection4")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationSection4Officers.aspx");
+                }
+                else if (link.ID == "btnSection5")
+                {
+                    //insert database commands here
+                    Response.Redirect("~/EvaluationCommentsOfficers.aspx");
                 }
                 else if (link.ID == "btnOverall")
                 {
                     //insert database commands here
-                    Response.Redirect("~/EvaluationOverallStaff.aspx");
+                    Response.Redirect("~EvaluationOverallOfficers.aspx");
                 }
             }
-            
+
         }
         protected void UpdateCWR()
         {
-            string storedStaffFormID = Session["StaffFormID"].ToString();
+            string storedStaffFormID = Session["OfficerFormID"].ToString();
             try
             {
                 using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
@@ -99,7 +108,7 @@ namespace WebApplication1
                 {
                     connection.Open();
 
-                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Strength"" = @Strength, ""Improvement"" = @Improvement, ""Development"" = @Development, ""Acknowledgement"" = @Acknowledgement WHERE ""StaffFormID"" = @StaffFormID", connection);
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""OfficerForm"" SET ""Strength"" = @Strength, ""Improvement"" = @Improvement, ""Development"" = @Development, ""Acknowledgement"" = @Acknowledgement WHERE ""OfficerFormID"" = @OfficerFormID", connection);
                     command.Parameters.AddWithValue("@Strength", strength.Text);
                     command.Parameters.AddWithValue("@Improvement", improvement.Text);
                     command.Parameters.AddWithValue("@Development", development.Text);

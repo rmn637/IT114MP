@@ -8,12 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class Evaluation : System.Web.UI.Page
+    public partial class Evaluation1 : System.Web.UI.Page
     {
         public bool staff1Enable { get { return staff.Enabled; } set { staff.Enabled = value; } }
         public bool staff2Enable { get { return staff2.Enabled; } set { staff2.Enabled = value; } }
         public bool faculty1Enable { get { return faculty1.Enabled; } set { faculty1.Enabled = value; } }
-        public bool faculty2Enable { get { return faculty2.Enabled; } set { faculty1.Enabled = value; } }
+        public bool faculty2Enable { get { return faculty2.Enabled; } set { faculty2.Enabled = value; } }
 
         public bool officer1Enable { get { return officer1.Enabled; } set { officer1.Enabled = value; } }
         public bool officer2Enable { get { return officer2.Enabled; } set { officer2.Enabled = value; } }
@@ -21,6 +21,7 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+            ((Site1)Page.Master).opt5class = "active";
             Initialize();
         }
 
@@ -29,7 +30,8 @@ namespace WebApplication1
             string status = "Approved";
             List<string> formIDList = new List<string>();
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
                 int count = 0;
@@ -79,7 +81,8 @@ namespace WebApplication1
         {
             string status = "Approved";
             string formID = "";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
 
@@ -116,7 +119,8 @@ namespace WebApplication1
 
         protected void SetStaffSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedStaffFormID = "";
@@ -132,7 +136,7 @@ namespace WebApplication1
                     storedStaffFormID = reader.GetString(2);
 
 
-                    Session["EmpID"] = storedEmpID;
+                    Session["RateeID"] = storedEmpID;
                     Session["FormID"] = storedFormID;
                     Session["StaffFormID"] = storedStaffFormID;
                 }
@@ -153,7 +157,8 @@ namespace WebApplication1
 
         protected void SetFacultySessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedFacultyFormID = "";
@@ -169,7 +174,7 @@ namespace WebApplication1
                     storedFacultyFormID = reader.GetString(2);
 
 
-                    Session["EmpID"] = storedEmpID;
+                    Session["RateeID"] = storedEmpID;
                     Session["FormID"] = storedFormID;
                     Session["FacultyFormID"] = storedFacultyFormID;
                 }
@@ -185,12 +190,13 @@ namespace WebApplication1
             Response.Write($"<script>alert('EmpID:')</script>");
 
             SetOfficerSessionInfo(officer.Text);
-            Response.Redirect("~/EvaluationSection1Officer.aspx");
+            Response.Redirect("~/EvaluationSection1Officers.aspx");
         }
 
         protected void SetOfficerSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedOfficerFormID = "";
@@ -206,7 +212,7 @@ namespace WebApplication1
                     storedOfficerFormID = reader.GetString(2);
 
 
-                    Session["EmpID"] = storedEmpID;
+                    Session["RateeID"] = storedEmpID;
                     Session["FormID"] = storedFormID;
                     Session["OfficerFormID"] = storedOfficerFormID;
                 }

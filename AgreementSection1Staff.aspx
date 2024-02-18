@@ -48,7 +48,7 @@
         <br />
         <center>
         <div class="navbar" id="navibar">
-            <asp:LinkButton ID="btnSection1" runat="server" Enabled="false">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection1" runat="server" Enabled="false" style="color:black; background-color:#eaeaea">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
             <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
             <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
         </div>
@@ -67,7 +67,7 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged" Text="0"></asp:TextBox>
+                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" Text="0" CssClass="normal" TabIndex="1"></asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -103,7 +103,7 @@
             </tr>
             <tr>
                 <td class="auto-style9" id="weight1_2">
-                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="2">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -138,7 +138,7 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="3">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -173,7 +173,7 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_4" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_4" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="4">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -208,7 +208,7 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_5" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_5" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="5">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -243,7 +243,7 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_6" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_6" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="6">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -278,7 +278,7 @@
             </tr>
             <tr>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_7" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_7" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="7">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -313,7 +313,7 @@
             </tr>
             <tr>
                 <td class="auto-style9" id="weight1_8">
-                    <asp:TextBox ID="weight1_8" runat="server" AutoPostBack="True" Height="18px" TextMode="Number" Width="91px" OnTextChanged="weight_TextChanged">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_8" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" CssClass="normal" TabIndex="8">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>

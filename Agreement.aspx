@@ -1,12 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Agreement.aspx.cs" Inherits="WebApplication1.Agreement" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Evaluation</title>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Agreement.aspx.cs" Inherits="WebApplication1.Agreement1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="Style.css" rel="stylesheet" />
-    
     <style type="text/css">
         .auto-style1 {
             height: 23px;
@@ -28,28 +22,14 @@
             text-align: left;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div id="mySidenav" class="sidenav">
-          <p>Welcome, username.</p>
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="Welcome.aspx">About</a>
-          <a class="active">Agreement</a>
-          <a href="Evaluation.aspx">Evaluation</a>
-          <a href="#">Settings</a>
-          <a href="LogIn.aspx">Sign Out</a> 
-        </div>
-        <div id="main">
-            <span class="menu" onclick="openNav()">+</span>
-            <center>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <center>
             <a href="AgreementFaculty.aspx">Faculty Members</a>
             <a href="AgreementOfficers.aspx">Officers</a>
             <a href="AgreementStaff.aspx">Staff</a>
 
             </center>
-       
-        </div>
         <center>
             <table>
                 <thead>
@@ -65,10 +45,10 @@
                             <asp:Button runat="server" ID="staff" OnClick="StaffClicked" Text="Reese Ramos" Enabled="False" ></asp:Button>
                         </td>
                         <td>
-                            <asp:Button runat="server" ID="faculty1" OnClick="FacultyClicked" Text="Aaron Cabueñas" Enabled="False" ></asp:Button>
+                            <asp:Button runat="server" ID="faculty1" OnClick="FacultyClicked" Text="Aaron Cabuenas" Enabled="False" ></asp:Button>
                         </td>
                         <td>
-                            <asp:Button runat="server" ID="officer1" OnClick="FacultyClicked" Text="Jerome Mendoza" Enabled="False" ></asp:Button>
+                            <asp:Button runat="server" ID="officer1" OnClick="OfficerClicked" Text="Jerome Mendoza" Enabled="False" ></asp:Button>
                         </td>
                     </tr>
                     <tr>
@@ -76,16 +56,14 @@
                             <asp:Button runat="server" ID="staff2" OnClick="StaffClicked" Text="Reese Ramos2" Enabled="False" ></asp:Button>
                         </td>
                         <td>
-                            <asp:Button runat="server" ID="faculty2" OnClick="FacultyClicked" Text="Aaron Cabueñas2" Enabled="False" ></asp:Button>
+                            <asp:Button runat="server" ID="faculty2" OnClick="FacultyClicked" Text="Aaron Cabuenas2" Enabled="False" ></asp:Button>
                         </td>
                         <td>
-                            <asp:Button runat="server" ID="officer2" OnClick="FacultyClicked" Text="Jerome Mendoza2" Enabled="False" ></asp:Button>
+                            <asp:Button runat="server" ID="officer2" OnClick="OfficerClicked" Text="Jerome Mendoza2" Enabled="False" ></asp:Button>
 
                         </td>
                     </tr>
                 </tbody>
             </table>
         </center>
-    </form>
-</body>
-</html>
+</asp:Content>

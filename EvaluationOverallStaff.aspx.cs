@@ -39,7 +39,8 @@ namespace WebApplication1
 
         protected void SetSectionTotals() 
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 string CWR1 = "", CWR2 = "";
                 connection.Open();
@@ -91,17 +92,17 @@ namespace WebApplication1
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            if (CheckComments() == false)
+            if (total1.Text == "0")
             {
-                Response.Write("<script>alert('You have not finished commenting.')</script>");
-            }
-            else if (total1.Text == "0") 
-            {
-                Response.Write("<script>alert('You have not finished evaulating in section 1.')</script>");
+                Response.Write("<script>alert('You have not finished evaluating section 1.')</script>");
             }
             else if (total2.Text == "0")
             {
-                Response.Write("<script>alert('You have not finished evaulating in section 2.')</script>");
+                Response.Write("<script>alert('You have not finished evaluating section 2.')</script>");
+            }
+            else if (CheckComments() == false)
+            {
+                Response.Write("<script>alert('You have not finished commenting.')</script>");
             }
             else
             {
@@ -113,7 +114,8 @@ namespace WebApplication1
         protected bool CheckComments() 
         {
             string strComment = "", impComment = "", devComment = "", ackComment = "";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
                 string storedStaffFormID = Session["StaffFormID"].ToString();
@@ -144,8 +146,8 @@ namespace WebApplication1
             string storedFormID = Session["FormID"].ToString();
             try
             {
-                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 
@@ -160,10 +162,6 @@ namespace WebApplication1
             {
 
             }
-        }
-        protected void total_TextChanged(object sender, EventArgs e)
-        {
-            
         }
         protected void checkWeight(object sender, EventArgs e)
         {

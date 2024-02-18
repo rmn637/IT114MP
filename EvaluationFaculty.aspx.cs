@@ -13,7 +13,6 @@ namespace WebApplication1
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt3class = "active";
-            Page.MaintainScrollPositionOnPostBack = true;
         }
 
         protected string ratingComp(string rating)

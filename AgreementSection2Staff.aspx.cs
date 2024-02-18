@@ -26,7 +26,8 @@ namespace WebApplication1
 
             if (!IsPostBack)
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 
@@ -82,55 +83,23 @@ namespace WebApplication1
         }
         protected void weight_TextChanged(object sender, EventArgs e)
         {
+            TextBox weight = sender as TextBox;
             try
             {
-                TextBox weight = sender as TextBox;
-                double weightedScore;
-                if (weight.ID == "weight2_1")
+                if (double.Parse(weight.Text) > 100)
                 {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight2_1.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight2_1.Text);
+                    weight.Text = "100";
                 }
-                else if (weight.ID == "weight2_2")
+                else if (double.Parse(weight.Text) < 0)
                 {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight2_2.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight2_2.Text);
-                }
-                else if (weight.ID == "weight2_3")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight2_3.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight2_3.Text);
-                }
-                else if (weight.ID == "weight2_4")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight2_4.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight2_4.Text);
-                }
-                else
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight2_5.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight2_5.Text);
+                    weight.Text = "0";
                 }
                 computeTotalWeight2();
             }
             catch (FormatException)
             {
                 Response.Write("<script>alert('Error: Please type a positive number')</script>");
+                weight.Text = "0";
             }
         }
 
@@ -163,10 +132,6 @@ namespace WebApplication1
             {
                 Response.Write("<script>alert('Please input a number from 1-100.')</script>");
             }
-            else if (labelTotal2.Text != "100.00")
-            {
-                Response.Write("<script>alert('Your total weight is not 100.')</script>");
-            }
             else
             {
 
@@ -197,8 +162,8 @@ namespace WebApplication1
 
             try
             {
-                // reese: using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 

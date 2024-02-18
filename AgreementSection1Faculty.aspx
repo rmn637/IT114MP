@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementSection1Faculty.aspx.cs" Inherits="WebApplication1.AgreementSection1Faculty" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">\
+    <link rel="stylesheet" href="Style.css" />
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
@@ -32,7 +33,7 @@
     <center>
     <br />
     <div class="navbar" id="navibar">
-        <asp:LinkButton ID="btnSection1" runat="server" Enabled="false">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection1" runat="server" Enabled="false" style="color:black; background-color:#eaeaea">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
         <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
         <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
     </div>
@@ -51,7 +52,7 @@
             <tr>
                 <td class="auto-style6">A.&nbsp; Faculty Evaluation</td>
                 <td class="auto-style18">
-                    <asp:TextBox ID="weight1_A" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_A" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="1">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -62,7 +63,7 @@
             <tr>
                 <td class="auto-style6">B. Classroom Teaching Observation by Peers</td>
                 <td class="auto-style18">
-                    <asp:TextBox ID="weight1_B" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_B" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="2">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -73,7 +74,7 @@
             <tr>
                 <td class="auto-style6">C. Classroom Teaching Observation by Dean/Chair</td>
                 <td class="auto-style18">
-                    <asp:TextBox ID="weight1_C" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_C" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="3">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -109,7 +110,7 @@
             <tr>
                 <td class="auto-style6">1.&nbsp; Timely Submission of Required Documents</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="4">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -128,7 +129,7 @@
             <tr>
                 <td class="auto-style6">2.&nbsp; Participation in Official Mapua MCL Functions, Events, and Activities</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="5">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -147,7 +148,7 @@
             <tr>
                 <td class="auto-style6">3.&nbsp; Support for Quality Instruction</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="6">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -166,7 +167,7 @@
             <tr>
                 <td class="auto-style6">4.&nbsp; Research Initiatives</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="weight1_4" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_4" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="7">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
@@ -185,7 +186,7 @@
             <tr>
                 <td class="auto-style6">5.&nbsp; Extension Services</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="weight1_5" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" TextMode="Number" Width="91px">0</asp:TextBox>
+                    <asp:TextBox ID="weight1_5" runat="server" AutoPostBack="True" Height="18px" OnTextChanged="weight_TextChanged" Width="91px" CssClass="normal" TabIndex="8">0</asp:TextBox>
                 </td>
                 <td class="auto-style4">
                     &nbsp;</td>
