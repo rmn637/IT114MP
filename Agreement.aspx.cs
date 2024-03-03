@@ -27,7 +27,7 @@ namespace WebApplication1
             NpgsqlCommand command;
             NpgsqlDataReader reader;
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             {
                 connection.Open();
                 SQLcmd = @"SELECT ""PASubmission"", ""StatusReport"".""EmpID"", ""ReportID"" FROM ""StatusReport"" INNER JOIN ""Employee"" ON ""StatusReport"".""EmpID"" = ""Employee"".""EmpID"" WHERE ""PASubmission"" IS NOT NULL AND ""PAValidation"" = @PAValidation AND ""SupID"" = @SupID";
@@ -61,7 +61,7 @@ namespace WebApplication1
         protected void createTableRow(string empID)
         {
             string empName = "", empType = "";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             {
                 connection.Open();
                 string sqlCode = @"SELECT ""EmpName"", ""EmpType"" FROM ""Employee"" WHERE ""EmpID"" = @EmpID";
@@ -122,8 +122,8 @@ namespace WebApplication1
 
         protected void SetStaffSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedStaffFormID = "";
@@ -156,7 +156,7 @@ namespace WebApplication1
 
         protected void SetFacultySessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedFacultyFormID = "";
@@ -191,8 +191,8 @@ namespace WebApplication1
 
         protected void SetOfficerSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedOfficerFormID = "";

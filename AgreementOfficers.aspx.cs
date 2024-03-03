@@ -17,7 +17,7 @@ namespace WebApplication1
             Page.MaintainScrollPositionOnPostBack = true;
 
             string sqlCode, storedFormID = "", PAVal = "";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
             {
                 connection.Open();
 
@@ -63,8 +63,8 @@ namespace WebApplication1
             string storedEmpID = Session["RateeID"].ToString();
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
                 {
                     connection.Open();
 
@@ -107,7 +107,7 @@ namespace WebApplication1
                     string OfficersFormID = intOfficersFormID.ToString();
                     Session["OfficerFormID"] = OfficersFormID;
 
-                    sqlCode = @"INSERT INTO ""OfficerForm"" VALUES (@OfficerFormID, @FormID, 0, 0, 0, 0, 0, 0, 0, 0)";
+                    sqlCode = @"INSERT INTO ""OfficerForm"" VALUES (@OfficerFormID, @FormID, 0, 0, 0, 0, 0, 0, 0, 0, 0)";
                     command = new NpgsqlCommand(sqlCode, connection);
                     command.Parameters.AddWithValue("@OfficerFormID", OfficersFormID);
                     command.Parameters.AddWithValue("@FormID", formID);
