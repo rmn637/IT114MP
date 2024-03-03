@@ -11,7 +11,7 @@ namespace WebApplication1
 {
 
 
-    public partial class AgreementSection1Officers
+    public partial class AgreementCommentsFaculty
     {
 
         /// <summary>
@@ -42,15 +42,6 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.LinkButton btnSection3;
 
         /// <summary>
-        /// btnSection4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSection4;
-
-        /// <summary>
         /// btnOverall control.
         /// </summary>
         /// <remarks>
@@ -60,66 +51,39 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.LinkButton btnOverall;
 
         /// <summary>
-        /// tablekra control.
+        /// strength control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tablekra;
+        protected global::System.Web.UI.WebControls.TextBox strength;
 
         /// <summary>
-        /// addKRAbtn control.
+        /// improvement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addKRAbtn;
+        protected global::System.Web.UI.WebControls.TextBox improvement;
 
         /// <summary>
-        /// removeKRAbtn control.
+        /// development control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button removeKRAbtn;
+        protected global::System.Web.UI.WebControls.TextBox development;
 
         /// <summary>
-        /// kraindex control.
+        /// acknowledgement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox kraindex;
-
-        /// <summary>
-        /// objNum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox objNum;
-
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-
-        /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.TextBox acknowledgement;
     }
 }

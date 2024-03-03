@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,12 +11,6 @@ namespace WebApplication1
 {
     public partial class AgreementOverallFaculty : System.Web.UI.Page
     {
-        public bool btnOverallVisible { get { return Submit.Visible; } set { Submit.Visible = value; } }
-        public bool btnOverallEnable { get { return Submit.Enabled; } set { Submit.Enabled = value; } }
-        public bool agreeEnable { get { return Agree.Enabled; } set { Agree.Enabled = value; } }
-        public bool agreeVisible { get { return Agree.Visible; } set { Agree.Visible = value; } }
-        public bool disagreeEnable { get { return Disagree.Enabled; } set { Disagree.Enabled = value; } }
-        public bool disagreeVisible { get { return Disagree.Visible; } set { Disagree.Visible = value; } }
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
@@ -25,321 +20,115 @@ namespace WebApplication1
         }
         protected void Initialize()
         {
-            string CWR = "";
+            string SQLcmd, CWR1 = "", CWR2 = "", alert = "", PAVal = "";
+            bool sec1Done, sec2Done, PAValDone;
 
-            if (!IsPostBack)
-            {
-                if (Session["AccType"].ToString() == "Supervisor")
-                {
-                    DisableButtons();
-                }
-                else
-                {
-                    agreeEnable = false;
-                    agreeVisible = false;
-                    disagreeEnable = false;
-                    disagreeVisible = false;
-                }
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-                {
-                    connection.Open();
-
-                    string storedFacultyFormID = Session["FacultyFormID"].ToString();
-
-                    string sqlCode = @"SELECT ""OverallWR"" FROM ""FacultyForm"" WHERE ""FacultyFormID"" = @FacultyFormID";
-                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                    command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
-
-                    NpgsqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        CWR = reader.GetString(0);
-                        Response.Write($"<script>alert('{CWR}')</script>");
-                    }
-                    reader.Close();
-
-                    if (CWR != "0")
-                    {
-                        string[] CWRArr = CWR.Split(';');
-                        string[] CWRArr2 = new string[3];
-                        string[] weightArr = new string[8];
-
-                        for (int i = 0; i < CWRArr.Length; i++)
-                        {
-                            CWRArr2 = CWRArr[i].Split(',');
-                            weightArr[i] = CWRArr2[1];
-                        }
-
-                        weight1_1.Text = weightArr[0];
-                        weight1_2.Text = weightArr[1];
-
-
-                    }
-                    computeTotalWeight2();
-
-
-                }
-            }
-        }
-
-        protected void DisableButtons()
-        {
-            weight1_1.Enabled = false;
-            weight1_2.Enabled = false;
-            btnOverallVisible = false;
-            btnOverallEnable = false;
-            agreeEnable = true;
-            agreeVisible = true;
-            disagreeEnable = true;
-            disagreeVisible = true;
-        }
-        protected void weight_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                TextBox weight = sender as TextBox;
-                double weightedScore;
-                if (weight.ID == "weight1_1")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_1.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_1.Text);
-                }
-                else if (weight.ID == "weight1_2")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_2.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_2.Text);
-                }
-                else if (weight.ID == "weight1_3")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_3.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_3.Text);
-                }
-                else if (weight.ID == "weight1_4")
-                {
-                    if (double.Parse(weight.Text) > 100)
-                    {
-                        weight1_4.Text = "100";
-                    }
-                    weightedScore = double.Parse(weight1_4.Text);
-                }
-                computeTotalWeight2();
-            }
-            catch (FormatException)
-            {
-                Response.Write("<script>alert('Error: Please type a positive number')</script>");
-            }
-        }
-
-        protected double inputChecker(string weight)
-        {
-            if (weight != "0")
-            {
-                return double.Parse(weight);
-            }
-            else
-            {
-
-                return 0;
-            }
-        }
-        protected void computeTotalWeight2()
-        {
-            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, total = 0;
-            weight1 = inputChecker(weight1_1.Text);
-            weight2 = inputChecker(weight1_2.Text);
-            weight3 = inputChecker(weight1_3.Text);
-            weight4 = inputChecker(weight1_4.Text);
-            total = weight1 + weight2 + weight3 + weight4;
-            labelTotal1.Text = total.ToString("0.00");
-        }
-        protected void checkWeight(object sender, EventArgs e)
-        {
-            LinkButton link = sender as LinkButton;
-            if (labelTotal1.Text != "100.00")
-            {
-                Response.Write("<script>alert('Your total weight is not 100.')</script>");
-            }
-            else
-            {
-                UpdateCWR();
-                if (link.ID == "btnSection1")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/AgreementSection1Faculty.aspx");
-                }
-                else if (link.ID == "btnSection2")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/AgreementSection2Faculty.aspx");
-                }
-                else if (link.ID == "btnOverall")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/AgreementOverallFaculty.aspx");
-                }
-            }
-        }
-        protected void UpdateCWR()
-        {
-            string compiledCWR = CompileAnswers();
-            string storedFacultyFormID = Session["FacultyFormID"].ToString();
-
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
+                SQLcmd = @"SELECT ""Section1CWR"", ""Section2CWR"", ""ReportID"", ""PAValidation"" FROM ""FacultyForm"" INNER JOIN ""EmployeePerformance"" ON ""FacultyForm"".""FormID"" = ""EmployeePerformance"".""FormID"" INNER JOIN ""StatusReport"" ON ""EmployeePerformance"".""EmpID"" = ""StatusReport"".""EmpID"" WHERE ""FacultyFormID"" = @FacultyFormID";
+                NpgsqlCommand command = new NpgsqlCommand(SQLcmd, connection);
+                command.Parameters.AddWithValue("@FacultyFormID", Session["FacultyFormID"].ToString());
 
-                NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""FacultyForm"" SET ""OverallWR"" = @OverallWR WHERE ""FacultyFormID"" = @FacultyFormID", connection);
-                command.Parameters.AddWithValue("@OverallWR", compiledCWR);
-                command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    CWR1 = reader.GetString(0);
+                    CWR2 = reader.GetString(1);
+                    //Session["ReportID"] = reader.GetString(2);
+                    PAVal = reader.GetString(3);
+                }
+                reader.Close();
+            }
+
+            PAValDone = PAVal != "0" && PAVal != null;
+            sec1Done = GetTotalWeight(CWR1) == 200;
+            sec2Done = GetTotalWeight(CWR2) == 100;
+
+            if (sec1Done == false && sec2Done == false)
+                alert = "Sections 1, and 2 are incomplete.";
+            else if (sec1Done == true && sec2Done == false)
+                alert = "Section 2 is incomplete.";
+            else if (sec1Done == false && sec2Done == true)
+                alert = "Section 1 is incomplete.";
+
+            //Response.Write($"<script>alert('{alert}')</script>");
+
+            //Session["PAValDone"] = PAValDone.ToString();
+            Submit.Enabled = alert == "" && !PAValDone;
+            Submit.Visible = !PAValDone;
+                
+        }
+        protected void ChangeSection(object sender, EventArgs e)
+        {
+            LinkButton link = sender as LinkButton;
+            if (!bool.Parse(Session["PAValDone"].ToString()))
+                UpdateCWR();
+
+            if (link.ID == "btnSection1")
+                Response.Redirect("~/AgreementSection1Faculty.aspx");
+            else if (link.ID == "btnSection2")
+                Response.Redirect("~/AgreementSection2Faculty.aspx");
+            else if (link.ID == "btnOverall")
+                Response.Redirect("~/AgreementOverallFaculty.aspx");
+        }
+
+        protected void UpdateCWR()
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            {
+                connection.Open();
+                string SQLcmnd = @"UPDATE ""FacultyForm"" SET ""OverallWR"" = @OverallWR WHERE ""FacultyFormID"" = @FacultyFormID";
+                NpgsqlCommand command = new NpgsqlCommand(SQLcmnd, connection);
+                command.Parameters.AddWithValue("@OverallWR", CompileAnswers());
+                command.Parameters.AddWithValue("@FacultyFormID", Session["FacultyFormID"].ToString());
                 command.ExecuteNonQuery();
             }
         }
         protected string CompileAnswers()
         {
-            string text = "";
-
-            text += $"1,{weight1_1.Text},0;";
-            text += $"2,{weight1_2.Text},0;";
-            text += $"1,{weight1_3.Text},0;";
-            text += $"2,{weight1_4.Text},0";
-
-            return text;
+            return $"1,{weight1_1.Text},0;"+
+                $"2,{weight1_2.Text},0;"+
+                $"1,{weight1_3.Text},0";
         }
         protected void Submit_Click(object sender, EventArgs e)
         {
-            //if (labelTotal1.Text != "100.00")
-            //{
-            //    Response.Write("<script>alert('Your total weight is not 100.')</script>");
-            //}
-            //else
-            //{
-            //    Response.Redirect("MyAccount.aspx");
-            //}
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            string field, SQLcmd;
+
+            UpdateCWR();
+
+            if (Session["AccType"].ToString() == "Supervisor")
+                field = "PAValidation";
+            else
+                field = "PASubmission";
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
-                string CWR1 = "", CWR2 = "", CWR3 = "";
-                string storedFacultyFormID = Session["FacultyFormID"].ToString();
                 connection.Open();
-
-                NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""Section1CWR"", ""Section2CWR"", ""OverallWR"" FROM ""FacultyForm"" WHERE ""FacultyFormID"" = @FacultyFormID", connection);
-                command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
-
-                NpgsqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    CWR1 = reader.GetString(0);
-                    CWR2 = reader.GetString(1);
-                    CWR3 = reader.GetString(2);
-                }
-                reader.Close();
-
-                int sec1Weight, sec2Weight, overallWeight;
-                sec1Weight = GetTotalWeight(CWR1);
-                sec2Weight = GetTotalWeight(CWR2);
-                overallWeight = GetTotalWeight(CWR3);
-
-                if (sec1Weight != 200)
-                    Response.Write("<script>alert('The total weight in section 1 is not equal to 100.')</script>");
-                else if (sec2Weight != 100)
-                    Response.Write("<script>alert('The total weight in section 2 is not equal to 100.')</script>");
-                else
-                {
-                    UpdateCWR();
-                    string storedFormID = Session["FormID"].ToString();
-                    string status = "To Be Checked";
-                    using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                    //using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-                    {
-                        connection2.Open();
-
-                        command = new NpgsqlCommand(@"UPDATE ""EmployeePerformance"" SET ""Status"" = @Status WHERE ""FormID"" = @FormID", connection2);
-                        command.Parameters.AddWithValue("@Status", status);
-                        command.Parameters.AddWithValue("@FormID", storedFormID);
-                        command.ExecuteNonQuery();
-                    }
-                    Response.Redirect("MyAccount.aspx");
-                }
+                SQLcmd = $@"UPDATE ""StatusReport"" SET ""{field}"" = @Time WHERE ""ReportID"" = @ReportID";
+                NpgsqlCommand command = new NpgsqlCommand(SQLcmd, connection);
+                command.Parameters.AddWithValue("@Time", DateTime.Now.ToString());
+                command.Parameters.AddWithValue("@ReportID", Session["ReportID"].ToString());
+                command.ExecuteNonQuery();
             }
+            Response.Redirect("MyAccount.aspx");
+
         }
         protected int GetTotalWeight(string text)
         {
             if (text != "0")
             {
-                string[] textArr = text.Split(';');
-                string[] textArr2 = new string[3];
-                string[] weight1Arr = new string[textArr.Length];
+                string[] textArr = text.Split(';'), textArr2;
+                int weight = 0;         
 
                 for (int i = 0; i < textArr.Length; i++)
                 {
                     textArr2 = textArr[i].Split(',');
-                    weight1Arr[i] = textArr2[1];
-                }
-
-                int weight = 0;
-                foreach (var item in weight1Arr)
-                {
-                    weight += int.Parse(item);
+                    weight += int.Parse(textArr2[1]);
                 }
                 return weight;
             }
-            else
-            {
-                return 0;
-            }
-        }
-
-        protected void Agree_Click(object sender, EventArgs e)
-        {
-            string storedFormID = Session["FormID"].ToString();
-            string status = "Approved";
-            using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection2 = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-            {
-                connection2.Open();
-
-                NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""EmployeePerformance"" SET ""Status"" = @Status WHERE ""FormID"" = @FormID", connection2);
-                command.Parameters.AddWithValue("@Status", status);
-                command.Parameters.AddWithValue("@FormID", storedFormID);
-                command.ExecuteNonQuery();
-            }
-            Response.Redirect("MyAccount.aspx");
-        }
-
-        protected void Disgree_Click(object sender, EventArgs e)
-        {
-            string storedFacultyFormID = Session["FacultyFormID"].ToString();
-            string storedFormID = Session["FormID"].ToString();
-            string status = "Rejected";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
-            {
-                connection.Open();
-
-                NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""EmployeePerformance"" SET ""Status"" = @Status WHERE ""FormID"" = @FormID", connection);
-                command.Parameters.AddWithValue("@Status", status);
-                command.Parameters.AddWithValue("@FormID", storedFormID);
-                command.ExecuteNonQuery();
-
-                command = new NpgsqlCommand(@"UPDATE ""FacultyForm"" SET ""Section1CWR"" = 0, ""Section2CWR"" = 0, ""OverallWR"" = 0 WHERE ""FacultyFormID"" = @FacultyFormID", connection);
-                command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
-                command.ExecuteNonQuery();
-
-            }
-            Response.Redirect("MyAccount.aspx");
-
+            return 0;
         }
     }
 }

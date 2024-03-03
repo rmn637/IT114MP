@@ -9,8 +9,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
         <div class="navbar">
-            <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-            <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection1" runat="server" OnClick="ChangeSection">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection2" runat="server" OnClick="ChangeSection">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
             <asp:LinkButton ID="btnOverall" runat="server"  Enabled="false" style="color:black; background-color:#eaeaea">Overall</asp:LinkButton>
         </div>
         <table width ="25%">
@@ -51,8 +51,6 @@
             </tr>
         </table>
         <asp:Button ID="Submit" runat="server" Text=" Submit " OnClick="Submit_Click" Enabled="false"/>
-        <asp:Button ID="Agree" runat="server" Text=" Agree " OnClick="Agree_Click"/>
-        <asp:Button ID="Disagree" runat="server" Text=" Disagree " OnClick="Disgree_Click"/>
         <br />
     </center>
 </asp:Content>

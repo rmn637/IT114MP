@@ -9,8 +9,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
         <div class="navbar">
-            <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-            <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection1" runat="server" OnClick="ChangeSection">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection2" runat="server" OnClick="ChangeSection">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <!--<asp:LinkButton ID="btnSection3" runat="server" OnClick="ChangeSection">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;-->
             <asp:LinkButton ID="btnOverall" runat="server"  Enabled="false" style="color:black; background-color:#808080">Overall</asp:LinkButton>
         </div>
         <table width ="25%">
@@ -22,39 +23,31 @@
             <tr>
                 <td class="auto-style17"><strong>SECTION 1-A</strong></td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" Enabled="False" Text="50" CssClass="normal"></asp:TextBox>
+                    <asp:TextBox ID="weight1_1" runat="server" AutoPostBack="True" Height="18px" Width="91px" Enabled="False" Text="50%" CssClass="normal"></asp:TextBox>
                 </td>
                 <td class="auto-style9">
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style17"><strong>SECTION 1-B</strong></td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" Enabled="False" Text="20" CssClass="normal"></asp:TextBox>
+                    <asp:TextBox ID="weight1_2" runat="server" AutoPostBack="True" Height="18px" Width="91px" Enabled="False" Text="20%" CssClass="normal"></asp:TextBox>
                 </td>
                 <td class="auto-style9">
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style17"><strong>SECTION 2</strong></td>
                 <td class="auto-style9">
-                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" Enabled="False" Text="15" CssClass="normal"></asp:TextBox>
+                    <asp:TextBox ID="weight1_3" runat="server" AutoPostBack="True" Height="18px" Width="91px" Enabled="False" Text="30%" CssClass="normal"></asp:TextBox>
                 </td>
                 <td class="auto-style9">
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style17"><strong>SECTION 3</strong></td>
-                <td class="auto-style9">
-                    <asp:TextBox ID="weight1_4" runat="server" AutoPostBack="True" Height="18px" Width="91px" OnTextChanged="weight_TextChanged" Enabled="False" Text="15" CssClass="normal"></asp:TextBox>
-                </td>
-                <td class="auto-style9">
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style17">&nbsp;</td>
                 <td class="auto-style9">
-                    <asp:Label ID="labelTotal1" runat="server"></asp:Label>
+                    <asp:Label ID="labelTotal1" runat="server" Text="100%"></asp:Label>
                 </td>
                 <td class="auto-style9">
                 
@@ -67,9 +60,7 @@
             </tr>
         </table>
         <center> 
-            <asp:Button ID="Submit" runat="server" Text=" Submit " OnClick="Submit_Click"/>
-            <asp:Button ID="Agree" runat="server" Text=" Agree " OnClick="Agree_Click"/>
-            <asp:Button ID="Disagree" runat="server" Text=" Disagree " OnClick="Disgree_Click"/>
+            <asp:Button ID="Submit" runat="server" Text=" Submit " OnClick="Submit_Click" Enabled="False" />
         <br />
     </center>
 </asp:Content>

@@ -25,45 +25,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <center>
-            <a href="AgreementFaculty.aspx">Faculty Members</a>
-            <a href="AgreementOfficers.aspx">Officers</a>
-            <a href="AgreementStaff.aspx">Staff</a>
-
-            </center>
-        <center>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Staff</th>
-                        <th>Faculty Member</th>
-                        <th>Officer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <asp:Button runat="server" ID="staff" OnClick="StaffClicked" Text="Reese Ramos" Enabled="False" ></asp:Button>
-                        </td>
-                        <td>
-                            <asp:Button runat="server" ID="faculty1" OnClick="FacultyClicked" Text="Aaron Cabuenas" Enabled="False" ></asp:Button>
-                        </td>
-                        <td>
-                            <asp:Button runat="server" ID="officer1" OnClick="OfficerClicked" Text="Jerome Mendoza" Enabled="False" ></asp:Button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Button runat="server" ID="staff2" OnClick="StaffClicked" Text="Reese Ramos2" Enabled="False" ></asp:Button>
-                        </td>
-                        <td>
-                            <asp:Button runat="server" ID="faculty2" OnClick="FacultyClicked" Text="Aaron Cabuenas2" Enabled="False" ></asp:Button>
-                        </td>
-                        <td>
-                            <asp:Button runat="server" ID="officer2" OnClick="OfficerClicked" Text="Jerome Mendoza2" Enabled="False" ></asp:Button>
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <asp:Table runat="server" ID="agreementTable" Width="80%">
+                <asp:TableRow>
+                    <asp:TableCell ColumnSpan="4" style="background-color: #C0C0C0"><strong>Employee Agreements</strong></asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
         </center>
+        
 </asp:Content>

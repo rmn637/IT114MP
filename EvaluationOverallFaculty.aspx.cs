@@ -1,10 +1,12 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.EnterpriseServices.CompensatingResourceManager;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace WebApplication1
 {
@@ -16,51 +18,70 @@ namespace WebApplication1
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack)
-            {
                 Initialize();
-            }
         }
-
         protected void Initialize()
         {
-            SetSectionTotals();
-            double sec1Total = 0, sec2Total = 0, sec3Total, total = 0;
-            sec1Total = double.Parse(total1.Text);
-            sec2Total = double.Parse(total2.Text);
-            sec3Total = double.Parse(total3.Text);
-            total = sec1Total * .50 + sec2Total * .20 + sec3Total * .30;
-            labelTotal1.Text = total.ToString("0.00");
-            Submit.Enabled = true;
-        }
+            bool sec1Done, sec2Done, sec3Done;
+            string SQLcmd, CWR1 = "", CWR2 = "", PEVal = "", strComment = "", impComment = "", devComment = "", ackComment = "", alert = "";
 
-        protected void SetSectionTotals()
-        {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
-                string CWR1 = "", CWR2 = "";
                 connection.Open();
-                string storedFacultyFormID = Session["FacultyFormID"].ToString();
-
-                string sqlCode = @"SELECT ""Section1CWR"", ""Section2CWR"" FROM ""FacultyForm"" WHERE ""FacultyFormID"" = @FacultyFormID";
-                NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
+                SQLcmd = @"SELECT ""Section1CWR"", ""Section2CWR"", ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"", ""ReportID"", ""PEValidation"" FROM ""FacultyForm"" INNER JOIN ""EmployeePerformance"" ON ""FacultyForm"".""FormID"" = ""EmployeePerformance"".""FormID"" INNER JOIN ""StatusReport"" ON ""EmployeePerformance"".""EmpID"" = ""StatusReport"".""EmpID"" WHERE ""FacultyFormID"" = @FacultyFormID";
+                NpgsqlCommand command = new NpgsqlCommand(SQLcmd, connection);
+                command.Parameters.AddWithValue("@FacultyFormID", Session["FacultyFormID"].ToString());
 
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     CWR1 = reader.GetString(0);
                     CWR2 = reader.GetString(1);
+                    strComment = reader.GetString(2);
+                    impComment = reader.GetString(3);
+                    devComment = reader.GetString(4);
+                    ackComment = reader.GetString(5);
+                    Session["ReportID"] = reader.GetString(6);
+                    PEVal = reader.GetString(7);
                 }
                 reader.Close();
-
-
-                string totals = ComputeSectionABTotals(CWR1);
-                string[] splitTotals = totals.Split(';');
-                total1.Text = splitTotals[0];
-                total2.Text = splitTotals[1];
-                total3.Text = ComputeSectionTotals(CWR2);
             }
+
+            bool PEValDone = PEVal != "0" && PEVal != null;
+            Session["PEValDone"] = PEValDone.ToString();
+            Submit.Visible = !PEValDone;
+
+            string[] splitTotals = ComputeSectionABTotals(CWR1).Split(';');
+            labelTotal1.Text = (double.Parse(splitTotals[0]) * .5 + double.Parse(splitTotals[1]) * .2 + double.Parse(ComputeSectionTotals(CWR2)) * .3).ToString("0.00");
+
+            sec1Done = CheckSection(CWR1);
+            sec2Done = CheckSection(CWR2);
+
+            if (Session["AccType"].ToString() == "Supervisor")
+                sec3Done = CheckComments(strComment, impComment, devComment, ackComment);
+            else
+                sec3Done = true;
+
+            if (!sec1Done && !sec2Done && !sec3Done)
+                alert = "Sections 1, 2, and 3 are incomplete.";
+            else if (!sec1Done && !sec2Done && sec3Done)
+                alert = "Sections 1 and 2 are incomplete.";
+            else if (!sec1Done && sec2Done && !sec3Done)
+                alert = "Sections 1 and 3 are incomplete.";
+            else if (sec1Done && !sec2Done && !sec3Done)
+                alert = "Sections 2 and 3 are incomplete.";
+            else if (!sec1Done && sec2Done && sec3Done)
+                alert = "Section 1 is incomplete.";
+            else if (sec1Done && !sec2Done && sec3Done)
+                alert = "Section 2 is incomplete.";
+            else if (sec1Done && sec2Done && !sec3Done)
+                alert = "Section 3 is incomplete.";
+
+            if (alert != "") 
+                Response.Write($"<script>alert('{alert}')</script>");
+            else
+                Submit.Enabled = !PEValDone;
+            
         }
 
         protected string ComputeSectionTotals(string CWR)
@@ -68,7 +89,7 @@ namespace WebApplication1
             if (CWR != "0")
             {
                 string[] CWRArr = CWR.Split(';');
-                string[] CWRArr2 = new string[3];
+                string[] CWRArr2;
                 double[] weightArr = new double[8];
                 double[] ratingArr = new double[8];
 
@@ -85,17 +106,17 @@ namespace WebApplication1
                 {
                     total += weightArr[i] * ratingArr[i] * .2;
                 }
-
+                total3.Text = total.ToString();
                 return total.ToString();
             }
-            return 0.ToString();
+            return "0";
         }
         protected string ComputeSectionABTotals(string CWR)
         {
             if (CWR != "0")
             {
                 string[] CWRArr = CWR.Split(';');
-                string[] CWRArr2 = new string[3];
+                string[] CWRArr2;
                 double[] weightArr = new double[8];
                 double[] ratingArr = new double[8];
 
@@ -118,87 +139,69 @@ namespace WebApplication1
                     totalB += weightArr[i] * ratingArr[i] * .2;
                 }
 
+                total1.Text = totalA.ToString();
+                total2.Text = totalB.ToString();
                 string totals = totalA.ToString() + ";" + totalB.ToString();
 
                 return totals.ToString();
             }
-            return 0.ToString();
+            return "0";
         }
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            if (CheckComments() == false)
-            {
-                Response.Write("<script>alert('You have not finished commenting.')</script>");
-            }
-            else if (total1.Text == "0")
-            {
-                Response.Write("<script>alert('You have not finished evaulating in section 1.')</script>");
-            }
-            else if (total3.Text == "0")
-            {
-                Response.Write("<script>alert('You have not finished evaulating in section 2.')</script>");
-            }
-            else
-            {
-                UpdateEmpPerf();
-                Response.Redirect("MyAccount.aspx");
-            }
-        }
+            string field;
 
-        protected bool CheckComments()
-        {
-            string strComment = "", impComment = "", devComment = "", ackComment = "";
+            if (Session["AccType"].ToString() == "Supervisor")
+                field = "PEValidation";
+            else
+                field = "PESubmission";
+
             using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
-                string storedFacultyFormID = Session["FacultyFormID"].ToString();
-
-                string sqlCode = @"SELECT ""Strength"", ""Improvement"", ""Development"", ""Acknowledgement"" FROM ""FacultyForm"" WHERE ""FacultyFormID"" = @FacultyFormID";
-                NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                command.Parameters.AddWithValue("@FacultyFormID", storedFacultyFormID);
-
-                NpgsqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    strComment = reader.GetString(0);
-                    impComment = reader.GetString(1);
-                    devComment = reader.GetString(2);
-                    ackComment = reader.GetString(3);
-                }
-                reader.Close();
+                string SQLcmd = $@"UPDATE ""StatusReport"" SET ""{field}"" = @Time WHERE ""ReportID"" = @ReportID";
+                NpgsqlCommand command = new NpgsqlCommand(SQLcmd, connection);
+                command.Parameters.AddWithValue("@Time", DateTime.Now.ToString());
+                command.Parameters.AddWithValue("@ReportID", Session["ReportID"].ToString());
+                command.ExecuteNonQuery();
             }
-            if (strComment == "" || impComment == "" || devComment == "" || ackComment == "")
+            UpdateEmpPerf();
+            Response.Redirect("MyAccount.aspx");
+            
+        }
+
+        protected bool CheckSection(string CWR) 
+        {
+            string[] CWRArr = CWR.Split(';');
+            string[] CWRArr2;
+
+            for (int i = 0; i < CWRArr.Length; i++)
             {
-                return false;
+                CWRArr2 = CWRArr[i].Split(',');
+                if (CWRArr2[2] == "0") 
+                    return false;
             }
             return true;
         }
-
-        protected void total_TextChanged(object sender, EventArgs e)
+        protected bool CheckComments(string com1, string com2, string com3, string com4)
         {
-            double weight1 = 0, weight2 = 0, weight3 = 0, total = 0;
-            weight1 = double.Parse(total1.Text);
-            weight2 = double.Parse(total2.Text);
-            weight3 = double.Parse(total3.Text);
-            total = weight1 + weight2 + weight3;
-            labelTotal1.Text = total.ToString("0.00");
-            Submit.Enabled = true;
+            if (com1 == "" || com2 == "" || com3 == "" || com4 == "")
+                return false;
+            return true;
         }
+
         protected void UpdateEmpPerf()
         {
-            string storedFormID = Session["FormID"].ToString();
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 
-                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""EmployeePerformance"" SET ""PerfPts"" = @PerfPts, ""Status"" = @Status WHERE ""FormID"" = @FormID", connection);
+                    NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""EmployeePerformance"" SET ""PerfPts"" = @PerfPts, WHERE ""FormID"" = @FormID", connection);
                     command.Parameters.AddWithValue("@PerfPts", labelTotal1.Text);
-                    command.Parameters.AddWithValue("@Status", "Done");
-                    command.Parameters.AddWithValue("@FormID", storedFormID);
+                    command.Parameters.AddWithValue("@FormID", Session["FormID"].ToString());
                     command.ExecuteNonQuery();
                 }
             }
@@ -207,29 +210,18 @@ namespace WebApplication1
 
             }
         }
-        protected void checkWeight(object sender, EventArgs e)
+        protected void ChangeSection(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;
+            UpdateEmpPerf();
             if (link.ID == "btnSection1")
-            {
-                //insert database commands here
                 Response.Redirect("~/EvaluationSection1Faculty.aspx");
-            }
             else if (link.ID == "btnSection2")
-            {
-                //insert database commands here
                 Response.Redirect("~/EvaluationSection2Faculty.aspx");
-            }
             else if (link.ID == "btnSection3")
-            {
-                //insert database commands here
                 Response.Redirect("~/EvaluationCommentsFaculty.aspx");
-            }
             else if (link.ID == "btnOverall")
-            {
-                //insert database commands here
                 Response.Redirect("~/EvaluationOverallFaculty.aspx");
-            }
         }
     }
 }

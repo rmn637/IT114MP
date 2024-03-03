@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EvaluationCommentsFaculty.aspx.cs" Inherits="WebApplication1.EvaluationCommentsFaculty" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementCommentsFaculty.aspx.cs" Inherits="WebApplication1.AgreementCommentsFaculty" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
     .auto-style1 {
@@ -44,10 +44,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
         <div class="navbar">
-            <asp:LinkButton ID="btnSection1" runat="server" OnClick="ChangeSection">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-            <asp:LinkButton ID="btnSection2" runat="server" OnClick="ChangeSection">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-            <asp:LinkButton ID="btnSection3" runat="server" Enabled="false" style="color:black; background-color:#808080">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-            <asp:LinkButton ID="btnOverall" runat="server" OnClick="ChangeSection">Overall</asp:LinkButton>
+            <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnSection3" runat="server" style="color:black; background-color:#808080">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+            <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
         </div>
         <br/>
         <br />
@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:TextBox ID="strength" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="strength" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -68,7 +68,7 @@
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:TextBox ID="improvement" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="improvement" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -76,7 +76,7 @@
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:TextBox ID="development" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="development" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -84,7 +84,7 @@
             </tr>
             <tr>
                 <td class="auto-style8">
-                    <asp:TextBox ID="acknowledgement" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="acknowledgement" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
                 </td>
             </tr>
         </table>

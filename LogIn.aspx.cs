@@ -23,57 +23,29 @@ namespace WebApplication1
 
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
-
-                    //NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""SupPass"", ""SupID"", ""SupUser"" FROM ""SupervisorAccount"" WHERE ""SupUser"" = @username", connection);
-                    //command.Parameters.AddWithValue("@Username", username);
-
-                    //NpgsqlDataReader reader = command.ExecuteReader();
-
-                    //while (reader.Read())
-                    //{
-                    //    storedSupPass = reader.GetString(0);
-                    //    storedSupID = reader.GetString(1);
-                    //    storedSupUser = reader.GetString(2);
-                    //}
-                    //reader.Close();
-
-
-                    //command = new NpgsqlCommand(@"SELECT * FROM ""Supervisor"" INNER JOIN ""SupervisorAccount"" ON ""Supervisor"".""SupID"" = ""SupervisorAccount"".""SupID"" WHERE ""Supervisor"".""SupID"" = @supID", connection);
-                    //command.Parameters.AddWithValue("@SupID", storedSupID);
-
-                    //reader = command.ExecuteReader();
-
-                    //while (reader.Read())
-                    //{
-                    //    storedEmpID = reader.GetString(1);
-                    //}
-                    //reader.Close();
-
-                    //if (password.Equals(storedSupPass))
-                    //{
-                    //    Session["EmpID"] = storedEmpID;
-                    //    Session["AccType"] = "Supervisor";
-                    //    Response.Redirect("MyAccount.aspx");
-                    //}
-                    //else if (!password.Equals(storedSupPass))
-                    //{
-                    //    Response.Write("<script>alert('Access denied')</script>");
-
-                    //}
-                    //else
-                    //{
-                    //    Response.Write("<script>alert('No User Found')</script>");
-                    //}
 
                     NpgsqlCommand command = new NpgsqlCommand(@"SELECT ""EmployeeAccount"".""EmpPass"", ""EmployeeAccount"".""EmpID"", ""EmployeeAccount"".""EmpUser"", ""Employee"".""EmpType"" FROM ""EmployeeAccount"" INNER JOIN ""Employee"" ON ""Employee"".""EmpID"" = ""EmployeeAccount"".""EmpID"" WHERE ""EmployeeAccount"".""EmpUser"" = @username", connection);
                     command.Parameters.AddWithValue("@Username", username);
 
                     NpgsqlDataReader reader = command.ExecuteReader();
     
+                    while (reader.Read())
+                    {
+                        storedPassword = reader.GetString(0);
+                        storedEmpID = reader.GetString(1);
+                        storedEmpUser = reader.GetString(2);
+                        empType = reader.GetString(3);
+                    }
+                    reader.Close();
+
+                    command = new NpgsqlCommand(@"SELECT ""EmployeeAccount"".""EmpPass"", ""EmployeeAccount"".""EmpID"", ""EmployeeAccount"".""EmpUser"", ""Employee"".""EmpType"" FROM ""EmployeeAccount"" INNER JOIN ""Employee"" ON ""Employee"".""EmpID"" = ""EmployeeAccount"".""EmpID"" WHERE ""EmployeeAccount"".""EmpUser"" = @username", connection);
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    reader = command.ExecuteReader();
+
                     while (reader.Read())
                     {
                         storedPassword = reader.GetString(0);

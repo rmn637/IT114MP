@@ -33,7 +33,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <asp:Label ID="labelLogID" runat="server" Text="Welcome, UserName" CssClass="label"></asp:Label>
             <asp:LinkButton ID="opt2" runat="server" Text="My Agreement" PostBackUrl="~/Agreement.aspx"></asp:LinkButton>
-            <asp:LinkButton ID="opt3" runat="server" Text="My Evaluation" PostBackUrl="~/Evaluation.aspx"></asp:LinkButton>
+            <asp:LinkButton ID="opt3" runat="server" Text="My Evaluation" PostBackUrl="~/Evaluation.aspx" Enabled="false"></asp:LinkButton>
             <asp:LinkButton ID="opt4" runat="server" Text="Employee Agreement" PostBackUrl="~/Agreement.aspx"></asp:LinkButton>
             <asp:LinkButton ID="opt5" runat="server" Text="Employee Evaluation" PostBackUrl="~/Evaluation.aspx"></asp:LinkButton>
             <asp:LinkButton ID="opt1" runat="server" Text="My Account" PostBackUrl="~/MyAccount.aspx"></asp:LinkButton>

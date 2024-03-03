@@ -16,231 +16,150 @@ namespace WebApplication1
             ((Site1)Page.Master).opt3class = "active";
             Page.MaintainScrollPositionOnPostBack = true;
             if (!IsPostBack)
-            {
                 Initialize();
-            }
-            
         }
 
         protected void Initialize()
         {
-            string CWR = "";
+            string CWR = "", SQLcmd, PEVal = "";
+            string storedAccType = Session["AccType"].ToString();
+            NpgsqlCommand command;
+            NpgsqlDataReader reader;
 
-            if (!IsPostBack)
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                connection.Open();
+
+                if (storedAccType == "Supervisor")
                 {
-                    connection.Open();
-                    string storedStaffFormID = Session["StaffFormID"].ToString();
-
-                    string sqlCode = @"SELECT ""Section2CWR"" FROM ""StaffForm"" WHERE ""StaffFormID"" = @StaffFormID";
-                    NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
-
-                    NpgsqlDataReader reader = command.ExecuteReader();
+                    SQLcmd = @"SELECT ""Section2CWR"", ""ReportID"", ""PEValidation"" FROM ""StaffForm"" INNER JOIN ""EmployeePerformance"" ON ""StaffForm"".""FormID"" = ""EmployeePerformance"".""FormID"" INNER JOIN ""StatusReport"" ON ""EmployeePerformance"".""EmpID"" = ""StatusReport"".""EmpID"" WHERE ""StaffFormID"" = @StaffFormID";
+                    command = new NpgsqlCommand(SQLcmd, connection);
+                    command.Parameters.AddWithValue("@StaffFormID", Session["StaffFormID"].ToString());
+                    reader = command.ExecuteReader();
                     while (reader.Read())
                     {
                         CWR = reader.GetString(0);
+                        //Session["ReportID"] = reader.GetString(1);
+                        PEVal = reader.GetString(2);
+                    }
+                    reader.Close();
+                }
+                else
+                {
+                    SQLcmd = @"SELECT ""EmployeePerformance"".""FormID"", ""StaffFormID"", ""Section2CWR"", ""ReportID"", ""PEValidation"" FROM ""StaffForm"" INNER JOIN ""EmployeePerformance"" ON ""StaffForm"".""FormID"" = ""EmployeePerformance"".""FormID"" INNER JOIN ""StatusReport"" ON ""EmployeePerformance"".""EmpID"" = ""StatusReport"".""EmpID"" WHERE ""EmployeePerformance"".""EmpID"" = @EmpID";
+                    command = new NpgsqlCommand(SQLcmd, connection);
+                    command.Parameters.AddWithValue("@EmpID", Session["EmpID"].ToString());
+
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        //Session["FormID"] = reader.GetString(0);
+                        //Session["StaffFormID"] = reader.GetString(1);
+                        CWR = reader.GetString(2);
+                        //Session["ReportID"] = reader.GetString(3);
+                        PEVal = reader.GetString(4);
                     }
                     reader.Close();
 
-                    if (CWR != "0")
+                    //Session["RateeID"] = Session["EmpID"].ToString();
+
+                    List<TextBox> weightTextBoxes = new List<TextBox> {
+                        rating2_1,
+                        rating2_2,
+                        rating2_3,
+                        rating2_4,
+                        rating2_5,
+                    };
+
+                    bool PEValDone = PEVal != "0" && PEVal != null;
+                    //Session["PEValDone"] = PEValDone.ToString();
+                    foreach (var item in weightTextBoxes)
                     {
-                        string[] CWRArr = CWR.Split(';');
-                        string[] CWRArr2 = new string[3];
-                        string[] weightArr = new string[8];
-                        string[] ratingArr = new string[8];
-
-                        for (int i = 0; i < CWRArr.Length; i++)
-                        {
-                            CWRArr2 = CWRArr[i].Split(',');
-                            weightArr[i] = CWRArr2[1];
-                            ratingArr[i] = CWRArr2[2];
-                        }
-
-                        weight2_1.Text = weightArr[0];
-                        weight2_2.Text = weightArr[1];
-                        weight2_3.Text = weightArr[2];
-                        weight2_4.Text = weightArr[3];
-                        weight2_5.Text = weightArr[4];
-
-                        rating2_1.Text = ratingArr[0];
-                        rating2_2.Text = ratingArr[1];
-                        rating2_3.Text = ratingArr[2];
-                        rating2_4.Text = ratingArr[3];
-                        rating2_5.Text = ratingArr[4];
-
-                        label2_1.Text = (double.Parse(weight2_1.Text) * double.Parse(ratingComp(ratingArr[0])) * 0.01).ToString("0.00");
-                        label2_2.Text = (double.Parse(weight2_2.Text) * double.Parse(ratingComp(ratingArr[1])) * 0.01).ToString("0.00");
-                        label2_3.Text = (double.Parse(weight2_3.Text) * double.Parse(ratingComp(ratingArr[2])) * 0.01).ToString("0.00");
-                        label2_4.Text = (double.Parse(weight2_4.Text) * double.Parse(ratingComp(ratingArr[3])) * 0.01).ToString("0.00");
-                        label2_5.Text = (double.Parse(weight2_5.Text) * double.Parse(ratingComp(ratingArr[4])) * 0.01).ToString("0.00");
-
+                        item.Enabled = !PEValDone;
                     }
                 }
-                computeTotalScore();
             }
-        }
 
-        protected string ratingComp(string rating)
-        {
-            if (rating == "5")
+            List<Label> weightLabels = new List<Label> { weight2_1, weight2_2, weight2_3, weight2_4, weight2_5 };
+            List<TextBox> rateTextboxes = new List<TextBox> { rating2_1, rating2_2, rating2_3, rating2_4, rating2_5 };
+            List<Label> scoreLabels = new List<Label> { label2_1, label2_2, label2_3, label2_4, label2_5 };
+
+            if (CWR != "0")
             {
-                return "100";
+                string[] CWRArr = CWR.Split(';');
+                for (int i = 0; i < CWRArr.Length; i++)
+                {
+                    string[] CWRValues = CWRArr[i].Split(',');
+                    weightLabels[i].Text = CWRValues[1];
+                    rateTextboxes[i].Text = CWRValues[2];
+                    scoreLabels[i].Text = (double.Parse(CWRValues[1]) * double.Parse(CWRValues[2]) * 0.2).ToString("0.00");
+                }
             }
-            else if (rating == "4")
-            {
-                return "80";
-            }
-            else if (rating == "3")
-            {
-                return "60";
-            }
-            else if (rating == "2")
-            {
-                return "40";
-            }
-            else if (rating == "1")
-            {
-                return "20";
-            }
-            else
-            {
-                return "0";
-            }
+            computeTotalScore();
         }
 
         protected void rating2_TextChanged(object sender, EventArgs e)
         {
+            List<Label> weightLabels = new List<Label> { weight2_1, weight2_2, weight2_3, weight2_4, weight2_5 };
+            List<TextBox> rateTextboxes = new List<TextBox> { rating2_1, rating2_2, rating2_3, rating2_4, rating2_5 };
+            List<Label> scoreLabels = new List<Label> { label2_1, label2_2, label2_3, label2_4, label2_5 };
+
+            TextBox rating = sender as TextBox;
             try
             {
-                TextBox rating = sender as TextBox;
-                double weight = 0.2;
-                double weightedScore;
-                if (rating.ID == "rating2_1")
+                for (int i = 0; i < rateTextboxes.Count; i++)
                 {
-                    if (double.Parse(rating.Text) > 5)
+                    if (rating.ID == rateTextboxes[i].ID)
                     {
-                        rating2_1.Text = "5";
+                        if (double.Parse(rateTextboxes[i].Text) > 5)
+                            rateTextboxes[i].Text = "5";
+                        else if (double.Parse(rateTextboxes[i].Text) < 0)
+                            rateTextboxes[i].Text = "0";
+                        scoreLabels[i].Text = (double.Parse(rateTextboxes[i].Text) * double.Parse(weightLabels[i].Text) * 0.2).ToString("0.00");
+                        computeTotalScore();
+                        return;
                     }
-                    weightedScore = double.Parse(ratingComp(rating2_1.Text)) * double.Parse(weight2_1.Text) * 0.01;
-                    label2_1.Text = weightedScore.ToString("0.00");
                 }
-                else if (rating.ID == "rating2_2")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating2_2.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating2_2.Text)) * double.Parse(weight2_2.Text) * 0.01;
-                    label2_2.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating2_3")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating2_3.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating2_3.Text)) * double.Parse(weight2_3.Text) * 0.01;
-                    label2_3.Text = weightedScore.ToString("0.00");
-                }
-                else if (rating.ID == "rating2_4")
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating2_4.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating2_4.Text)) * double.Parse(weight2_4.Text) * 0.01;
-                    label2_4.Text = weightedScore.ToString("0.00");
-                }
-                else
-                {
-                    if (double.Parse(rating.Text) > 5)
-                    {
-                        rating2_5.Text = "5";
-                    }
-                    weightedScore = double.Parse(ratingComp(rating2_5.Text)) * double.Parse(weight2_5.Text) * 0.01;
-                    label2_5.Text = weightedScore.ToString("0.00");
-                }
-                computeTotalScore();
             }
             catch (FormatException)
             {
                 Response.Write("<script>alert('Error: Please type a positive number')</script>");
+                rating.Text = "0";
             }
         }
 
-        protected double inputChecker(string weight)
-        {
-            if (weight != "0")
-            {
-                return double.Parse(weight);
-            }
-            else
-            {
-                return 0;
-            }
-        }
         protected void computeTotalScore()
         {
-            double weight1 = 0, weight2 = 0, weight3 = 0, weight4 = 0, weight5 = 0, total = 0;
-            weight1 = inputChecker(label2_1.Text);
-            weight2 = inputChecker(label2_2.Text);
-            weight3 = inputChecker(label2_3.Text);
-            weight4 = inputChecker(label2_4.Text);
-            weight5 = inputChecker(label2_5.Text);
-            total = weight1 + weight2 + weight3 + weight4 + weight5;
-            labelTotal2.Text = total.ToString("0.00");
-        }
-        protected void checkWeight(object sender, EventArgs e)
-        {
-            LinkButton link = sender as LinkButton;
-            if (rating2_1.Text == "0" || rating2_2.Text == "0" || rating2_3.Text == "0" || rating2_4.Text == "0" || rating2_5.Text == "0")
-            {
-                Response.Write("<script>alert('Please input a number from 1-5.')</script>");
-            }
-            else 
-            {
-                UpdateCWR();
-                if (link.ID == "btnSection1")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/EvaluationSection1Staff.aspx");
-                }
-                else if (link.ID == "btnSection2")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/EvaluationSection2Staff.aspx");
-                }
-                else if (link.ID == "btnSection3")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/EvaluationCommentsStaff.aspx");
-                }
-                else if (link.ID == "btnOverall")
-                {
-                    //insert database commands here
-                    Response.Redirect("~/EvaluationOverallStaff.aspx");
-                }
-            }
-            
+            labelTotal2.Text = (double.Parse(label2_1.Text) + double.Parse(label2_2.Text) + double.Parse(label2_3.Text) + double.Parse(label2_4.Text) + double.Parse(label2_5.Text)).ToString("0.00");
         }
 
+        protected void ChangeSection(object sender, EventArgs e)
+        {
+            LinkButton link = sender as LinkButton;
+            if (!bool.Parse(Session["PEValDone"].ToString()))
+                UpdateCWR();
+
+            if (link.ID == "btnSection1")
+                Response.Redirect("~/EvaluationSection1Staff.aspx");
+            else if (link.ID == "btnSection2")
+                Response.Redirect("~/EvaluationSection2Staff.aspx");
+            else if (link.ID == "btnSection3")
+                Response.Redirect("~/EvaluationCommentsStaff.aspx");
+            else if (link.ID == "btnOverall")
+                Response.Redirect("~/EvaluationOverallStaff.aspx");
+        }
         protected void UpdateCWR()
         {
-            string compiledCWR = CompileAnswers();
-            string storedStaffFormID = Session["StaffFormID"].ToString();
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 
                     NpgsqlCommand command = new NpgsqlCommand(@"UPDATE ""StaffForm"" SET ""Section2CWR"" = @Section2CWR WHERE ""StaffFormID"" = @StaffFormID", connection);
-                    command.Parameters.AddWithValue("@Section2CWR", compiledCWR);
-                    command.Parameters.AddWithValue("@StaffFormID", storedStaffFormID);
+                    command.Parameters.AddWithValue("@Section2CWR", CompileAnswers());
+                    command.Parameters.AddWithValue("@StaffFormID", Session["StaffFormID"].ToString());
                     command.ExecuteNonQuery();
                 }
             }
@@ -251,15 +170,11 @@ namespace WebApplication1
         }
         protected string CompileAnswers()
         {
-            string text = "";
-
-            text += $"1,{weight2_1.Text},{rating2_1.Text};";
-            text += $"2,{weight2_2.Text},{rating2_2.Text};";
-            text += $"3,{weight2_3.Text},{rating2_3.Text};";
-            text += $"4,{weight2_4.Text},{rating2_4.Text};";
-            text += $"5,{weight2_5.Text},{rating2_5.Text}";
-
-            return text;
+            return $"1,{weight2_1.Text},{rating2_1.Text};" +
+            $"2,{weight2_2.Text},{rating2_2.Text};" +
+            $"3,{weight2_3.Text},{rating2_3.Text};" +
+            $"4,{weight2_4.Text},{rating2_4.Text};" +
+            $"5,{weight2_5.Text},{rating2_5.Text}";
         }
     }
 }

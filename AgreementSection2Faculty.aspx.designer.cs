@@ -33,6 +33,15 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
 
         /// <summary>
+        /// btnSection3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSection3;
+
+        /// <summary>
         /// btnOverall control.
         /// </summary>
         /// <remarks>

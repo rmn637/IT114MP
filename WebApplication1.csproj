@@ -132,6 +132,7 @@
     <Content Include="AgreementSection4Officers.aspx" />
     <Content Include="AgreementStaff.aspx" />
     <Content Include="Evaluation.aspx" />
+    <Content Include="AgreementCommentsFaculty.aspx" />
     <Content Include="EvaluationCommentsFaculty.aspx" />
     <Content Include="EvaluationCommentsOfficers.aspx" />
     <Content Include="EvaluationCommentsStaff.aspx" />
@@ -269,6 +270,13 @@
     </Compile>
     <Compile Include="Evaluation.aspx.designer.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgreementCommentsFaculty.aspx.cs">
+      <DependentUpon>AgreementCommentsFaculty.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgreementCommentsFaculty.aspx.designer.cs">
+      <DependentUpon>AgreementCommentsFaculty.aspx</DependentUpon>
     </Compile>
     <Compile Include="EvaluationCommentsFaculty.aspx.cs">
       <DependentUpon>EvaluationCommentsFaculty.aspx</DependentUpon>

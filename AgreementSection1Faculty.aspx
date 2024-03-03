@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AgreementSection1Faculty.aspx.cs" Inherits="WebApplication1.AgreementSection1Faculty" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">\
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="Style.css" />
     <script>
         function openNav() {
@@ -33,13 +33,14 @@
     <center>
     <br />
     <div class="navbar" id="navibar">
-        <asp:LinkButton ID="btnSection1" runat="server" Enabled="false" style="color:black; background-color:#eaeaea">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
+        <asp:LinkButton ID="btnSection1" runat="server" Enabled="false" style="color:black; background-color:#808080">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection2" runat="server" OnClick="ChangeSection">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <!--<asp:LinkButton ID="btnSection3" runat="server" OnClick="ChangeSection">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;-->
+        <asp:LinkButton ID="btnOverall" runat="server" OnClick="ChangeSection">Overall</asp:LinkButton>
     </div>
-    <div id ="section1A" style="text-align:center"> 
+    
         <center> 
-        <table class="auto-style2">
+        <table id="table1A" class="auto-style2">
             <tr>
                 <td colspan="4" style="background-color: #C0C0C0"><strong>SECTION 1-A: ACADEMIC PERFORMANCE</strong></td>
             </tr>
@@ -94,10 +95,9 @@
         </table>
         <br />
         </center>
-    </div>
-    <div id ="section1B">
+
         <center>
-        <table class="auto-style2">
+        <table id="table1B" class="auto-style2">
             <tr>
                 <td colspan="4" style="background-color: #C0C0C0"><strong>SECTION 1.B: PROFESSIONAL ETHICS AND ADMINISTRATIVE COMPLIANCE</strong></td>
             </tr>
@@ -213,5 +213,5 @@
             </tr>
         </table>
         </center>
-    </div>
+    
 </asp:Content>

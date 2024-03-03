@@ -33,6 +33,15 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.LinkButton btnSection2;
 
         /// <summary>
+        /// btnSection3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSection3;
+
+        /// <summary>
         /// btnOverall control.
         /// </summary>
         /// <remarks>
@@ -69,15 +78,6 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox weight1_3;
 
         /// <summary>
-        /// weight1_4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox weight1_4;
-
-        /// <summary>
         /// labelTotal1 control.
         /// </summary>
         /// <remarks>
@@ -94,23 +94,5 @@ namespace WebApplication1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Submit;
-
-        /// <summary>
-        /// Agree control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Agree;
-
-        /// <summary>
-        /// Disagree control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Disagree;
     }
 }

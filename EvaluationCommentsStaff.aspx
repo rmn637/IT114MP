@@ -44,10 +44,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
     <div class="navbar">
-        <asp:LinkButton ID="btnSection1" runat="server" OnClick="checkWeight">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="btnSection2" runat="server" OnClick="checkWeight">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection1" runat="server" OnClick="ChangeSection">Section 1</asp:LinkButton> &nbsp; &nbsp; &nbsp;
+        <asp:LinkButton ID="btnSection2" runat="server" OnClick="ChangeSection">Section 2</asp:LinkButton> &nbsp; &nbsp; &nbsp;
         <asp:LinkButton ID="btnSection3" runat="server" Enabled="false">Section 3</asp:LinkButton> &nbsp; &nbsp; &nbsp;
-        <asp:LinkButton ID="btnOverall" runat="server" OnClick="checkWeight">Overall</asp:LinkButton>
+        <asp:LinkButton ID="btnOverall" runat="server" OnClick="ChangeSection">Overall</asp:LinkButton>
     </div>
     <br/>
     <br />
@@ -60,7 +60,7 @@
         </tr>
         <tr>
             <td class="auto-style8">
-                <asp:TextBox ID="strength" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
+                <asp:TextBox ID="strength" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -68,7 +68,7 @@
         </tr>
         <tr>
             <td class="auto-style8">
-                <asp:TextBox ID="improvement" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
+                <asp:TextBox ID="improvement" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -76,7 +76,7 @@
         </tr>
         <tr>
             <td class="auto-style8">
-                <asp:TextBox ID="development" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
+                <asp:TextBox ID="development" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -84,7 +84,7 @@
         </tr>
         <tr>
             <td class="auto-style8">
-                <asp:TextBox ID="acknowledgement" runat="server" AutoPostBack="True" Width="1032px"></asp:TextBox>
+                <asp:TextBox ID="acknowledgement" runat="server" AutoPostBack="True" Width="1032px" Enabled="False"></asp:TextBox>
             </td>
         </tr>
     </table>

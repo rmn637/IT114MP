@@ -10,103 +10,103 @@ namespace WebApplication1
 {
     public partial class Evaluation1 : System.Web.UI.Page
     {
-        public bool staff1Enable { get { return staff.Enabled; } set { staff.Enabled = value; } }
-        public bool staff2Enable { get { return staff2.Enabled; } set { staff2.Enabled = value; } }
-        public bool faculty1Enable { get { return faculty1.Enabled; } set { faculty1.Enabled = value; } }
-        public bool faculty2Enable { get { return faculty2.Enabled; } set { faculty2.Enabled = value; } }
-
-        public bool officer1Enable { get { return officer1.Enabled; } set { officer1.Enabled = value; } }
-        public bool officer2Enable { get { return officer2.Enabled; } set { officer2.Enabled = value; } }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             ((Site1)Page.Master).opt5class = "active";
+            Session["AccType"] = "Supervisor";
             Initialize();
         }
 
         protected void Initialize()
         {
-            string status = "Approved";
+            string SQLcmd, storedReportID = ""; 
             List<string> formIDList = new List<string>();
+            List<string> empIDList = new List<string>();
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
-                int count = 0;
-                string sqlCode = @"SELECT COUNT(*) AS ""count"" FROM ""EmployeePerformance"" WHERE ""Status"" = @Status";
-                NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                command.Parameters.AddWithValue("@Status", status);
+                SQLcmd = @"SELECT ""StatusReport"".""EmpID"", ""ReportID"" FROM ""StatusReport"" INNER JOIN ""Employee"" ON ""StatusReport"".""EmpID"" = ""Employee"".""EmpID"" WHERE ""PESubmission"" <> @PESubmission AND ""PEValidation"" = @PEValidation AND ""SupID"" = @SupID";
+                NpgsqlCommand command = new NpgsqlCommand(SQLcmd, connection);
+                command.Parameters.AddWithValue("@SupID", Session["EmpID"].ToString());
+                command.Parameters.AddWithValue("@PESubmission", "0");
+                command.Parameters.AddWithValue("@PEValidation", "0");
 
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    count = reader.GetInt32(0);
+                    empIDList.Add(reader.GetString(0));
+                    storedReportID = reader.GetString(1);
                 }
                 reader.Close();
-                Response.Write($"<script>alert('{count}')</script>");
 
+                //Session["ReportID"] = storedReportID;
 
-
-                sqlCode = @"SELECT ""FormID"" FROM ""EmployeePerformance"" WHERE ""Status"" = @Status";
-                command = new NpgsqlCommand(sqlCode, connection);
-                command.Parameters.AddWithValue("@Status", status);
-
-                reader = command.ExecuteReader();
-                while (reader.Read())
+                foreach (string empID in empIDList)
                 {
-                    string formID = reader.GetString(0);
-                    formIDList.Add(formID);
+                    Response.Write($"<script>alert('Emp ID: {empID}')</script>");
+                    createTableRow(empID);
                 }
-                reader.Close();
-
             }
 
             foreach (string formID in formIDList)
             {
                 Response.Write($"<script>alert('Form ID: {formID}')</script>");
             }
-
-            staff1Enable = ShowButtons(staff.Text);
-            staff2Enable = ShowButtons(staff2.Text);
-            faculty1Enable = ShowButtons(faculty1.Text);
-            faculty2Enable = ShowButtons(faculty2.Text);
-            officer1Enable = ShowButtons(officer1.Text);
-            officer2Enable = ShowButtons(officer2.Text);
-
         }
 
-        protected bool ShowButtons(string name)
+        protected void createTableRow(string empID)
         {
-            string status = "Approved";
-            string formID = "";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            string empName = "", empType = "";
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
-
-                string sqlCode = @"SELECT ""EmployeePerformance"".""FormID"" FROM ""Employee"" INNER JOIN ""EmployeePerformance"" ON ""Employee"".""EmpID"" = ""EmployeePerformance"".""EmpID"" WHERE ""EmpName"" = @EmpName AND ""EmployeePerformance"".""Status"" = @Status";
+                string sqlCode = @"SELECT ""EmpName"", ""EmpType"" FROM ""Employee"" WHERE ""EmpID"" = @EmpID";
                 NpgsqlCommand command = new NpgsqlCommand(sqlCode, connection);
-                command.Parameters.AddWithValue("@EmpName", name);
-                command.Parameters.AddWithValue("@Status", status);
-                NpgsqlDataReader reader = command.ExecuteReader();
+                command.Parameters.AddWithValue("@EmpID", empID);
 
+                NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    formID = reader.GetString(0);
+                    empName = reader.GetString(0);
+                    empType = reader.GetString(1);
                 }
                 reader.Close();
-
+                insertAgreementTable(empName, empType);
             }
-
-            if (formID != "")
-            {
-                return true;
-            }
-            return false;
         }
 
+        protected void insertAgreementTable(string empName, string empType)
+        {
+            TableRow tr = new TableRow();
+            TableCell empNameCell = new TableCell { Text = empName };
+            TableCell empTypeCell = new TableCell { Text = empType };
+            TableCell empBtnCell = new TableCell { };
+            Button empAgreementbtn = new Button { ID = $"{empType}_{empName}", Text = empName };
+
+            if (empType == "Faculty")
+            {
+                empAgreementbtn.Click += FacultyClicked;
+            }
+            else if (empType == "Staff")
+            {
+                empAgreementbtn.Click += StaffClicked;
+            }
+            else if (empType == "Officer")
+            {
+                empAgreementbtn.Click += OfficerClicked;
+            }
+
+            empBtnCell.Controls.Add(empAgreementbtn);
+
+
+            tr.Cells.Add(empNameCell);
+            tr.Cells.Add(empTypeCell);
+            tr.Cells.Add(empBtnCell);
+
+            evaluationTable.Rows.Add(tr);
+        }
 
         protected void StaffClicked(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace WebApplication1
 
         protected void SetStaffSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
@@ -149,16 +149,13 @@ namespace WebApplication1
         protected void FacultyClicked(object sender, EventArgs e)
         {
             Button faculty = sender as Button;
-            Response.Write($"<script>alert('EmpID:')</script>");
-
             SetFacultySessionInfo(faculty.Text);
             Response.Redirect("~/EvaluationSection1Faculty.aspx");
         }
 
         protected void SetFacultySessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedFacultyFormID = "";
@@ -172,7 +169,6 @@ namespace WebApplication1
                     storedEmpID = reader.GetString(0);
                     storedFormID = reader.GetString(1);
                     storedFacultyFormID = reader.GetString(2);
-
 
                     Session["RateeID"] = storedEmpID;
                     Session["FormID"] = storedFormID;
@@ -195,7 +191,7 @@ namespace WebApplication1
 
         protected void SetOfficerSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
