@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Evaluation.aspx.cs" Inherits="WebApplication1.Evaluation1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+﻿<%@ Page Title="Employee Evaluation" Language="C#" MasterPageFile="~/Child.Master" AutoEventWireup="true" CodeBehind="Evaluation.aspx.cs" Inherits="WebApplication1.Evaluation1" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="Style.css" rel="stylesheet" />
     <style type="text/css">
         .auto-style1 {
@@ -36,9 +36,16 @@
         .auto-style10 {
             height: 24px;
         }
+        .active {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #a8a8a8;
+            background-color:#4a4a4a;
+            display: block;
+            transition: 0.3s;
+        }
     </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
         <asp:table runat="server" ID="evaluationTable" Width="80%">
             <asp:TableRow>

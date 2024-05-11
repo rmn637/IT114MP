@@ -43,6 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\itextsharp.pdfa.5.5.13.3\lib\itextsharp.pdfa.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -116,49 +125,82 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin.aspx" />
     <Content Include="Agreement.aspx" />
-    <Content Include="AgreementFaculty.aspx" />
-    <Content Include="AgreementOfficers.aspx" />
-    <Content Include="AgreementOverallFaculty.aspx" />
-    <Content Include="AgreementOverallOfficers.aspx" />
-    <Content Include="AgreementOverallStaff.aspx" />
-    <Content Include="AgreementSection1Faculty.aspx" />
-    <Content Include="AgreementSection1Officers.aspx" />
-    <Content Include="AgreementSection1Staff.aspx" />
-    <Content Include="AgreementSection2Faculty.aspx" />
-    <Content Include="AgreementSection2Officers.aspx" />
-    <Content Include="AgreementSection2Staff.aspx" />
-    <Content Include="AgreementSection3Officers.aspx" />
-    <Content Include="AgreementSection4Officers.aspx" />
-    <Content Include="AgreementStaff.aspx" />
+    <Content Include="FA.aspx" />
+    <Content Include="images\MMCL bg.png" />
+    <Content Include="OA.aspx" />
+    <Content Include="FAO.aspx" />
+    <Content Include="OAO.aspx" />
+    <Content Include="SAO.aspx" />
+    <Content Include="FAS1.aspx" />
+    <Content Include="OAS1.aspx" />
+    <Content Include="SAS1.aspx" />
+    <Content Include="FAS2.aspx" />
+    <Content Include="OAS2.aspx" />
+    <Content Include="SAS2.aspx" />
+    <Content Include="OAS3.aspx" />
+    <Content Include="OAS4.aspx" />
+    <Content Include="SA.aspx" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="CreateAcc.aspx" />
     <Content Include="Evaluation.aspx" />
-    <Content Include="AgreementCommentsFaculty.aspx" />
-    <Content Include="EvaluationCommentsFaculty.aspx" />
-    <Content Include="EvaluationCommentsOfficers.aspx" />
-    <Content Include="EvaluationCommentsStaff.aspx" />
-    <Content Include="EvaluationOverallFaculty.aspx" />
-    <Content Include="EvaluationOverallOfficers.aspx" />
-    <Content Include="EvaluationOverallStaff.aspx" />
-    <Content Include="EvaluationSection1Faculty.aspx" />
-    <Content Include="EvaluationSection1Officers.aspx" />
-    <Content Include="EvaluationSection1Staff.aspx" />
-    <Content Include="EvaluationSection2Faculty.aspx" />
-    <Content Include="EvaluationSection2Officers.aspx" />
-    <Content Include="EvaluationSection2Staff.aspx" />
-    <Content Include="EvaluationSection3Officers.aspx" />
-    <Content Include="EvaluationSection4Officers.aspx" />
+    <Content Include="FEC.aspx" />
+    <Content Include="OEC.aspx" />
+    <Content Include="SEC.aspx" />
+    <Content Include="FEO.aspx" />
+    <Content Include="OEO.aspx" />
+    <Content Include="SEO.aspx" />
+    <Content Include="FES1.aspx" />
+    <Content Include="OES1.aspx" />
+    <Content Include="SES1.aspx" />
+    <Content Include="FES2.aspx" />
+    <Content Include="OES2.aspx" />
+    <Content Include="SES2.aspx" />
+    <Content Include="OES3.aspx" />
+    <Content Include="OES4.aspx" />
+    <Content Include="ForgetPass.aspx" />
     <Content Include="images\MMCL Logo.png" />
     <Content Include="images\MMCL Logo1.png" />
-    <Content Include="LogIn.aspx" />
+    <Content Include="Intro.aspx" />
+    <Content Include="LogInPage.aspx" />
+    <Content Include="Report.aspx" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Style.css" />
     <Content Include="Web.config" />
-    <Content Include="Start.aspx" />
     <Content Include="MyAccount.aspx" />
-    <Content Include="EvaluationFaculty.aspx" />
-    <Content Include="EvaluationOfficers.aspx" />
-    <Content Include="EvaluationStaff.aspx" />
+    <Content Include="FE.aspx" />
+    <Content Include="OE.aspx" />
+    <Content Include="SE.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin.aspx.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin.aspx.designer.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Agreement.aspx.cs">
       <DependentUpon>Agreement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,103 +208,117 @@
     <Compile Include="Agreement.aspx.designer.cs">
       <DependentUpon>Agreement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementFaculty.aspx.cs">
-      <DependentUpon>AgreementFaculty.aspx</DependentUpon>
+    <Compile Include="FA.aspx.cs">
+      <DependentUpon>FA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementFaculty.aspx.designer.cs">
-      <DependentUpon>AgreementFaculty.aspx</DependentUpon>
+    <Compile Include="FA.aspx.designer.cs">
+      <DependentUpon>FA.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementOfficers.aspx.cs">
-      <DependentUpon>AgreementOfficers.aspx</DependentUpon>
+    <Compile Include="OA.aspx.cs">
+      <DependentUpon>OA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementOfficers.aspx.designer.cs">
-      <DependentUpon>AgreementOfficers.aspx</DependentUpon>
+    <Compile Include="OA.aspx.designer.cs">
+      <DependentUpon>OA.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementOverallFaculty.aspx.cs">
-      <DependentUpon>AgreementOverallFaculty.aspx</DependentUpon>
+    <Compile Include="FAO.aspx.cs">
+      <DependentUpon>FAO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementOverallFaculty.aspx.designer.cs">
-      <DependentUpon>AgreementOverallFaculty.aspx</DependentUpon>
+    <Compile Include="FAO.aspx.designer.cs">
+      <DependentUpon>FAO.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementOverallOfficers.aspx.cs">
-      <DependentUpon>AgreementOverallOfficers.aspx</DependentUpon>
+    <Compile Include="OAO.aspx.cs">
+      <DependentUpon>OAO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementOverallOfficers.aspx.designer.cs">
-      <DependentUpon>AgreementOverallOfficers.aspx</DependentUpon>
+    <Compile Include="OAO.aspx.designer.cs">
+      <DependentUpon>OAO.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementOverallStaff.aspx.cs">
-      <DependentUpon>AgreementOverallStaff.aspx</DependentUpon>
+    <Compile Include="SAO.aspx.cs">
+      <DependentUpon>SAO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementOverallStaff.aspx.designer.cs">
-      <DependentUpon>AgreementOverallStaff.aspx</DependentUpon>
+    <Compile Include="SAO.aspx.designer.cs">
+      <DependentUpon>SAO.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection1Faculty.aspx.cs">
-      <DependentUpon>AgreementSection1Faculty.aspx</DependentUpon>
+    <Compile Include="FAS1.aspx.cs">
+      <DependentUpon>FAS1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection1Faculty.aspx.designer.cs">
-      <DependentUpon>AgreementSection1Faculty.aspx</DependentUpon>
+    <Compile Include="FAS1.aspx.designer.cs">
+      <DependentUpon>FAS1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection1Officers.aspx.cs">
-      <DependentUpon>AgreementSection1Officers.aspx</DependentUpon>
+    <Compile Include="OAS1.aspx.cs">
+      <DependentUpon>OAS1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection1Officers.aspx.designer.cs">
-      <DependentUpon>AgreementSection1Officers.aspx</DependentUpon>
+    <Compile Include="OAS1.aspx.designer.cs">
+      <DependentUpon>OAS1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection1Staff.aspx.cs">
-      <DependentUpon>AgreementSection1Staff.aspx</DependentUpon>
+    <Compile Include="SAS1.aspx.cs">
+      <DependentUpon>SAS1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection1Staff.aspx.designer.cs">
-      <DependentUpon>AgreementSection1Staff.aspx</DependentUpon>
+    <Compile Include="SAS1.aspx.designer.cs">
+      <DependentUpon>SAS1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection2Faculty.aspx.cs">
-      <DependentUpon>AgreementSection2Faculty.aspx</DependentUpon>
+    <Compile Include="FAS2.aspx.cs">
+      <DependentUpon>FAS2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection2Faculty.aspx.designer.cs">
-      <DependentUpon>AgreementSection2Faculty.aspx</DependentUpon>
+    <Compile Include="FAS2.aspx.designer.cs">
+      <DependentUpon>FAS2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection2Officers.aspx.cs">
-      <DependentUpon>AgreementSection2Officers.aspx</DependentUpon>
+    <Compile Include="OAS2.aspx.cs">
+      <DependentUpon>OAS2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection2Officers.aspx.designer.cs">
-      <DependentUpon>AgreementSection2Officers.aspx</DependentUpon>
+    <Compile Include="OAS2.aspx.designer.cs">
+      <DependentUpon>OAS2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection2Staff.aspx.cs">
-      <DependentUpon>AgreementSection2Staff.aspx</DependentUpon>
+    <Compile Include="SAS2.aspx.cs">
+      <DependentUpon>SAS2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection2Staff.aspx.designer.cs">
-      <DependentUpon>AgreementSection2Staff.aspx</DependentUpon>
+    <Compile Include="SAS2.aspx.designer.cs">
+      <DependentUpon>SAS2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection3Officers.aspx.cs">
-      <DependentUpon>AgreementSection3Officers.aspx</DependentUpon>
+    <Compile Include="OAS3.aspx.cs">
+      <DependentUpon>OAS3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection3Officers.aspx.designer.cs">
-      <DependentUpon>AgreementSection3Officers.aspx</DependentUpon>
+    <Compile Include="OAS3.aspx.designer.cs">
+      <DependentUpon>OAS3.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementSection4Officers.aspx.cs">
-      <DependentUpon>AgreementSection4Officers.aspx</DependentUpon>
+    <Compile Include="OAS4.aspx.cs">
+      <DependentUpon>OAS4.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementSection4Officers.aspx.designer.cs">
-      <DependentUpon>AgreementSection4Officers.aspx</DependentUpon>
+    <Compile Include="OAS4.aspx.designer.cs">
+      <DependentUpon>OAS4.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementStaff.aspx.cs">
-      <DependentUpon>AgreementStaff.aspx</DependentUpon>
+    <Compile Include="SA.aspx.cs">
+      <DependentUpon>SA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementStaff.aspx.designer.cs">
-      <DependentUpon>AgreementStaff.aspx</DependentUpon>
+    <Compile Include="SA.aspx.designer.cs">
+      <DependentUpon>SA.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Child.master.cs">
+      <DependentUpon>Child.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Child.master.designer.cs">
+      <DependentUpon>Child.master</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAcc.aspx.cs">
+      <DependentUpon>CreateAcc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateAcc.aspx.designer.cs">
+      <DependentUpon>CreateAcc.aspx</DependentUpon>
     </Compile>
     <Compile Include="Evaluation.aspx.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
@@ -271,132 +327,146 @@
     <Compile Include="Evaluation.aspx.designer.cs">
       <DependentUpon>Evaluation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgreementCommentsFaculty.aspx.cs">
-      <DependentUpon>AgreementCommentsFaculty.aspx</DependentUpon>
+    <Compile Include="FEC.aspx.cs">
+      <DependentUpon>FEC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgreementCommentsFaculty.aspx.designer.cs">
-      <DependentUpon>AgreementCommentsFaculty.aspx</DependentUpon>
+    <Compile Include="FEC.aspx.designer.cs">
+      <DependentUpon>FEC.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationCommentsFaculty.aspx.cs">
-      <DependentUpon>EvaluationCommentsFaculty.aspx</DependentUpon>
+    <Compile Include="OEC.aspx.cs">
+      <DependentUpon>OEC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationCommentsFaculty.aspx.designer.cs">
-      <DependentUpon>EvaluationCommentsFaculty.aspx</DependentUpon>
+    <Compile Include="OEC.aspx.designer.cs">
+      <DependentUpon>OEC.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationCommentsOfficers.aspx.cs">
-      <DependentUpon>EvaluationCommentsOfficers.aspx</DependentUpon>
+    <Compile Include="SEC.aspx.cs">
+      <DependentUpon>SEC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationCommentsOfficers.aspx.designer.cs">
-      <DependentUpon>EvaluationCommentsOfficers.aspx</DependentUpon>
+    <Compile Include="SEC.aspx.designer.cs">
+      <DependentUpon>SEC.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationCommentsStaff.aspx.cs">
-      <DependentUpon>EvaluationCommentsStaff.aspx</DependentUpon>
+    <Compile Include="FEO.aspx.cs">
+      <DependentUpon>FEO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationCommentsStaff.aspx.designer.cs">
-      <DependentUpon>EvaluationCommentsStaff.aspx</DependentUpon>
+    <Compile Include="FEO.aspx.designer.cs">
+      <DependentUpon>FEO.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationOverallFaculty.aspx.cs">
-      <DependentUpon>EvaluationOverallFaculty.aspx</DependentUpon>
+    <Compile Include="OEO.aspx.cs">
+      <DependentUpon>OEO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationOverallFaculty.aspx.designer.cs">
-      <DependentUpon>EvaluationOverallFaculty.aspx</DependentUpon>
+    <Compile Include="OEO.aspx.designer.cs">
+      <DependentUpon>OEO.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationOverallOfficers.aspx.cs">
-      <DependentUpon>EvaluationOverallOfficers.aspx</DependentUpon>
+    <Compile Include="SEO.aspx.cs">
+      <DependentUpon>SEO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationOverallOfficers.aspx.designer.cs">
-      <DependentUpon>EvaluationOverallOfficers.aspx</DependentUpon>
+    <Compile Include="SEO.aspx.designer.cs">
+      <DependentUpon>SEO.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationOverallStaff.aspx.cs">
-      <DependentUpon>EvaluationOverallStaff.aspx</DependentUpon>
+    <Compile Include="FES1.aspx.cs">
+      <DependentUpon>FES1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationOverallStaff.aspx.designer.cs">
-      <DependentUpon>EvaluationOverallStaff.aspx</DependentUpon>
+    <Compile Include="FES1.aspx.designer.cs">
+      <DependentUpon>FES1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection1Faculty.aspx.cs">
-      <DependentUpon>EvaluationSection1Faculty.aspx</DependentUpon>
+    <Compile Include="OES1.aspx.cs">
+      <DependentUpon>OES1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection1Faculty.aspx.designer.cs">
-      <DependentUpon>EvaluationSection1Faculty.aspx</DependentUpon>
+    <Compile Include="OES1.aspx.designer.cs">
+      <DependentUpon>OES1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection1Officers.aspx.cs">
-      <DependentUpon>EvaluationSection1Officers.aspx</DependentUpon>
+    <Compile Include="SES1.aspx.cs">
+      <DependentUpon>SES1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection1Officers.aspx.designer.cs">
-      <DependentUpon>EvaluationSection1Officers.aspx</DependentUpon>
+    <Compile Include="SES1.aspx.designer.cs">
+      <DependentUpon>SES1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection1Staff.aspx.cs">
-      <DependentUpon>EvaluationSection1Staff.aspx</DependentUpon>
+    <Compile Include="FES2.aspx.cs">
+      <DependentUpon>FES2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection1Staff.aspx.designer.cs">
-      <DependentUpon>EvaluationSection1Staff.aspx</DependentUpon>
+    <Compile Include="FES2.aspx.designer.cs">
+      <DependentUpon>FES2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection2Faculty.aspx.cs">
-      <DependentUpon>EvaluationSection2Faculty.aspx</DependentUpon>
+    <Compile Include="OES2.aspx.cs">
+      <DependentUpon>OES2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection2Faculty.aspx.designer.cs">
-      <DependentUpon>EvaluationSection2Faculty.aspx</DependentUpon>
+    <Compile Include="OES2.aspx.designer.cs">
+      <DependentUpon>OES2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection2Officers.aspx.cs">
-      <DependentUpon>EvaluationSection2Officers.aspx</DependentUpon>
+    <Compile Include="SES2.aspx.cs">
+      <DependentUpon>SES2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection2Officers.aspx.designer.cs">
-      <DependentUpon>EvaluationSection2Officers.aspx</DependentUpon>
+    <Compile Include="SES2.aspx.designer.cs">
+      <DependentUpon>SES2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection2Staff.aspx.cs">
-      <DependentUpon>EvaluationSection2Staff.aspx</DependentUpon>
+    <Compile Include="OES3.aspx.cs">
+      <DependentUpon>OES3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection2Staff.aspx.designer.cs">
-      <DependentUpon>EvaluationSection2Staff.aspx</DependentUpon>
+    <Compile Include="OES3.aspx.designer.cs">
+      <DependentUpon>OES3.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection3Officers.aspx.cs">
-      <DependentUpon>EvaluationSection3Officers.aspx</DependentUpon>
+    <Compile Include="OES4.aspx.cs">
+      <DependentUpon>OES4.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection3Officers.aspx.designer.cs">
-      <DependentUpon>EvaluationSection3Officers.aspx</DependentUpon>
+    <Compile Include="OES4.aspx.designer.cs">
+      <DependentUpon>OES4.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationSection4Officers.aspx.cs">
-      <DependentUpon>EvaluationSection4Officers.aspx</DependentUpon>
+    <Compile Include="ForgetPass.aspx.cs">
+      <DependentUpon>ForgetPass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationSection4Officers.aspx.designer.cs">
-      <DependentUpon>EvaluationSection4Officers.aspx</DependentUpon>
+    <Compile Include="ForgetPass.aspx.designer.cs">
+      <DependentUpon>ForgetPass.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LogIn.aspx.cs">
-      <DependentUpon>LogIn.aspx</DependentUpon>
+    <Compile Include="Intro.aspx.cs">
+      <DependentUpon>Intro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LogIn.aspx.designer.cs">
-      <DependentUpon>LogIn.aspx</DependentUpon>
+    <Compile Include="Intro.aspx.designer.cs">
+      <DependentUpon>Intro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogInPage.aspx.cs">
+      <DependentUpon>LogInPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogInPage.aspx.designer.cs">
+      <DependentUpon>LogInPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Parent.Master.cs">
+      <DependentUpon>Parent.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Parent.Master.designer.cs">
+      <DependentUpon>Parent.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Start.aspx.cs">
-      <DependentUpon>Start.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Start.aspx.designer.cs">
-      <DependentUpon>Start.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyAccount.aspx.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
@@ -405,31 +475,56 @@
     <Compile Include="MyAccount.aspx.designer.cs">
       <DependentUpon>MyAccount.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationFaculty.aspx.cs">
-      <DependentUpon>EvaluationFaculty.aspx</DependentUpon>
+    <Compile Include="FE.aspx.cs">
+      <DependentUpon>FE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationFaculty.aspx.designer.cs">
-      <DependentUpon>EvaluationFaculty.aspx</DependentUpon>
+    <Compile Include="FE.aspx.designer.cs">
+      <DependentUpon>FE.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationOfficers.aspx.cs">
-      <DependentUpon>EvaluationOfficers.aspx</DependentUpon>
+    <Compile Include="OE.aspx.cs">
+      <DependentUpon>OE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationOfficers.aspx.designer.cs">
-      <DependentUpon>EvaluationOfficers.aspx</DependentUpon>
+    <Compile Include="OE.aspx.designer.cs">
+      <DependentUpon>OE.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EvaluationStaff.aspx.cs">
-      <DependentUpon>EvaluationStaff.aspx</DependentUpon>
+    <Compile Include="SE.aspx.cs">
+      <DependentUpon>SE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EvaluationStaff.aspx.designer.cs">
-      <DependentUpon>EvaluationStaff.aspx</DependentUpon>
+    <Compile Include="SE.aspx.designer.cs">
+      <DependentUpon>SE.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebPage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Child.master" />
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Parent.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

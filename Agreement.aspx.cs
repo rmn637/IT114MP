@@ -11,10 +11,10 @@ namespace WebApplication1
     public partial class Agreement1 : System.Web.UI.Page
     {
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)    
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            ((Site1)Page.Master).opt4class = "active";
+            ((Child)Page.Master).opt4class = "active";
             Session["AccType"] = "Supervisor";
             Initialize();
             
@@ -27,7 +27,7 @@ namespace WebApplication1
             NpgsqlCommand command;
             NpgsqlDataReader reader;
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
             {
                 connection.Open();
                 SQLcmd = @"SELECT ""PASubmission"", ""StatusReport"".""EmpID"", ""ReportID"" FROM ""StatusReport"" INNER JOIN ""Employee"" ON ""StatusReport"".""EmpID"" = ""Employee"".""EmpID"" WHERE ""PASubmission"" IS NOT NULL AND ""PAValidation"" = @PAValidation AND ""SupID"" = @SupID";
@@ -40,8 +40,8 @@ namespace WebApplication1
                 {
                     if (reader.GetString(0) != "0") 
                     {
-                        empIDList.Add(reader.GetString(0));
-                        storedReportID = reader.GetString(1);
+                        empIDList.Add(reader.GetString(1));
+                        storedReportID = reader.GetString(2);
                     }
                     
                 }
@@ -61,7 +61,7 @@ namespace WebApplication1
         protected void createTableRow(string empID)
         {
             string empName = "", empType = "";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
             {
                 connection.Open();
                 string sqlCode = @"SELECT ""EmpName"", ""EmpType"" FROM ""Employee"" WHERE ""EmpID"" = @EmpID";
@@ -87,7 +87,7 @@ namespace WebApplication1
             TableCell empNameCell = new TableCell { Text = empName };
             TableCell empTypeCell = new TableCell { Text = empType };
             TableCell empBtnCell = new TableCell { };
-            Button empAgreementbtn = new Button { ID = $"{empType}_{empName}", Text = empName };
+            Button empAgreementbtn = new Button { ID = $"{empName}", Text = "Proceed" };
 
             if (empType == "Faculty")
             {
@@ -115,15 +115,15 @@ namespace WebApplication1
         protected void StaffClicked(object sender, EventArgs e)
         {
             Button staff = sender as Button;
-
-            SetStaffSessionInfo(staff.Text);
+            Session["Process"] = "Validation";
+            SetStaffSessionInfo(staff.ID);
             Response.Redirect("~/AgreementSection1Staff.aspx");
         }
 
         protected void SetStaffSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedStaffFormID = "";
@@ -138,6 +138,7 @@ namespace WebApplication1
                     storedFormID = reader.GetString(1);
                     storedStaffFormID = reader.GetString(2);
 
+                    Session["RateeEmpType"] = "Staff";
                     Session["RateeID"] = storedEmpID;
                     Session["FormID"] = storedFormID;
                     Session["StaffFormID"] = storedStaffFormID;
@@ -150,13 +151,14 @@ namespace WebApplication1
         protected void FacultyClicked(object sender, EventArgs e)
         {
             Button faculty = sender as Button;
-            SetFacultySessionInfo(faculty.Text);
+            Session["Process"] = "Validation";
+            SetFacultySessionInfo(faculty.ID);
             Response.Redirect("~/AgreementSection1Faculty.aspx");
         }
 
         protected void SetFacultySessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedFacultyFormID = "";
@@ -171,7 +173,7 @@ namespace WebApplication1
                     storedFormID = reader.GetString(1);
                     storedFacultyFormID = reader.GetString(2);
 
-
+                    Session["RateeEmpType"] = "Faculty";
                     Session["RateeID"] = storedEmpID;
                     Session["FormID"] = storedFormID;
                     Session["FacultyFormID"] = storedFacultyFormID;
@@ -184,15 +186,15 @@ namespace WebApplication1
         protected void OfficerClicked(object sender, EventArgs e)
         {
             Button officer = sender as Button;
-
-            SetOfficerSessionInfo(officer.Text);
+            Session["Process"] = "Validation";
+            SetOfficerSessionInfo(officer.ID);
             Response.Redirect("AgreementSection1Officers.aspx");
         }
 
         protected void SetOfficerSessionInfo(string name)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
+            //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
             {
                 connection.Open();
                 string storedEmpID = "", storedFormID = "", storedOfficerFormID = "";
@@ -207,7 +209,7 @@ namespace WebApplication1
                     storedFormID = reader.GetString(1);
                     storedOfficerFormID = reader.GetString(2);
 
-
+                    Session["RateeEmpType"] = "Officer";
                     Session["RateeID"] = storedEmpID;
                     Session["FormID"] = storedFormID;
                     Session["OfficerFormID"] = storedOfficerFormID;

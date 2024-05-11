@@ -41,12 +41,12 @@ namespace WebApplication1
         protected void Initialize()
         {
             string SQLcmd, CWR = "", PAVal = "";
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
             {
                 connection.Open();
-                SQLcmd = @"SELECT ""Section2CNWR"", ""ReportID"", ""PAValidation"" FROM ""OfficerForm"" INNER JOIN ""EmployeePerformance"" ON ""OfficerForm"".""FormID"" = ""EmployeePerformance"".""FormID"" INNER JOIN ""StatusReport"" ON ""EmployeePerformance"".""EmpID"" = ""StatusReport"".""EmpID"" WHERE ""OfficerFormID"" = @OfficerFormID";
+                SQLcmd = @"SELECT ""Section2CNWR"", ""ReportID"", ""PAValidation"" FROM ""FacultyForm"" INNER JOIN ""EmployeePerformance"" ON ""FacultyForm"".""FormID"" = ""EmployeePerformance"".""FormID"" INNER JOIN ""StatusReport"" ON ""EmployeePerformance"".""EmpID"" = ""StatusReport"".""EmpID"" WHERE ""FacultyFormID"" = @FacultyFormID";
                 NpgsqlCommand command = new NpgsqlCommand(SQLcmd, connection);
-                command.Parameters.AddWithValue("@OfficerFormID", Session["OfficerFormID"].ToString());
+                command.Parameters.AddWithValue("@FacultyFormID", Session["FacultyFormID"].ToString());
 
                 NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -120,8 +120,8 @@ namespace WebApplication1
 
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
-                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
+                //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=123456;Database=EmplyeeEval;"))
                 {
                     connection.Open();
 
@@ -237,7 +237,22 @@ namespace WebApplication1
             addFinalRow();
         }
 
-        protected void removeScope(int i)
+        protected void removekrabtn(object sender, EventArgs e)
+        {
+            if (totalnumberadded == 1)
+            {
+                Response.Write("<script>alert('Yo need to have one KRA')</script>");
+            }
+            else
+            {
+                totalnumberadded--;
+                lastRow.Cells.Clear();
+                removeKRA(totalnumberadded - 1);
+                tableScope.Rows.Remove(lastRow);
+                addFinalRow();
+            }
+        }
+        protected void removeKRA(int i)
         {
             notes[i] = null;
             scopes[i] = null;
@@ -259,23 +274,6 @@ namespace WebApplication1
             lastRow.Cells.Add(td4);
             tableScope.Rows.Add(lastRow);
         }
-
-        protected void removescopebtn(object sender, EventArgs e)
-        {
-            if (totalnumberadded == 1)
-            {
-                Response.Write("<script>alert('Yo need to have one KRA')</script>");
-            }
-            else
-            {
-                totalnumberadded--;
-                lastRow.Cells.Clear();
-                removeScope(totalnumberadded - 1);
-                tableScope.Rows.Remove(lastRow);
-                addFinalRow();
-            }
-        }
-
         protected void ChangeSection(object sender, EventArgs e)
         {
             LinkButton link = sender as LinkButton;

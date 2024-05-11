@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication1.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Child.master.cs" Inherits="WebApplication1.Child" %>
 
 <!DOCTYPE html>
 
@@ -32,11 +32,16 @@
             </center>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <asp:Label ID="labelLogID" runat="server" Text="Welcome, UserName" CssClass="label"></asp:Label>
-            <asp:LinkButton ID="opt2" runat="server" Text="My Agreement" PostBackUrl="~/Agreement.aspx"></asp:LinkButton>
-            <asp:LinkButton ID="opt3" runat="server" Text="My Evaluation" PostBackUrl="~/Evaluation.aspx" Enabled="false"></asp:LinkButton>
-            <asp:LinkButton ID="opt4" runat="server" Text="Employee Agreement" PostBackUrl="~/Agreement.aspx"></asp:LinkButton>
-            <asp:LinkButton ID="opt5" runat="server" Text="Employee Evaluation" PostBackUrl="~/Evaluation.aspx"></asp:LinkButton>
-            <asp:LinkButton ID="opt1" runat="server" Text="My Account" PostBackUrl="~/MyAccount.aspx"></asp:LinkButton>
+            <a><asp:LinkButton ID="opt2" runat="server" Text="My Agreement" PostBackUrl="~/Agreement.aspx"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="opt3" runat="server" Text="My Evaluation" PostBackUrl="~/Evaluation.aspx" Enabled="false"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="opt4" runat="server" Text="Employee Agreement" PostBackUrl="~/Agreement.aspx"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="opt5" runat="server" Text="Employee Evaluation" PostBackUrl="~/Evaluation.aspx"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="opt1" runat="server" Text="My Account" PostBackUrl="~/MyAccount.aspx"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="opt6" runat="server" Text="Report" PostBackUrl="~/Report.aspx"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="optadmin" runat="server" Text="Admin" PostBackUrl="~/Admin.aspx"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="optcreate" runat="server" Text="Create Account" PostBackUrl="~/CreateAcc.aspx"></asp:LinkButton></a>
+            <a><asp:LinkButton ID="optdownload" runat="server" Text="Download PDF" OnClick="optdownload_Click" Enabled="false" Visible ="false"/></a>
+
             <a href="LogIn.aspx" class="label">Sign Out</a>
         </div>
         

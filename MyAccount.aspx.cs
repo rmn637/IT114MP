@@ -20,12 +20,15 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            ((Site1)Page.Master).opt1class = "active";
+            ((Child)Page.Master).opt1class = "active";
+
+
+
             string storedEmpID = Session["EmpID"].ToString();
             string storedEmpName = "", storedEmpPos = "", storedEmpDept = "", storedSupName = "";
             try
             {
-                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=postgres;"))
+                using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=EmployeeEval;"))
                 //using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=12345;Database=EmplyeeEval;"))
                 {
                     connection.Open();
@@ -50,11 +53,11 @@ namespace WebApplication1
                     }
                     reader.Close();
 
-                    lblEmpIDText = "Employee ID: " + storedEmpID;
-                    lblEmpNameText = "Employee Name: " + storedEmpName;
-                    lblEmpDeptText = "Employee Department: " + storedEmpDept;
-                    lblEmpPosText = "Employee Position: " + storedEmpPos;
-                    lblEmpSupervisorText = "Employee Supervisor: " + storedSupName;
+                    lblEmpIDText = storedEmpID;
+                    lblEmpNameText = storedEmpName;
+                    lblEmpDeptText = storedEmpDept;
+                    lblEmpPosText = storedEmpPos;
+                    lblEmpSupervisorText = storedSupName;
                 }
             }
             catch (Exception ex)
